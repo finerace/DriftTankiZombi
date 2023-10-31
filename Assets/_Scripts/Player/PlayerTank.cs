@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening.Plugins.Options;
 using UnityEngine;
 
-public class PlayerTankMovement : MonoBehaviour
+public class PlayerTank : HealthBase
 {
     
     [SerializeField] private Transform tankT;
@@ -115,5 +112,9 @@ public class PlayerTankMovement : MonoBehaviour
             ChangePhysMaterial(horizontal != 0 && tankRb.velocity.magnitude >= driftModeOnSpeed ? driftMaterial : normalMaterial);
         }
     }
-    
+
+    public override void Died()
+    {
+        
+    }
 }
