@@ -43,7 +43,7 @@ public class PlayerTank : HealthBase
                 isFly = true;
                 
                 foreach (var groundCheck in groundCheckT)
-                    if (groundCheck.Raycast(groundCheck.forward, groundCheckDistance, groundMask) != null)
+                    if (groundCheck.Raycast(groundCheck.forward, groundCheckDistance, groundMask).distance != 0)
                     {
                         isFly = false;
                         break;
@@ -81,13 +81,13 @@ public class PlayerTank : HealthBase
 
                 resultVector.y = horizontal * rotationPower * Time.deltaTime * 100;
 
-                bool IsTankMoveBackwards()
-                {
-                    return vertical < 0;
-                }
-                
-                if (IsTankMoveBackwards())
-                    return -resultVector;
+                // bool IsTankMoveBackwards()
+                // {
+                //     return vertical < 0;
+                // }
+                //
+                // if (IsTankMoveBackwards())
+                //     return -resultVector;
                 
                 return resultVector;
             }
@@ -97,7 +97,6 @@ public class PlayerTank : HealthBase
             
             tankRb.velocity = tankRb.velocity.ClampMagnitude(maxSpeed);
             tankRb.angularVelocity = tankRb.angularVelocity.ClampMagnitude(maxRotation);
-            
         }
 
         DriftModeChange();
