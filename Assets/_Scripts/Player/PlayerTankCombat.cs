@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class PlayerTankCombat : MonoBehaviour
 {
+    [SerializeField] private Transform tankT;
+    [SerializeField] private Rigidbody tankRb;
+    
+    [Space]
+    
     [SerializeField] private float gunExplosionDamage = 20f;
     [SerializeField] private float gunCooldown = 2f;
     [SerializeField] private float gunExplosionPower = 15f;
     [SerializeField] private float gunExplosionRadius = 10f;
     [SerializeField] private float gunShotDistance = 15f;
     [SerializeField] private LayerMask gunShotLayerMask;
-    [SerializeField] private Transform gunShotPoint; 
+    [SerializeField] private Transform gunShotPoint;
     private float gunCooldownTimer;
     
     [Space]
@@ -20,6 +25,8 @@ public class PlayerTankCombat : MonoBehaviour
     [SerializeField] private LayerMask machineGunShotLayerMask;
     [SerializeField] private Transform machineGunShotPoint;
     private float machineGunCooldownTimer;
+
+    public event Action<Vector3> onGunShot; 
 
     private void Update()
     {
@@ -32,8 +39,7 @@ public class PlayerTankCombat : MonoBehaviour
             if (machineGunCooldownTimer > 0)
                 machineGunCooldownTimer -= Time.deltaTime;
         }
-
-
+        
         if (Input.GetKeyUp(KeyCode.LeftControl))
             UseGun();
         
@@ -56,9 +62,11 @@ public class PlayerTankCombat : MonoBehaviour
             (explosionPos,
                 gunExplosionPower,gunExplosionRadius,
                 gunExplosionDamage,
-                gunShotLayerMask,
+                0,
                 gunShotLayerMask,gunShotLayerMask);
             
+            tankRb.AddForce(-tankT.forward * gunExplosionDamage * 10,ForceMode.Acceleration);
+            onGunShot?.Invoke(explosionPos);
         }
         
         if(Input.GetKey(KeyCode.Space))
@@ -79,9 +87,6 @@ public class PlayerTankCombat : MonoBehaviour
             if(rayCastInfo.collider.TryGetComponent(out IHealth health))
                 health.TakeDamage(machineGunDamage);
         }
-        
-        
-        
     }
     
 }

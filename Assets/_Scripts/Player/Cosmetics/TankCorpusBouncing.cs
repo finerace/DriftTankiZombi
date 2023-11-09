@@ -28,4 +28,9 @@ public class TankCorpusBouncing : MonoBehaviour
             ((float)Math.Cos(Time.time * bouncePower) * 
              (1 - Mathf.Clamp(tankRb.velocity.magnitude * bounceStartCof,0,1)));
     }
+
+    public void TakeBounce(float bounce)
+    {
+        corpusBouncing += Vector3.one * bounce;
+    }
 }
