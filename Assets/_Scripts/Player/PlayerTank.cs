@@ -29,6 +29,13 @@ public class PlayerTank : HealthBase
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private bool isFly;
     [SerializeField] private float groundCheckDistance = 0.2f;
+
+    private bool isTankDrifting;
+
+    public Transform TankT => tankT;
+    public Rigidbody TankRb => tankRb;
+
+    public bool IsFly => isFly;
     
     private void Start()
     {
@@ -107,8 +114,15 @@ public class PlayerTank : HealthBase
                 foreach (var collider in tankWheelColliders)
                     collider.material = physicMaterial;
             }
+            
+            bool IsDriftModeOn()
+            {
+                return horizontal != 0 && tankRb.velocity.magnitude >= driftModeOnSpeed;
+            }
 
-            ChangePhysMaterial(horizontal != 0 && tankRb.velocity.magnitude >= driftModeOnSpeed ? driftMaterial : normalMaterial);
+            isTankDrifting = IsDriftModeOn();
+            
+            ChangePhysMaterial(isTankDrifting ? driftMaterial : normalMaterial);
         }
     }
 

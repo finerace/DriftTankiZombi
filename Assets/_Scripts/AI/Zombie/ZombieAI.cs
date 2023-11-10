@@ -33,6 +33,8 @@ public class ZombieAI : HealthBase
     
     private void Start()
     {
+        attackCooldownTimer = attackCooldown;
+        
         StartCoroutine(LookTargetUpdater());
         IEnumerator LookTargetUpdater()
         {

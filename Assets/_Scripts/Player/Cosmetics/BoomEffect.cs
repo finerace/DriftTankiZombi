@@ -37,7 +37,7 @@ public class BoomEffect : MonoBehaviour
         void ClearBoom()
         {
             var resultAlpha = boomMesh.sharedMaterial.GetFloat(Alpha);
-            resultAlpha = Mathf.MoveTowards(resultAlpha, -1, Time.deltaTime * boomClearSpeed);
+            resultAlpha = Mathf.Lerp(resultAlpha, -1, Time.deltaTime * boomClearSpeed);
             
             boomMesh.sharedMaterial.SetFloat(Alpha,resultAlpha);
         }

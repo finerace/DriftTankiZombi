@@ -135,7 +135,7 @@ MonoBehaviour:
   liveTime: 1.5
   destroyTime: 5
   boomAddSpeed: 15
-  boomClearSpeed: 1.8
+  boomClearSpeed: 9
 --- !u!1 &6948016256624257815
 GameObject:
   m_ObjectHideFlags: 0

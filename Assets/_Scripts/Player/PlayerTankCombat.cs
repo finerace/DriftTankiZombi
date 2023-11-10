@@ -5,9 +5,10 @@ public class PlayerTankCombat : MonoBehaviour
 {
     [SerializeField] private Transform tankT;
     [SerializeField] private Rigidbody tankRb;
+
+    [Space] 
     
-    [Space]
-    
+    [SerializeField] private Transform headT;
     [SerializeField] private float gunExplosionDamage = 20f;
     [SerializeField] private float gunCooldown = 2f;
     [SerializeField] private float gunExplosionPower = 15f;
@@ -26,7 +27,8 @@ public class PlayerTankCombat : MonoBehaviour
     [SerializeField] private Transform machineGunShotPoint;
     private float machineGunCooldownTimer;
 
-    public event Action<Vector3> onGunShot; 
+    public event Action<Vector3> onGunShot;
+    public event Action<Vector3> onMachineGunShot; 
 
     private void Update()
     {
@@ -65,7 +67,7 @@ public class PlayerTankCombat : MonoBehaviour
                 0,
                 gunShotLayerMask,gunShotLayerMask);
             
-            tankRb.AddForce(-tankT.forward * gunExplosionDamage * 10,ForceMode.Acceleration);
+            tankRb.AddForce(headT.forward * gunExplosionDamage * 10,ForceMode.Acceleration);
             onGunShot?.Invoke(explosionPos);
         }
         
@@ -81,9 +83,11 @@ public class PlayerTankCombat : MonoBehaviour
             var rayCastInfo = machineGunShotPoint.Raycast(machineGunShotPoint.forward, machineGunShotDistance,
                 machineGunShotLayerMask);
             
+            onMachineGunShot?.Invoke(rayCastInfo.point);
+            
             if(rayCastInfo.distance == 0)
                 return;
-            
+
             if(rayCastInfo.collider.TryGetComponent(out IHealth health))
                 health.TakeDamage(machineGunDamage);
         }
