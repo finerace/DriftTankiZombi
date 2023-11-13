@@ -13,15 +13,36 @@ public class ZombieAnimation : MonoBehaviour
     private static readonly int IsFly = Animator.StringToHash("IsFly");
     private static readonly int IsDie = Animator.StringToHash("IsDie");
 
+    private bool isAnnoyed;
+    private bool isDie;
+    
     private void Start()
     {
-        zombieAI.onAnnoyed += () => {zombieMeshAnimator.SetBool(IsAnnoyed,true);};
-        zombieAI.OnDie += () => {zombieMeshAnimator.SetBool(IsDie,true);};
+        zombieAI.onAnnoyedChange += () =>
+        {
+            isAnnoyed = zombieAI.IsAnnoyed;
+        };
+        
+        zombieAI.OnDie += () =>
+        {
+            isDie = zombieAI.IsDie;
+        };
     }
 
     private void Update()
     {
+        if(!zombieMeshAnimator.gameObject.activeSelf)
+            return;
+            
         var isFly = zombieRb.velocity.magnitude >= toFlyModOnPower;
-        zombieMeshAnimator.SetBool(IsFly,isFly);
+
+        if(zombieMeshAnimator.GetBool(IsAnnoyed) != isAnnoyed)
+            zombieMeshAnimator.SetBool(IsAnnoyed,isAnnoyed);
+        
+        if(zombieMeshAnimator.GetBool(IsFly) != isFly)
+            zombieMeshAnimator.SetBool(IsFly,isFly);
+
+        if(zombieMeshAnimator.GetBool(IsDie) != isDie)
+            zombieMeshAnimator.SetBool(IsDie,isDie);
     }
 }

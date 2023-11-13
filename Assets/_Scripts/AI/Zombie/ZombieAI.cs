@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ZombieAI : HealthBase
 {
@@ -29,7 +30,10 @@ public class ZombieAI : HealthBase
     [SerializeField] private float lookTargetDistance;
     [SerializeField] private float lookTargetDotFov;
 
-    public event Action onAnnoyed;
+    public bool IsAnnoyed => isAnnoyed;
+    public bool IsDie => isDie;
+
+    public event Action onAnnoyedChange;
     
     private void Start()
     {
@@ -38,11 +42,14 @@ public class ZombieAI : HealthBase
         StartCoroutine(LookTargetUpdater());
         IEnumerator LookTargetUpdater()
         {
-            var wait = 0.4f;
+            var wait = new WaitForSeconds(0.4f + Random.Range(0f,0.65f));
             
             while (true)
             {
                 yield return wait;
+                
+                if(isDie)
+                    break;
                 
                 if(isAnnoyed)
                     continue;
@@ -56,11 +63,20 @@ public class ZombieAI : HealthBase
                 {
                     isAnnoyed = true;
                     
-                    onAnnoyed?.Invoke();
+                    onAnnoyedChange?.Invoke();
                 }
             }
         }
 
+        OnTakeDamage += damage =>
+        {
+            if (isDie)
+                return;
+            
+            isAnnoyed = true;
+            onAnnoyedChange?.Invoke();
+        };
+        
         targetT.TryGetComponent(out targetHealth);
     }
 
@@ -114,6 +130,19 @@ public class ZombieAI : HealthBase
     
     public override void Died()
     {
+        DisableAnnoying();
+        void DisableAnnoying()
+        {
+            StartCoroutine(wait());
+
+            IEnumerator wait()
+            {
+                yield return new WaitForSeconds(0.5f);
+                isAnnoyed = false;
+                onAnnoyedChange?.Invoke();
+            }
+        }
+        
         gameObject.layer = 8;
         Destroy(gameObject,30f);
     }
