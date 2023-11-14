@@ -37,6 +37,13 @@ public class ZombieAI : HealthBase
     
     private void Start()
     {
+        SetStartTarget();
+        void SetStartTarget()
+        {
+            if (targetT == null)
+                targetT = FindObjectOfType<PlayerTank>().transform;
+        }
+        
         attackCooldownTimer = attackCooldown;
         
         StartCoroutine(LookTargetUpdater());
