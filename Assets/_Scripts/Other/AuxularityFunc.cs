@@ -153,7 +153,7 @@ public static class Explosions
             bool forceAllow = forceLayerMask.IsLayerInMask(colliderLayer);
             bool damageAllow = damageLayerMask.IsLayerInMask(colliderLayer);
 
-            if ((!forceAllow && !damageAllow) || collider.isTrigger)
+            if (!forceAllow && !damageAllow)
                 continue;
 
             Rigidbody bodyRb;

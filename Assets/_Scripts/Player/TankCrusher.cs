@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TankCrusher : MonoBehaviour
@@ -8,18 +9,30 @@ public class TankCrusher : MonoBehaviour
     [SerializeField] private float toCrushNeededPower = 10;
     [SerializeField] private float crushDamage;
     [SerializeField] private float crushPower;
+    [SerializeField] private bool toCrusherRotation = true;
     
     private void OnCollisionEnter(Collision collision)
+    {
+        Crush(collision.transform);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Crush(other.transform);
+    }
+
+    void Crush(Transform objectT)
     {
         if(tankRb.velocity.magnitude < toCrushNeededPower)
             return;
 
-        if (collision.gameObject.TryGetComponent(out Rigidbody rb))
+        if (objectT.gameObject.TryGetComponent(out Rigidbody rb))
         {
             var punchDirection = -(tankT.position - rb.transform.position).normalized;
             rb.AddForce((punchDirection * crushPower) + tankRb.velocity,ForceMode.Impulse);
 
-            RotateTargetToTank();
+            if(toCrusherRotation)
+                RotateTargetToTank();
             void RotateTargetToTank()
             {
                 var toTankLookRotation = Quaternion.LookRotation(-punchDirection).eulerAngles;
@@ -31,7 +44,7 @@ public class TankCrusher : MonoBehaviour
             }
         }
         
-        if(collision.gameObject.TryGetComponent(out IHealth health))
+        if(objectT.gameObject.TryGetComponent(out IHealth health))
             health.TakeDamage(crushDamage);
     }
     
