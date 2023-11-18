@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class DestructibleEnvironment : HealthBase
@@ -7,6 +8,7 @@ public class DestructibleEnvironment : HealthBase
     [SerializeField] private ParticleSystem destroyEffect;
     [SerializeField] private float destroyTime = 5;
     [SerializeField] private Rigidbody joint;
+    [SerializeField] private float afterDestroyPhysicOnTime = 0;
     private bool isDestroy;
     
     // private void OnCollisionEnter(Collision collision)
@@ -40,7 +42,17 @@ public class DestructibleEnvironment : HealthBase
             destroyEffect.transform.parent = transform;
         }
 
-        gameObject.layer = 8;
+        if (afterDestroyPhysicOnTime <= 0)
+            gameObject.layer = 8;
+        else
+        {
+            StartCoroutine(wait());
+            IEnumerator wait()
+            {
+                yield return new WaitForSeconds(afterDestroyPhysicOnTime);
+                gameObject.layer = 8;
+            }
+        }
         
         if(graphic != null)
             Destroy(graphic);
