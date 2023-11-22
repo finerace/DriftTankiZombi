@@ -26,7 +26,7 @@ public class DestructibleEnvironment : HealthBase
     private void Start()
     {
         if(joint != null)
-            joint.transform.parent = transform.parent;
+            joint.transform.parent = null;
     }
 
     private void StartDestroy()
