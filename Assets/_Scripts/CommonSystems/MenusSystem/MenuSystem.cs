@@ -78,7 +78,6 @@ public class MenuSystem : MonoBehaviour
             
             menuData.menu = spawnedMenu;
             
-            
             if(!IsMenuDataParent(menuData))
                 return;
 
@@ -86,7 +85,6 @@ public class MenuSystem : MonoBehaviour
             
             InitChildMenusData(parentMenuData);
             
-
             void InitChildMenusData(ParentMenuData parentMenuData)
             {
                 foreach (var menuChildData in parentMenuData.childsMenusData)
