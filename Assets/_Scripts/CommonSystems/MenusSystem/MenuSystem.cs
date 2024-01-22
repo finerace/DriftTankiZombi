@@ -26,6 +26,11 @@ public class MenuSystem : MonoBehaviour
     private Camera mainCamera;
     private bool isPlayerExist;
 
+    [Space]
+    
+    [SerializeField] private bool simpleMod = false;
+    [SerializeField] private Transform simpleModMenusParent;
+
     public MenuData CurrentMenuData => currentMenuData;
     
     private void Awake()
@@ -72,8 +77,16 @@ public class MenuSystem : MonoBehaviour
         
         void InitMenu(MenuData menuData)
         {
-            var spawnedMenu = Instantiate(menuData.menuPrefab);
-            spawnedMenu.GetComponent<Canvas>().worldCamera = mainCamera;
+            GameObject spawnedMenu;
+
+            if (!simpleMod)
+            {
+                spawnedMenu = Instantiate(menuData.menuPrefab);
+                spawnedMenu.GetComponent<Canvas>().worldCamera = mainCamera;
+            }
+            else
+                spawnedMenu = Instantiate(menuData.menuPrefab,simpleModMenusParent);
+
             SetMenuSystemRef();
             
             menuData.menu = spawnedMenu;
@@ -189,7 +202,9 @@ public class MenuSystem : MonoBehaviour
         menusPath += $"/{menuData.menuID}";
         menusDataPath.Add(menuData);
 
-        menuData.menu.GetComponent<Canvas>().planeDistance = 0.075f;
+        if(!simpleMod)
+            menuData.menu.GetComponent<Canvas>().planeDistance = 0.075f;
+        
         SetMenuSpecialSettings(menuData);
 
         UpdateMenuPath();
