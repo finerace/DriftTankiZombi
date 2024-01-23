@@ -24239,7 +24239,39 @@ MonoBehaviour:
       menu: {fileID: 0}
       isCursorActive: 1
       isTimeNotActive: 0
-    childsParentsMenusData: []
+    - menuID: Achivments
+      menuPrefab: {fileID: 8760854661346352926, guid: 3999dfebfe377814b95bade6b11fec9f,
+        type: 3}
+      menu: {fileID: 0}
+      isCursorActive: 1
+      isTimeNotActive: 0
+    - menuID: Settings
+      menuPrefab: {fileID: 8760854661346352926, guid: 03fe088f6d50b6343a029383509f17cf,
+        type: 3}
+      menu: {fileID: 0}
+      isCursorActive: 1
+      isTimeNotActive: 0
+    childsParentsMenusData:
+    - menuID: PlayMenu
+      menuPrefab: {fileID: 8760854661346352926, guid: b0467437064e7ad449d220f259e702dc,
+        type: 3}
+      menu: {fileID: 0}
+      isCursorActive: 1
+      isTimeNotActive: 0
+      childsMenusData:
+      - menuID: CampaignLevelSelect
+        menuPrefab: {fileID: 8760854661346352926, guid: dc8072292d6bf31458843dfb96b28bd2,
+          type: 3}
+        menu: {fileID: 0}
+        isCursorActive: 1
+        isTimeNotActive: 0
+      - menuID: ParkourLevelSelect
+        menuPrefab: {fileID: 8760854661346352926, guid: a52149b3c6e27f44c91a4ac661379492,
+          type: 3}
+        menu: {fileID: 0}
+        isCursorActive: 1
+        isTimeNotActive: 0
+      childsParentsMenusData: []
   menusChangeAnimation: {fileID: 634720662}
   useMenuChangeAnimation: 1
   isBackActionLock: 0
