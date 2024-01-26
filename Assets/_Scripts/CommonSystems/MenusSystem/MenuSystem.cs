@@ -14,7 +14,7 @@ public class MenuSystem : MonoBehaviour
     [SerializeField] private Animator menusChangeAnimation;
     [SerializeField] private bool useMenuChangeAnimation;
 
-    private string menusPath;
+    //private string menusPath;
     private readonly List<MenuData> menusDataPath = new List<MenuData>();
     
     [Space]
@@ -182,7 +182,7 @@ public class MenuSystem : MonoBehaviour
         currentMenuData.menu.SetActive(true);
         currentMenuIsParent = true;
 
-        UpdateMenuPath();
+        //UpdateMenuPath();
         SetMenuSpecialSettings(currentMenuData);
         
         PlayMenuChangeAnimation();
@@ -199,7 +199,7 @@ public class MenuSystem : MonoBehaviour
         currentMenuData = menuData;
         menuData.menu.SetActive(true);
 
-        menusPath += $"/{menuData.menuID}";
+        //menusPath += $"/{menuData.menuID}";
         menusDataPath.Add(menuData);
 
         if(!simpleMod)
@@ -207,7 +207,7 @@ public class MenuSystem : MonoBehaviour
         
         SetMenuSpecialSettings(menuData);
 
-        UpdateMenuPath();
+        //UpdateMenuPath();
         
         PlayMenuChangeAnimation();
     }
@@ -222,7 +222,7 @@ public class MenuSystem : MonoBehaviour
         return parentMenu.childsMenusData.FirstOrDefault(item => item.menuID == toFindMenuID);
     }
 
-    private void UpdateMenuPath()
+    /*private void UpdateMenuPath()
     {
         menusPath = "";
 
@@ -230,7 +230,7 @@ public class MenuSystem : MonoBehaviour
         {
             menusPath += $"{item.menuID}/";
         }
-    }
+    }*/
 
     private void SetMenuSpecialSettings(MenuData menuData)
     {

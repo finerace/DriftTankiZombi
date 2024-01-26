@@ -26,7 +26,7 @@ public class DestructibleEnvironment : HealthBase
     private void Start()
     {
         if(joint != null)
-            joint.transform.parent = null;
+            joint.transform.parent = transform.parent;
     }
 
     private void StartDestroy()
@@ -66,5 +66,32 @@ public class DestructibleEnvironment : HealthBase
     public override void Died()
     {
         StartDestroy();
+    }
+
+    private void OnDestroy()
+    {
+        if(graphic != null)
+            Destroy(graphic);
+        
+        if(joint != null)
+            Destroy(joint.gameObject);
+    }
+
+    private void OnEnable()
+    {
+        if(graphic != null)
+            graphic.SetActive(true);
+        
+        if(joint != null)
+            joint.gameObject.SetActive(true);
+    }
+    
+    private void OnDisable()
+    {
+        if(graphic != null)
+            graphic.SetActive(false);
+
+        if (joint != null)
+            joint.gameObject.SetActive(false);
     }
 }

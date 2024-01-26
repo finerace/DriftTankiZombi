@@ -14,6 +14,8 @@ public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,I
     [SerializeField] private float scrollSpeed;
     private bool isBeginDrag;
     private int targetObjectNum;
+    public int TargetObjectNum => targetObjectNum;
+    public event Action OnTargetObjectNumChange;
     
     private void Awake()
     {
@@ -60,7 +62,7 @@ public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,I
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        targetObjectNum = FindNearestObject();
+        var newNum = FindNearestObject();
         int FindNearestObject()
         {
             if (Vector2.Dot((startPoint.position - parentPoint.localPosition).normalized, objectsDistance.normalized) < 0)
@@ -73,6 +75,12 @@ public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,I
                 return objects.Length-1;
             
             return nearestNum;
+        }
+
+        if (newNum != targetObjectNum)
+        {
+            targetObjectNum = newNum;
+            OnTargetObjectNumChange?.Invoke();
         }
         
         isBeginDrag = false;

@@ -59,7 +59,7 @@ public class PlayerTank : HealthBase
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         var vertical = Input.GetAxisRaw("Vertical");
         var horizontal = Input.GetAxisRaw("Horizontal");
