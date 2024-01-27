@@ -6,6 +6,12 @@ public class LevelsLoadService : MonoBehaviour
     [SerializeField] private CommonGameStates commonGameStates;
     [SerializeField] private Transform levelSpawnPoint;
     [SerializeField] private Transform playerTankT;
+    [SerializeField] private GameObject virtualCamera;
+    
+    [Space] 
+    
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject gameMenu;
     
     [Space]
     
@@ -20,22 +26,36 @@ public class LevelsLoadService : MonoBehaviour
         currentLevelData = levelData;
         currentLevel = Instantiate(currentLevelData.Prefab, levelSpawnPoint.position,Quaternion.identity);
 
-        playerTankT.position = levelSpawnPoint.position;
-        playerTankT.rotation = levelSpawnPoint.rotation;
+        SpawnPlayer();
+        void SpawnPlayer()
+        {
+            playerTankT.position = levelSpawnPoint.position;
+            playerTankT.rotation = levelSpawnPoint.rotation;
+
+            playerTankT.gameObject.SetActive(true);
+        }
+        
+        virtualCamera.SetActive(true);
+        
+        SetMainMenuActive(false);
         
         commonGameStates.SetLevelStartState(true);
     }
     
-    private void StopLevel()
+    public void StopLevel()
     {
         currentLevelData = null;
-        
         if(currentLevel != null)
             Destroy(currentLevel);
+
+        playerTankT.gameObject.SetActive(false);
+        SetMainMenuActive(true);
+        
+        virtualCamera.SetActive(false);
         
         commonGameStates.SetLevelStartState(false);
     }
-
+    
     public void SetNewLevelData(LevelData levelData)
     {
         if (currentLevelData == null)
@@ -43,4 +63,10 @@ public class LevelsLoadService : MonoBehaviour
         else throw new FieldAccessException("Current level is not stopped! New level data not be approved!");
     }
 
+    private void SetMainMenuActive(bool state)
+    {
+        mainMenu.SetActive(state);
+        gameMenu.SetActive(!state);
+    }
+    
 }

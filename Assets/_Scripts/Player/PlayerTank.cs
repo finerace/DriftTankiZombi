@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class PlayerTank : HealthBase
     
     [SerializeField] private Transform tankT;
     [SerializeField] private Rigidbody tankRb;
+    [SerializeField] private PlayerTankCombat playerTankCombat;
 
     [Space]
     
@@ -129,5 +131,11 @@ public class PlayerTank : HealthBase
     public override void Died()
     {
         
+    }
+
+    public void Reset()
+    {
+        health = maxHealth;
+        playerTankCombat.Reset();
     }
 }

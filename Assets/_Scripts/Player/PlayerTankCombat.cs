@@ -92,5 +92,10 @@ public class PlayerTankCombat : MonoBehaviour
                 health.TakeDamage(machineGunDamage);
         }
     }
-    
+
+    public void Reset()
+    {
+        gunCooldownTimer = 0;
+        machineGunCooldownTimer = 0;
+    }
 }
