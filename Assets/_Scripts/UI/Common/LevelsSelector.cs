@@ -1,19 +1,24 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class LevelsSelector : MonoBehaviour
 {
-    private LevelsLoadService levelsLoadService;
+    private LevelsLoadPassService levelsLoadPassService;
     [SerializeField] private ObjectsDragService dragService;
     [SerializeField] private LevelData[] levels;
+
+    [Space] 
     
+    [SerializeField] private TMP_Text levelName;
+
     private void Awake()
     {
-        levelsLoadService = FindObjectOfType<LevelsLoadService>();
+        levelsLoadPassService = FindObjectOfType<LevelsLoadPassService>();
     }
 
     public void StartLevel()
     {
-        levelsLoadService.StartLevel(levels[dragService.TargetObjectNum]);
+        levelsLoadPassService.LoadLevel(levels[dragService.TargetObjectNum]);
     }
 }

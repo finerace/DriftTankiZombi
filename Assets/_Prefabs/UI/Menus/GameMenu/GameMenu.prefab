@@ -340,8 +340,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 248, y: -92}
-  m_SizeDelta: {x: 511.17, y: 124.2511}
+  m_AnchoredPosition: {x: 248.00002, y: -85.67119}
+  m_SizeDelta: {x: 511.17, y: 135.0794}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5227263250988778048
 CanvasRenderer:
@@ -1358,7 +1358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.291}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 799.7, y: -328}
+  m_AnchoredPosition: {x: 774, y: -331}
   m_SizeDelta: {x: 374.2297, y: 459.5124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4773462066766638320
@@ -2827,7 +2827,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 553, y: -526.4}
+  m_AnchoredPosition: {x: 535, y: -526.4}
   m_SizeDelta: {x: 437.7914, y: 267.8361}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1972337198181453687
@@ -4034,6 +4034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5170192057731729784}
   - component: {fileID: 1133279263602090240}
+  - component: {fileID: 1960385037995957768}
   m_Layer: 5
   m_Name: GameMenu
   m_TagString: Untagged
@@ -4077,6 +4078,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31803c05247bc2c48a498e686420fa48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1960385037995957768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760854661346352926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71dff67b72ec0db41977c68291bef29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staticTextAdaptableForms:
+  - targetTexts:
+    - {fileID: 4814652205335883343}
+    languageDataTextId: 20
+  - targetTexts:
+    - {fileID: 3343630748683631762}
+    languageDataTextId: 21
+  - targetTexts:
+    - {fileID: 1105097668308407127}
+    languageDataTextId: 22
+  - targetTexts:
+    - {fileID: 212771368556897}
+    languageDataTextId: 23
+  - targetTexts:
+    - {fileID: 6660376303444943224}
+    languageDataTextId: 24
+  - targetTexts:
+    - {fileID: 1699931136834568214}
+    languageDataTextId: 25
+  - targetTexts:
+    - {fileID: 852543485270763720}
+    languageDataTextId: 26
+  - targetTexts:
+    - {fileID: 8366770223190439716}
+    languageDataTextId: 27
 --- !u!1 &8898391344379072787
 GameObject:
   m_ObjectHideFlags: 0

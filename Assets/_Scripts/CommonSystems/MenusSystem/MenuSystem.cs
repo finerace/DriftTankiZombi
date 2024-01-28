@@ -188,9 +188,10 @@ public class MenuSystem : MonoBehaviour
         PlayMenuChangeAnimation();
     }
 
-    private void OpenStartMenu()
+    public void OpenStartMenu()
     {
         ActivateMenu(startMenuData);
+        currentMenuIsParent = true;
     }
 
     private void ActivateMenu(MenuData menuData)

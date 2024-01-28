@@ -31,36 +31,16 @@ public class PlayerTank : HealthBase
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private bool isFly;
     [SerializeField] private float groundCheckDistance = 0.2f;
-
+    
     private bool isTankDrifting;
 
+    private Coroutine flyChecker;
+    
     public Transform TankT => tankT;
     public Rigidbody TankRb => tankRb;
 
     public bool IsFly => isFly;
     
-    private void Start()
-    {
-        StartCoroutine(FlyChecker());
-        IEnumerator FlyChecker()
-        {
-            var wait = new WaitForSeconds(0.15f);
-            while (true)
-            {
-                yield return wait;
-                
-                isFly = true;
-                
-                foreach (var groundCheck in groundCheckT)
-                    if (groundCheck.Raycast(groundCheck.forward, groundCheckDistance, groundMask).distance != 0)
-                    {
-                        isFly = false;
-                        break;
-                    }
-            }
-        }
-    }
-
     private void FixedUpdate()
     {
         var vertical = Input.GetAxisRaw("Vertical");
@@ -133,9 +113,49 @@ public class PlayerTank : HealthBase
         
     }
 
+    private void OnEnable()
+    {
+        if(flyChecker != null)
+            StopCoroutine(flyChecker);
+        
+        flyChecker = StartCoroutine(FlyChecker());
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(flyChecker);
+    }
+
+    IEnumerator FlyChecker()
+    {
+        var wait = new WaitForSeconds(0.15f);
+        while (true)
+        {
+            yield return wait;
+                
+            isFly = true;
+
+            if (tankRb.velocity.magnitude < 0.15f)
+            {
+                isFly = false;
+                continue;
+            }
+            
+            foreach (var groundCheck in groundCheckT)
+                if (groundCheck.Raycast(groundCheck.forward, groundCheckDistance, groundMask).distance != 0)
+                {
+                    isFly = false;
+                    break;
+                }
+        }
+    }
+    
     public void Reset()
     {
         health = maxHealth;
+        tankRb.velocity = Vector3.zero;
+        tankRb.angularVelocity = Vector3.zero;
+
         playerTankCombat.Reset();
     }
 }

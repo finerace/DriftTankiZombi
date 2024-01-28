@@ -44779,8 +44779,8 @@ MonoBehaviour:
   levelSpawnPoint: {fileID: 1488242427}
   playerTankT: {fileID: 1194404523}
   virtualCamera: {fileID: 1166757313}
-  mainMenu: {fileID: 634720656}
-  gameMenu: {fileID: 2013787163}
+  mainMenu: {fileID: 634720661}
+  gameMenu: {fileID: 2013787165}
   currentLevelData: {fileID: 0}
 --- !u!1 &1164936181
 GameObject:
@@ -75206,7 +75206,19 @@ MonoBehaviour:
     menu: {fileID: 0}
     isCursorActive: 0
     isTimeNotActive: 0
-    childsMenusData: []
+    childsMenusData:
+    - menuID: LevelComplete
+      menuPrefab: {fileID: 3962674510406439957, guid: 7af5edf04bb1cef42a5297cca9a19388,
+        type: 3}
+      menu: {fileID: 0}
+      isCursorActive: 1
+      isTimeNotActive: 1
+    - menuID: StopLevel
+      menuPrefab: {fileID: 3962674510406439957, guid: e6c120ecafed5544fbcace728a012fb0,
+        type: 3}
+      menu: {fileID: 0}
+      isCursorActive: 1
+      isTimeNotActive: 1
     childsParentsMenusData:
     - menuID: PauseMenu
       menuPrefab: {fileID: 3962674510406439957, guid: 967170aefc1dbb24fa1e5c1f12f0f0ce,

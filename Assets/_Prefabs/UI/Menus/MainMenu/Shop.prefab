@@ -4473,6 +4473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5170192057731729784}
   - component: {fileID: 478229195683202185}
+  - component: {fileID: 3432657419979274045}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -4515,6 +4516,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31803c05247bc2c48a498e686420fa48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3432657419979274045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760854661346352926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71dff67b72ec0db41977c68291bef29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staticTextAdaptableForms:
+  - targetTexts:
+    - {fileID: 160219220504159211}
+    languageDataTextId: 4
+  - targetTexts:
+    - {fileID: 9196884580516281672}
+    languageDataTextId: 17
+  - targetTexts:
+    - {fileID: 1222935090237242247}
+    languageDataTextId: 18
+  - targetTexts:
+    - {fileID: 2069272805666849024}
+    - {fileID: 5876962314551557872}
+    - {fileID: 8948821049295652764}
+    languageDataTextId: 19
+  - targetTexts:
+    - {fileID: 3446758951528213781}
+    languageDataTextId: 7
 --- !u!1 &8951477385458228960
 GameObject:
   m_ObjectHideFlags: 0
@@ -4843,6 +4874,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d2bd4fc86947814fb90dce1214495a2, type: 3}
+--- !u!114 &3446758951528213781 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5209271298250080120, guid: 2d2bd4fc86947814fb90dce1214495a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7466499396749349485}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3839026638795824154 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5969701382016863863, guid: 2d2bd4fc86947814fb90dce1214495a2,

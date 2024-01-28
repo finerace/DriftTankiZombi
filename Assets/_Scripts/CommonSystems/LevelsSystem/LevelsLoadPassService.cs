@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class LevelsLoadService : MonoBehaviour
+public class LevelsLoadPassService : MonoBehaviour
 {
     [SerializeField] private CommonGameStates commonGameStates;
     [SerializeField] private Transform levelSpawnPoint;
@@ -10,15 +10,15 @@ public class LevelsLoadService : MonoBehaviour
     
     [Space] 
     
-    [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject gameMenu;
+    [SerializeField] private MenuSystem mainMenu;
+    [SerializeField] private MenuSystem gameMenu;
     
     [Space]
     
     [SerializeField] private LevelData currentLevelData;
     private GameObject currentLevel;
 
-    public void StartLevel(LevelData levelData)
+    public void LoadLevel(LevelData levelData)
     {
         if(currentLevel != null)
             Destroy(currentLevel);
@@ -41,8 +41,27 @@ public class LevelsLoadService : MonoBehaviour
         
         commonGameStates.SetLevelStartState(true);
     }
-    
+
     public void StopLevel()
+    {
+        if (currentLevelData == null)
+            throw new Exception("Currently level is null!");
+        
+        gameMenu.OpenLocalMenu("StopLevel");
+    }
+
+    public void RestartLevel()
+    {
+        if (currentLevelData == null)
+            throw new Exception("Currently level is null!");
+        
+        var savedLevelData = currentLevelData;
+        
+        UnloadLevel();
+        LoadLevel(savedLevelData);
+    }
+    
+    public void UnloadLevel()
     {
         currentLevelData = null;
         if(currentLevel != null)
@@ -55,7 +74,7 @@ public class LevelsLoadService : MonoBehaviour
         
         commonGameStates.SetLevelStartState(false);
     }
-    
+
     public void SetNewLevelData(LevelData levelData)
     {
         if (currentLevelData == null)
@@ -63,10 +82,23 @@ public class LevelsLoadService : MonoBehaviour
         else throw new FieldAccessException("Current level is not stopped! New level data not be approved!");
     }
 
+    public void CompleteLevel()
+    {
+        if (currentLevelData == null)
+            throw new Exception("Currently level is null!");
+        
+        gameMenu.OpenLocalMenu("LevelComplete");
+    }
+    
     private void SetMainMenuActive(bool state)
     {
-        mainMenu.SetActive(state);
-        gameMenu.SetActive(!state);
+        mainMenu.gameObject.SetActive(state);
+        if(state)
+            mainMenu.OpenStartMenu();
+        
+        gameMenu.gameObject.SetActive(!state);
+        if(!state)
+            gameMenu.OpenStartMenu();
     }
     
 }
