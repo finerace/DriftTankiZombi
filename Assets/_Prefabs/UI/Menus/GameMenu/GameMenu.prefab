@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4955449595548516881}
   - component: {fileID: 6981621141136075830}
   - component: {fileID: 7473453458853546494}
+  - component: {fileID: 8657190282556688350}
   m_Layer: 5
   m_Name: GunCooldown
   m_TagString: Untagged
@@ -76,6 +77,23 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8657190282556688350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23000987076213974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c52db7c66f7a124696966e1b10ddfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 373211227513130941}
+  IbarNumReference: {fileID: 7967566398218417909}
+  numId: 3
+  speed: 20
+  inverted: 1
 --- !u!1 &259744807626561537
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,8 +984,9 @@ GameObject:
   - component: {fileID: 5919987036085621492}
   - component: {fileID: 6399242411037497493}
   - component: {fileID: 7466365894749796492}
+  - component: {fileID: 3987512521424612615}
   m_Layer: 5
-  m_Name: FuelPanel
+  m_Name: FuelBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1031,6 +1050,23 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3987512521424612615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3458735452121777361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c52db7c66f7a124696966e1b10ddfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 134965643579630691}
+  IbarNumReference: {fileID: 7967566398218417909}
+  numId: 2
+  speed: 20
+  inverted: 0
 --- !u!1 &3480312960735449052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1213,7 @@ GameObject:
   - component: {fileID: 8913578414135662744}
   - component: {fileID: 9141411791473892643}
   - component: {fileID: 3472023129244071334}
+  - component: {fileID: 2229837844000373820}
   m_Layer: 5
   m_Name: HpBar
   m_TagString: Untagged
@@ -1242,6 +1279,23 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2229837844000373820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3500510653726469952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c52db7c66f7a124696966e1b10ddfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 3069796624092532987}
+  IbarNumReference: {fileID: 7967566398218417909}
+  numId: 1
+  speed: 20
+  inverted: 0
 --- !u!1 &3704280538696123768
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,7 +1465,7 @@ GameObject:
   - component: {fileID: 3453591126943867567}
   - component: {fileID: 373211227513130941}
   m_Layer: 5
-  m_Name: FuelSlice
+  m_Name: gunCooldownBarImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1744,7 +1798,7 @@ GameObject:
   - component: {fileID: 1893064417480829460}
   - component: {fileID: 2925869895608787977}
   m_Layer: 5
-  m_Name: PlayerInfo
+  m_Name: TankInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3015,7 +3069,7 @@ GameObject:
   - component: {fileID: 8550071334741416205}
   - component: {fileID: 3069796624092532987}
   m_Layer: 5
-  m_Name: FuelSlice
+  m_Name: hpBarImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4035,6 +4089,7 @@ GameObject:
   - component: {fileID: 5170192057731729784}
   - component: {fileID: 1133279263602090240}
   - component: {fileID: 1960385037995957768}
+  - component: {fileID: 7967566398218417909}
   m_Layer: 5
   m_Name: GameMenu
   m_TagString: Untagged
@@ -4115,6 +4170,18 @@ MonoBehaviour:
   - targetTexts:
     - {fileID: 8366770223190439716}
     languageDataTextId: 27
+--- !u!114 &7967566398218417909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760854661346352926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e17a7f75d6856c48938e7ede96a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8898391344379072787
 GameObject:
   m_ObjectHideFlags: 0

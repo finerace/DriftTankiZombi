@@ -27,6 +27,12 @@ public class PlayerTankCombat : MonoBehaviour
     [SerializeField] private Transform machineGunShotPoint;
     private float machineGunCooldownTimer;
 
+    public float GunCooldown => gunCooldown;
+    public float GunCooldownTimer => gunCooldownTimer;
+    
+    public float MachineGunCooldown => machineGunCooldown;
+    public float MachineGunCooldownTimer => machineGunCooldownTimer;
+
     public event Action<Vector3> onGunShot;
     public event Action<Vector3> onMachineGunShot; 
 

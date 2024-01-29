@@ -44990,13 +44990,19 @@ MonoBehaviour:
   maxHealth: 100
   tankT: {fileID: 1194404523}
   tankRb: {fileID: 1194404525}
-  playerTankCombat: {fileID: 0}
+  playerTankCombat: {fileID: 1194404529}
   enginePower: 12
   rotationPower: 10
   maxSpeed: 20
   maxRotation: 1.5
   driftModeOnSpeed: 10
   onFlyMovementSpeedModifier: 0.05
+  isMovementBlocked: 0
+  fuel: 300
+  maxFuel: 300
+  fuelEatSpeed: 15
+  tankHead: {fileID: 2050754098}
+  tankHeadRotationSpeed: 100
   tankWheelColliders:
   - {fileID: 2137012905}
   - {fileID: 846792697}

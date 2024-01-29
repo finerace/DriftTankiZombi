@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class LevelsLoadPassService : MonoBehaviour
@@ -17,6 +18,27 @@ public class LevelsLoadPassService : MonoBehaviour
     
     [SerializeField] private LevelData currentLevelData;
     private GameObject currentLevel;
+    
+    private bool isCurrentLevelComplete = false;
+    private Coroutine dieCoroutine;
+    
+    private void Awake()
+    {
+        SetPlayerDieAlgorithm();
+        void SetPlayerDieAlgorithm()
+        {
+            playerTankT.gameObject.GetComponent<PlayerTank>().OnDie += () =>
+            {
+                dieCoroutine = StartCoroutine(OnPlayerDie());
+            };
+
+            IEnumerator OnPlayerDie()
+            {
+                yield return new WaitForSeconds(3);
+                StopLevel();
+            }
+        }
+    }
 
     public void LoadLevel(LevelData levelData)
     {
@@ -37,7 +59,7 @@ public class LevelsLoadPassService : MonoBehaviour
         
         virtualCamera.SetActive(true);
         
-        SetMainMenuActive(false);
+        ChangeMenusActivity(false);
         
         commonGameStates.SetLevelStartState(true);
     }
@@ -67,38 +89,50 @@ public class LevelsLoadPassService : MonoBehaviour
         if(currentLevel != null)
             Destroy(currentLevel);
 
+        isCurrentLevelComplete = false;
         playerTankT.gameObject.SetActive(false);
-        SetMainMenuActive(true);
+        ChangeMenusActivity(true);
         
         virtualCamera.SetActive(false);
+
+        DisableDieCoroutine();
         
         commonGameStates.SetLevelStartState(false);
     }
-
-    public void SetNewLevelData(LevelData levelData)
-    {
-        if (currentLevelData == null)
-            currentLevelData = levelData;
-        else throw new FieldAccessException("Current level is not stopped! New level data not be approved!");
-    }
-
+    
     public void CompleteLevel()
     {
+        isCurrentLevelComplete = true;
+        
+        DisableDieCoroutine();
+        
         if (currentLevelData == null)
             throw new Exception("Currently level is null!");
         
         gameMenu.OpenLocalMenu("LevelComplete");
     }
-    
-    private void SetMainMenuActive(bool state)
+
+    private void DisableDieCoroutine()
     {
-        mainMenu.gameObject.SetActive(state);
-        if(state)
+        if (dieCoroutine != null)
+            StopCoroutine(dieCoroutine);
+    }
+
+    private void ChangeMenusActivity(bool isMainMenuActive)
+    {
+        mainMenu.gameObject.SetActive(isMainMenuActive);
+        if(isMainMenuActive)
             mainMenu.OpenStartMenu();
         
-        gameMenu.gameObject.SetActive(!state);
-        if(!state)
+        gameMenu.gameObject.SetActive(!isMainMenuActive);
+        if(!isMainMenuActive)
             gameMenu.OpenStartMenu();
     }
     
+    /*public void SetNewLevelData(LevelData levelData)
+    {
+        if (currentLevelData == null)
+            currentLevelData = levelData;
+        else throw new FieldAccessException("Current level is not stopped! New level data not be approved!");
+    }*/
 }

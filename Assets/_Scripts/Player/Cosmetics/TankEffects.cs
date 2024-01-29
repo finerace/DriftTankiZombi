@@ -97,7 +97,7 @@ public class TankEffects : MonoBehaviour
         WheelSmokeMoveEffectWork();
         void WheelSmokeMoveEffectWork()
         {
-            if(playerTank.IsFly)
+            if(playerTank.IsMovementBlocked || playerTank.IsFly)
                 return;
             
             MoveChassis(leftChassis,0,true);
@@ -140,9 +140,9 @@ public class TankEffects : MonoBehaviour
                 var currentMoveVector = chassisMat.GetVector(LineMovement);
 
                 if (addRbSpeed)
-                    currentMoveVector.y += playerTank.TankRb.velocity.LengthXZ() * moveSpeedRb * driftDot;
+                    currentMoveVector.y += playerTank.TankRb.velocity.LengthXZ() * moveSpeedRb * driftDot * Time.timeScale;
                 else
-                    currentMoveVector.y += moveSpeed * Time.deltaTime;
+                    currentMoveVector.y += moveSpeed * Time.deltaTime * Time.timeScale;
                 
                 chassisMesh.sharedMaterial.SetVector(LineMovement,currentMoveVector);
             }

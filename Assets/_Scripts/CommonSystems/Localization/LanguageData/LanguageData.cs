@@ -35,7 +35,6 @@ public class LanguageData : ScriptableObject
             if (pups == ';')
             {
                 textlines[currentId] = resultText;
-                Debug.Log("watatad");
                 resultText = String.Empty;
                 
                 currentId++;

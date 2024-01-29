@@ -15,6 +15,14 @@ public class LevelsSelector : MonoBehaviour
     private void Awake()
     {
         levelsLoadPassService = FindObjectOfType<LevelsLoadPassService>();
+
+        UpdateLevelName();
+        dragService.OnTargetObjectNumChange += UpdateLevelName;
+        
+        void UpdateLevelName()
+        {
+            levelName.text = CurrentLanguageData.GetText(levels[dragService.TargetObjectNum].Name);
+        }
     }
 
     public void StartLevel()

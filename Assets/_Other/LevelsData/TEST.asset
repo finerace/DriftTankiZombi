@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223eea632e9cae3469842e799ff4e3e5, type: 3}
   m_Name: TEST
   m_EditorClassIdentifier: 
-  name: 1
+  name: 35
   id: 1
   prefab: {fileID: 8829697421326049350, guid: cdbdb273ac804294c85c4b825f1412e7, type: 3}
   secrets: 1

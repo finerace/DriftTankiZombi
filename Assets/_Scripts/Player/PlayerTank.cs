@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerTank : HealthBase
+public class PlayerTank : HealthBase, IBarNum
 {
     
     [SerializeField] private Transform tankT;
@@ -17,7 +17,21 @@ public class PlayerTank : HealthBase
     [SerializeField] private float maxRotation = 15;
     [SerializeField] private float driftModeOnSpeed = 5;
     [SerializeField] private float onFlyMovementSpeedModifier = 0.05f;
+    [SerializeField] private bool isMovementBlocked;
 
+    public bool IsMovementBlocked => isMovementBlocked;
+    
+    [Space] 
+    
+    [SerializeField] private float fuel;
+    [SerializeField] private float maxFuel;
+    [SerializeField] private float fuelEatSpeed;
+
+    [Space] 
+    
+    [SerializeField] private Transform tankHead;
+    [SerializeField] private float tankHeadRotationSpeed;
+    
     [Space] 
     
     [SerializeField] private Collider[] tankWheelColliders;
@@ -32,8 +46,8 @@ public class PlayerTank : HealthBase
     [SerializeField] private bool isFly;
     [SerializeField] private float groundCheckDistance = 0.2f;
     
-    private bool isTankDrifting;
-
+    private bool isDriftModOn;
+    
     private Coroutine flyChecker;
     
     public Transform TankT => tankT;
@@ -81,6 +95,9 @@ public class PlayerTank : HealthBase
                 return resultVector;
             }
             
+            if(isMovementBlocked)
+                return;
+            
             tankRb.AddForce(GetMoveVector(),ForceMode.Acceleration);
             tankRb.AddTorque(GetRotationVector(),ForceMode.Acceleration);
             
@@ -102,15 +119,55 @@ public class PlayerTank : HealthBase
                 return horizontal != 0 && tankRb.velocity.magnitude >= driftModeOnSpeed;
             }
 
-            isTankDrifting = IsDriftModeOn();
+            isDriftModOn = IsDriftModeOn();
             
-            ChangePhysMaterial(isTankDrifting ? driftMaterial : normalMaterial);
+            ChangePhysMaterial(isDriftModOn ? driftMaterial : normalMaterial);
+        }
+
+        TankHeadRotation();
+        void TankHeadRotation()
+        {
+            var direction = 0;
+
+            if (Input.GetKey(KeyCode.Q))
+                direction = -1;
+            else if (Input.GetKey(KeyCode.E))
+                direction = 1;
+            else return;
+
+            var euler = tankHead.localEulerAngles;
+            var smooth = 0.01f;
+            
+            tankHead.localEulerAngles = 
+                new Vector3(euler.x,euler.y + tankHeadRotationSpeed * smooth * direction,euler.z);
+        }
+        
+        EatFuel();
+        void EatFuel()
+        {
+            if (fuel <= 0)
+            {
+                if(!isDie)
+                    TakeDamage(Health+1);
+                
+                return;
+            }
+            
+            var isTankEngineWork = (vertical != 0 || horizontal != 0) && !isFly;
+            var smooth = 0.01f;
+
+            var fuelEat = fuelEatSpeed * smooth;
+
+            if (!isTankEngineWork)
+                fuelEat *= 0.15f;
+                
+            fuel -= fuelEat;
         }
     }
 
     public override void Died()
     {
-        
+        isMovementBlocked = true;
     }
 
     private void OnEnable()
@@ -119,6 +176,8 @@ public class PlayerTank : HealthBase
             StopCoroutine(flyChecker);
         
         flyChecker = StartCoroutine(FlyChecker());
+        
+        Reset();
     }
 
     private void OnDisable()
@@ -156,6 +215,58 @@ public class PlayerTank : HealthBase
         tankRb.velocity = Vector3.zero;
         tankRb.angularVelocity = Vector3.zero;
 
+        fuel = maxFuel;
+        isMovementBlocked = false;
+        
+        tankHead.localEulerAngles = 
+            new Vector3(tankHead.localEulerAngles.x,0,tankHead.localEulerAngles.z);
+        
         playerTankCombat.Reset();
+
+        OnBarParamChange?.Invoke();
     }
+
+    public float GetNum(int id)
+    {
+        switch (id)
+        {
+            case 1:
+                return health;
+                break;
+            
+            case 2:
+                return fuel;
+                break;
+            
+            case 3:
+                return playerTankCombat.GunCooldownTimer; 
+                break;
+            
+            default:
+                throw new Exception("This num id is not exist!");
+        }
+    }
+
+    public (float min, float max) GetBarParam(int id)
+    {
+        switch (id)
+        {
+            case 1:
+                return (0,maxHealth);
+                break;
+            
+            case 2:
+                return (0,maxFuel);
+                break;
+            
+            case 3:
+                return (0,playerTankCombat.GunCooldown); 
+                break;
+            
+            default:
+                throw new Exception("This num id is not exist!");
+        }
+    }
+
+    public event Action OnBarParamChange;
 }
