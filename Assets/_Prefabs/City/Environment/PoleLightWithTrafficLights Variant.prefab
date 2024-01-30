@@ -173,7 +173,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PoleLightWithTrafficLights Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4916428836330807591, guid: b3835de4b5c6c2d468aa88234887ffd0,

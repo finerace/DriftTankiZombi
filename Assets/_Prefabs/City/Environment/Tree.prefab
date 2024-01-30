@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 4155688410700913678}
   - component: {fileID: 4122346926538147748}
   - component: {fileID: 2572647015820259776}
+  - component: {fileID: 8225355220083518960}
   m_Layer: 1
   m_Name: Tree
   m_TagString: Untagged
@@ -270,6 +271,21 @@ MonoBehaviour:
   destroyTime: 600
   joint: {fileID: 8877773085872015083}
   afterDestroyPhysicOnTime: 0.25
+--- !u!114 &8225355220083518960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669371413868462269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169f661e48cbd3e46a2cc041010e4c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 2572647015820259776}
+  scoreType: 0
+  scoreValue: 15
 --- !u!1 &7908994245159987569
 GameObject:
   m_ObjectHideFlags: 0

@@ -20250,7 +20250,7 @@ GameObject:
   - component: {fileID: 475924504}
   - component: {fileID: 475924505}
   m_Layer: 0
-  m_Name: GameStates
+  m_Name: GameEvents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44741,7 +44741,7 @@ GameObject:
   - component: {fileID: 1155258906}
   - component: {fileID: 1155258907}
   m_Layer: 0
-  m_Name: LevelsLoadService
+  m_Name: LevelsLoadPassService
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44761,6 +44761,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1488242427}
+  - {fileID: 1282149252}
   m_Father: {fileID: 656055306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1155258907
@@ -44775,10 +44776,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac2f9cab9f785b47997a33d25c0a37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commonGameStates: {fileID: 475924505}
+  globalGameEvents: {fileID: 475924505}
   levelSpawnPoint: {fileID: 1488242427}
   playerTankT: {fileID: 1194404523}
   virtualCamera: {fileID: 1166757313}
+  levelScoreCounter: {fileID: 1282149253}
   mainMenu: {fileID: 634720661}
   gameMenu: {fileID: 2013787165}
   currentLevelData: {fileID: 0}
@@ -45071,6 +45073,7 @@ MonoBehaviour:
   gunShotEffect2: {fileID: 1296048697}
   metalSparksEffect: {fileID: 203918349}
   driftDotCof: 0.85
+  isTankDrifting: 0
   leftUpWheelSmoke: {fileID: 1806039373}
   rightUpWheelSmoke: {fileID: 1995769229}
   leftDownWheelSmoke: {fileID: 1895561292}
@@ -45114,6 +45117,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 970657270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1282149251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1282149252}
+  - component: {fileID: 1282149253}
+  m_Layer: 0
+  m_Name: LevelScoreCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1282149252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282149251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1155258906}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1282149253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282149251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 537f6bd09979aa340bf1dd7d0e55194e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTankEffects: {fileID: 1194404530}
+  environmentDestructionScore: 0
+  killedEnemiesScore: 0
+  tankDriftScoreMultiplier: 1
+  driftScoreMultiplierPower: 0.025
+  levelCompleteTime: 0
 --- !u!1 &1296048694
 GameObject:
   m_ObjectHideFlags: 0

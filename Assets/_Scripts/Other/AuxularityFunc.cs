@@ -66,7 +66,7 @@ public static class AuxiliaryFunc
         return (int)(target * 100f) / 100f;
     }
     
-    public static string ConvertNumCharacters(int charactersCount)
+    public static string ConvertNumCharacters(this int charactersCount)
     {
         var resultString = charactersCount.ToString();
 
@@ -83,6 +83,18 @@ public static class AuxiliaryFunc
         return new TimeSpan(0, 0, seconds);
     }
     
+    public static string ConvertSecondsToTimer(this float seconds)
+    {
+        var timeSpan = new TimeSpan(0, 0, (int)seconds);
+
+        var milliseconds = 
+            ConvertNumCharacters((int)((seconds.ClampToTwoRemainingCharacters() - (int)seconds) * 100));
+        
+        return $"{ConvertNumCharacters(timeSpan.Minutes)}:" +
+               $"{ConvertNumCharacters(timeSpan.Seconds)}:" +
+               $"{milliseconds}";
+    }
+
     public static void SetChildsActive(this Transform objectT, bool active)
     {
         for (int i = 0; i < objectT.childCount; i++)

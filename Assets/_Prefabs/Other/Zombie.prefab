@@ -413,6 +413,7 @@ GameObject:
   - component: {fileID: 7538701122922831456}
   - component: {fileID: 328203934102423628}
   - component: {fileID: 2651174045124903448}
+  - component: {fileID: -1615890472494451105}
   m_Layer: 6
   m_Name: Zombie
   m_TagString: Untagged
@@ -526,6 +527,21 @@ MonoBehaviour:
   zombieRb: {fileID: 7538701122922831456}
   zombieMeshAnimator: {fileID: 5972125118818052908}
   toFlyModOnPower: 10
+--- !u!114 &-1615890472494451105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4527512241517263418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169f661e48cbd3e46a2cc041010e4c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 328203934102423628}
+  scoreType: 1
+  scoreValue: 20
 --- !u!1 &5230366289137477954
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
 
-public class CommonGameStates : MonoBehaviour
+public class GlobalGameEvents : MonoBehaviour
 {
-
+    public static GlobalGameEvents instance;
+    
     [SerializeField] private bool isLevelStarted;
     public event Action<bool> levelStartChangeState;
     
@@ -16,4 +17,8 @@ public class CommonGameStates : MonoBehaviour
         levelStartChangeState?.Invoke(isLevelStarted);
     }
 
+    public void Awake()
+    {
+        instance = this;
+    }
 }

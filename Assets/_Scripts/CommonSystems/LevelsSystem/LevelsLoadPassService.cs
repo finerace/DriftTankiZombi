@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class LevelsLoadPassService : MonoBehaviour
 {
-    [SerializeField] private CommonGameStates commonGameStates;
+    public static LevelsLoadPassService instance;
+    
+    [SerializeField] private GlobalGameEvents globalGameEvents;
     [SerializeField] private Transform levelSpawnPoint;
     [SerializeField] private Transform playerTankT;
     [SerializeField] private GameObject virtualCamera;
+    [SerializeField] private LevelScoreCounter levelScoreCounter;
     
     [Space] 
     
@@ -24,6 +27,8 @@ public class LevelsLoadPassService : MonoBehaviour
     
     private void Awake()
     {
+        instance = this;
+        
         SetPlayerDieAlgorithm();
         void SetPlayerDieAlgorithm()
         {
@@ -35,6 +40,8 @@ public class LevelsLoadPassService : MonoBehaviour
             IEnumerator OnPlayerDie()
             {
                 yield return new WaitForSeconds(3);
+
+                gameMenu.isBackActionLock = true;
                 StopLevel();
             }
         }
@@ -47,7 +54,7 @@ public class LevelsLoadPassService : MonoBehaviour
 
         currentLevelData = levelData;
         currentLevel = Instantiate(currentLevelData.Prefab, levelSpawnPoint.position,Quaternion.identity);
-
+        
         SpawnPlayer();
         void SpawnPlayer()
         {
@@ -58,10 +65,13 @@ public class LevelsLoadPassService : MonoBehaviour
         }
         
         virtualCamera.SetActive(true);
+
+        levelScoreCounter.ResetCounters();
+        levelScoreCounter.SetNewCurrentLevelData(currentLevelData);
         
         ChangeMenusActivity(false);
         
-        commonGameStates.SetLevelStartState(true);
+        globalGameEvents.SetLevelStartState(true);
     }
 
     public void StopLevel()
@@ -91,13 +101,17 @@ public class LevelsLoadPassService : MonoBehaviour
 
         isCurrentLevelComplete = false;
         playerTankT.gameObject.SetActive(false);
+        
         ChangeMenusActivity(true);
+        gameMenu.isBackActionLock = false;
         
         virtualCamera.SetActive(false);
 
         DisableDieCoroutine();
         
-        commonGameStates.SetLevelStartState(false);
+        levelScoreCounter.SetNewCurrentLevelData(null);
+        
+        globalGameEvents.SetLevelStartState(false);
     }
     
     public void CompleteLevel()

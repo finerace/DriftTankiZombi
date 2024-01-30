@@ -17,6 +17,9 @@ public class TankEffects : MonoBehaviour
     
     [SerializeField] private ParticleSystem metalSparksEffect;
     [SerializeField] private float driftDotCof;
+    [SerializeField] private bool isTankDrifting;
+
+    public bool IsTankDrifting => isTankDrifting;
     
     [Space]
     
@@ -79,7 +82,7 @@ public class TankEffects : MonoBehaviour
             var driftDotYes =
                 Mathf.Abs(driftDot) <= driftDotCof;
             
-            var isTankDrifting =
+            isTankDrifting =
                 !playerTank.IsFly && driftDotYes && playerTank.TankRb.velocity.magnitude > 1;
             
             if (isTankDrifting)

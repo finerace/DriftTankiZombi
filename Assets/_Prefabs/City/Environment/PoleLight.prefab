@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 5949671799376579314}
   - component: {fileID: 4792293554523150387}
   - component: {fileID: 4152574442110923304}
+  - component: {fileID: -8738057668204852870}
   m_Layer: 1
   m_Name: PoleLight
   m_TagString: Untagged
@@ -261,6 +262,21 @@ MonoBehaviour:
   destroyTime: 600
   joint: {fileID: 8153694238726985205}
   afterDestroyPhysicOnTime: 0.25
+--- !u!114 &-8738057668204852870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544283926025633207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169f661e48cbd3e46a2cc041010e4c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4152574442110923304}
+  scoreType: 0
+  scoreValue: 15
 --- !u!1 &7062206590050835850
 GameObject:
   m_ObjectHideFlags: 0

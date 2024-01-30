@@ -211,6 +211,7 @@ public class PlayerTank : HealthBase, IBarNum
     
     public void Reset()
     {
+        isDie = false;
         health = maxHealth;
         tankRb.velocity = Vector3.zero;
         tankRb.angularVelocity = Vector3.zero;
@@ -220,7 +221,7 @@ public class PlayerTank : HealthBase, IBarNum
         
         tankHead.localEulerAngles = 
             new Vector3(tankHead.localEulerAngles.x,0,tankHead.localEulerAngles.z);
-        
+
         playerTankCombat.Reset();
 
         OnBarParamChange?.Invoke();
