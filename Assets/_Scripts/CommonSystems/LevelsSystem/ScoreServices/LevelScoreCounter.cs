@@ -21,6 +21,8 @@ public class LevelScoreCounter : MonoBehaviour
 
     public float TankDriftScoreMultiplier => tankDriftScoreMultiplier;
     public float LevelCompleteTime => levelCompleteTime;
+    public int EnvironmentDestructionScore => environmentDestructionScore;
+    public int KilledEnemiesScore => killedEnemiesScore;
 
     private void Awake()
     {

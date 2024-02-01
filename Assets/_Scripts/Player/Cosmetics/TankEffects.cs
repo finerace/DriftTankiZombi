@@ -43,6 +43,18 @@ public class TankEffects : MonoBehaviour
     [SerializeField] private MeshRenderer rightChassis;
     [SerializeField] private float moveSpeed = 1;
     [SerializeField] private float moveSpeedRb = 1;
+
+    [Space] 
+    
+    [SerializeField] private TrailRenderer leftChassisTrace;
+    [SerializeField] private TrailRenderer rightChassisTrace;
+    [SerializeField] private TrailRenderer allChassisTrace;
+    [SerializeField] private float zTraceAxis = 1.27f;
+
+    private Transform leftChassisTraceT;
+    private Transform rightChassisTraceT;
+    private Transform allChassisTraceT;
+    
     private static readonly int LineMovement = Shader.PropertyToID("_LineMovement");
 
     private void Start()
@@ -67,6 +79,10 @@ public class TankEffects : MonoBehaviour
             machineGunShotEffect1.PlayP();
             machineGunShotEffect2.PlayP();
         };
+
+        leftChassisTraceT = leftChassisTrace.transform;
+        rightChassisTraceT = rightChassisTrace.transform;
+        allChassisTraceT = allChassisTrace.transform;
     }
 
     private void Update()
@@ -152,5 +168,61 @@ public class TankEffects : MonoBehaviour
             
         }
 
+        TraceWork();
+        void TraceWork()
+        {
+            var isFly = playerTank.IsFly;
+
+            leftChassisTrace.emitting = !isFly;
+            rightChassisTrace.emitting = !isFly;
+            allChassisTrace.emitting = !isFly;
+
+            if(isFly)
+                return;
+
+            SideTracePossSet();
+            void SideTracePossSet()
+            {
+                var localL = leftChassisTraceT.localPosition;
+                var localR = rightChassisTraceT.localPosition;
+
+                if (vertical > 0)
+                {
+                    localL.z = -zTraceAxis;
+                    localR.z = -zTraceAxis;
+                }
+                else
+                {
+                    localL.z = zTraceAxis;
+                    localR.z = zTraceAxis;
+                }
+
+                leftChassisTraceT.localPosition = localL;
+                rightChassisTraceT.localPosition = localR;
+            }
+
+            AllTraceWork();
+            void AllTraceWork()
+            {
+                allChassisTrace.emitting = (horizontal != 0 && vertical == 0) || isTankDrifting;
+
+                var localA = allChassisTraceT.localPosition;
+
+                if (vertical == 0 && !isTankDrifting)
+                    localA.z = -(zTraceAxis / 4);
+                else
+                    localA.z = 0;
+
+                allChassisTraceT.localPosition = localA;
+            }
+        }
+
+    }
+
+    public void Reset()
+    {
+        leftChassisTrace.Clear();
+        rightChassisTrace.Clear();
+        allChassisTrace.Clear();
     }
 }

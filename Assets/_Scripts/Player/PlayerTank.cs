@@ -8,6 +8,7 @@ public class PlayerTank : HealthBase, IBarNum
     [SerializeField] private Transform tankT;
     [SerializeField] private Rigidbody tankRb;
     [SerializeField] private PlayerTankCombat playerTankCombat;
+    [SerializeField] private TankEffects tankEffects;
 
     [Space]
     
@@ -26,6 +27,7 @@ public class PlayerTank : HealthBase, IBarNum
     [SerializeField] private float fuel;
     [SerializeField] private float maxFuel;
     [SerializeField] private float fuelEatSpeed;
+    [SerializeField] private float onStopFuelEatMultiplier;
 
     [Space] 
     
@@ -159,7 +161,7 @@ public class PlayerTank : HealthBase, IBarNum
             var fuelEat = fuelEatSpeed * smooth;
 
             if (!isTankEngineWork)
-                fuelEat *= 0.15f;
+                fuelEat *= onStopFuelEatMultiplier;
                 
             fuel -= fuelEat;
         }
@@ -223,7 +225,8 @@ public class PlayerTank : HealthBase, IBarNum
             new Vector3(tankHead.localEulerAngles.x,0,tankHead.localEulerAngles.z);
 
         playerTankCombat.Reset();
-
+        tankEffects.Reset();
+        
         OnBarParamChange?.Invoke();
     }
 

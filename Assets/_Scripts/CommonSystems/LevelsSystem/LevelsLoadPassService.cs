@@ -11,7 +11,7 @@ public class LevelsLoadPassService : MonoBehaviour
     [SerializeField] private Transform playerTankT;
     [SerializeField] private GameObject virtualCamera;
     [SerializeField] private LevelScoreCounter levelScoreCounter;
-    
+
     [Space] 
     
     [SerializeField] private MenuSystem mainMenu;

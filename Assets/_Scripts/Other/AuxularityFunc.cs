@@ -137,6 +137,12 @@ public static class AuxiliaryFunc
     {
         return new Vector2(vector3.x, vector3.z);
     }
+
+    public static string ConvertToString(this float target)
+    {
+        return $"{(int)target}." +
+               $"{((int)((target.ClampToTwoRemainingCharacters() - (int)target) * 100)).ConvertNumCharacters()}";
+    }
     
     public static void PlayP(this ParticleSystem particle)
     {

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class LevelTimer : MonoBehaviour
+public class LevelTimerObserver : MonoBehaviour
 {
     private LevelScoreCounter levelScoreCounter;
     [SerializeField] private TMP_Text timerLabel;
@@ -10,7 +10,7 @@ public class LevelTimer : MonoBehaviour
     {
         levelScoreCounter = LevelScoreCounter.instance;
     }
-
+    
     private void Update()
     {
         TimerWork();
