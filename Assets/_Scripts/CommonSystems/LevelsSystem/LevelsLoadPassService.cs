@@ -116,6 +116,9 @@ public class LevelsLoadPassService : MonoBehaviour
     
     public void CompleteLevel()
     {
+        if(isCurrentLevelComplete)
+            return;
+        
         isCurrentLevelComplete = true;
         
         DisableDieCoroutine();

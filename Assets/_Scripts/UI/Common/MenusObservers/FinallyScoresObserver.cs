@@ -13,6 +13,8 @@ public class FinallyScoresObserver : MonoBehaviour
     
     [SerializeField] private TMP_Text enemyDamageScore;
     [SerializeField] private TMP_Text environmentDamageScore;
+    [SerializeField] private TMP_Text levelCompleteScore;
+    
     [SerializeField] private TMP_Text driftMultiplier;
     
     [SerializeField] private TMP_Text completedTime;
@@ -49,6 +51,13 @@ public class FinallyScoresObserver : MonoBehaviour
         yield return miniWater;
 
         textCounterAnimator.PlayAnimation
+        (levelCompleteScore,
+            0, scoreCounter.GetLevelCompleteScore(), oneActAnimationTime, AnimationType.integer);
+        
+        yield return waiter;
+        yield return miniWater;
+
+        textCounterAnimator.PlayAnimation
             (driftMultiplier,
                 1f,scoreCounter.TankDriftScoreMultiplier,oneActAnimationTime,AnimationType.floating);
 
@@ -64,8 +73,8 @@ public class FinallyScoresObserver : MonoBehaviour
         yield return waiter;
         yield return miniWater;
 
-        finallyCalculates.text = 
-            $"{scoreCounter.KilledEnemiesScore + scoreCounter.EnvironmentDestructionScore} * " +
+        finallyCalculates.text =
+            $"{scoreCounter.KilledEnemiesScore + scoreCounter.EnvironmentDestructionScore + scoreCounter.GetLevelCompleteScore()} * " +
             $"x{(scoreCounter.TankDriftScoreMultiplier + scoreCounter.GetTimeScoreMultiplier() - 1f).ConvertToString()} =";
         
         yield return miniWater;
@@ -78,6 +87,7 @@ public class FinallyScoresObserver : MonoBehaviour
     {
         enemyDamageScore.text = "0";
         environmentDamageScore.text = "0";
+        levelCompleteScore.text = "0";
 
         driftMultiplier.text = "x1.00";
 

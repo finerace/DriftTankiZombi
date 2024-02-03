@@ -4,13 +4,14 @@ using UnityEngine;
 public class BaseBounceService : MonoBehaviour
 {
     [SerializeField] private Transform meshT;
-
+    [SerializeField] private float startCooldown;
+    
     [Space] 
     
     [SerializeField] public bool isBounceActive;
     [SerializeField] private float animationSpeed;
     [SerializeField] private float cooldown;
-    private float timer;
+    private float cooldownTimer;
     
     [Space]
     
@@ -38,7 +39,14 @@ public class BaseBounceService : MonoBehaviour
             currentHightTargetValue = 1;
             currentWidthTargetValue = 1;
 
-            timer = cooldown;
+            cooldownTimer = cooldown;
+        }
+
+        WorkStartCooldown();
+        void WorkStartCooldown()
+        {
+            if (startCooldown > 0)
+                cooldownTimer = startCooldown;
         }
     }
 
@@ -68,12 +76,12 @@ public class BaseBounceService : MonoBehaviour
         TimerWork();
         void TimerWork()
         {
-            timer -= Time.unscaledDeltaTime;
+            cooldownTimer -= Time.unscaledDeltaTime;
             
-            if(timer <= 0)
+            if(cooldownTimer <= 0)
             {
                 Bounce();
-                timer = cooldown;
+                cooldownTimer = cooldown;
             }
         }
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TEST2
   m_EditorClassIdentifier: 
   name: 36
-  id: 2
   prefab: {fileID: 8829697421326049350, guid: 7fcfc87c3665d3f40bc7367d8ebb3e45, type: 3}
   secrets: 1
   completeTime: 60
+  completeScore: 2500

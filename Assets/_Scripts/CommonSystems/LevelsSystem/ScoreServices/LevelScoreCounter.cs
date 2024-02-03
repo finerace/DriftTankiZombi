@@ -63,7 +63,8 @@ public class LevelScoreCounter : MonoBehaviour
     public int GetCompletedScore()
     {
         var finalScore =
-            (environmentDestructionScore + killedEnemiesScore) * tankDriftScoreMultiplier * GetTimeScoreMultiplier();
+            (environmentDestructionScore + killedEnemiesScore + GetLevelCompleteScore()) * 
+            (TankDriftScoreMultiplier + GetTimeScoreMultiplier() - 1f);
 
         return Mathf.RoundToInt(finalScore);
     }
@@ -75,6 +76,7 @@ public class LevelScoreCounter : MonoBehaviour
 
         return Mathf.RoundToInt(finalScore);
     }
+    
     public float GetTimeScoreMultiplier()
     {
         var multiplier = currentLevelData.CompleteTime / levelCompleteTime;
@@ -83,6 +85,11 @@ public class LevelScoreCounter : MonoBehaviour
             multiplier = 1;
 
         return multiplier;
+    }
+
+    public int GetLevelCompleteScore()
+    {
+        return currentLevelData.CompleteScore;
     }
     
     public void ResetCounters()
