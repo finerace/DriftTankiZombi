@@ -1,4 +1,6 @@
 ﻿
+using UnityEngine;
+
 namespace YG
 {
     [System.Serializable]
@@ -10,25 +12,35 @@ namespace YG
         public string language = "ru";
         public bool promptDone;
 
-        // Тестовые сохранения для демо сцены
-        // Можно удалить этот код, но тогда удалите и демо (папка Example)
-        public int money = 1;                       // Можно задать полям значения по умолчанию
-        public string newPlayerName = "Hello!";
-        public bool[] openLevels = new bool[3];
+        [SerializeField] public int playerMoney;
+        [SerializeField] public int playerXp;
 
-        // Ваши сохранения
+        [SerializeField] public int trainingStage;
+        
+        [SerializeField] public TankSaveData[] purchasedTanks;
 
-        // ...
+        [SerializeField] public LevelSaveData[] levelsOpenClose;
+        
+        [System.Serializable]
+        public class TankSaveData
+        {
+            public bool isTankPurchased;
 
-        // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
+            public int engineImprovement;
+            public int gunsImprovement;
+            public int fuelImprovement;
+        }
+        
+        [System.Serializable]
+        public class LevelSaveData
+        {
+            public bool isLevelOpen;
+            public int levelMaxScore;
+        }
 
-
-        // Вы можете выполнить какие то действия при загрузке сохранений
         public SavesYG()
         {
-            // Допустим, задать значения по умолчанию для отдельных элементов массива
-
-            openLevels[1] = true;
+            
         }
     }
 }
