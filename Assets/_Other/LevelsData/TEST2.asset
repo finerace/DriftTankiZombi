@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223eea632e9cae3469842e799ff4e3e5, type: 3}
   m_Name: TEST2
   m_EditorClassIdentifier: 
+  id: 1
   name: 36
   prefab: {fileID: 8829697421326049350, guid: 7fcfc87c3665d3f40bc7367d8ebb3e45, type: 3}
   secrets: 1
   completeTime: 60
-  completeScore: 2500
+  completeScore: 3500
+  oneStarScore: 5000
+  twoStarScore: 8000
+  threeStarScore: 12000

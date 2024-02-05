@@ -1,0 +1,189 @@
+{
+    "idSave": 13,
+    "isFirstSession": false,
+    "language": "ru",
+    "promptDone": false,
+    "playerMoney": 0,
+    "playerXp": 0,
+    "trainingStage": 0,
+    "tanksData": [
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 0,
+            "gunsImprovement": 0,
+            "fuelImprovement": 0
+        }
+    ],
+    "levelsData": [
+        {
+            "isLevelCompleted": true,
+            "isLevelUnlocked": false,
+            "levelHighScore": 21203
+        },
+        {
+            "isLevelCompleted": true,
+            "isLevelUnlocked": false,
+            "levelHighScore": 15268
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        }
+    ]
+}

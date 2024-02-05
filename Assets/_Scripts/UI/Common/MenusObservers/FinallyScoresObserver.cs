@@ -23,6 +23,12 @@ public class FinallyScoresObserver : MonoBehaviour
     [SerializeField] private TMP_Text finallyCalculates;
     [SerializeField] private TMP_Text finallyScore;
 
+    [Space] 
+    
+    [SerializeField] private GameObject star1;
+    [SerializeField] private GameObject star2;
+    [SerializeField] private GameObject star3;
+    
     private Coroutine workCoroutine;
     
     private void Start()
@@ -41,28 +47,24 @@ public class FinallyScoresObserver : MonoBehaviour
             (enemyDamageScore,0,scoreCounter.KilledEnemiesScore,oneActAnimationTime,AnimationType.integer);
 
         yield return waiter;
-        yield return miniWater;
         
         textCounterAnimator.PlayAnimation
             (environmentDamageScore,
                 0,scoreCounter.EnvironmentDestructionScore,oneActAnimationTime,AnimationType.integer);
 
         yield return waiter;
-        yield return miniWater;
 
         textCounterAnimator.PlayAnimation
         (levelCompleteScore,
-            0, scoreCounter.GetLevelCompleteScore(), oneActAnimationTime, AnimationType.integer);
+            0, scoreCounter.GetScoreForLevelComplete(), oneActAnimationTime, AnimationType.integer);
         
         yield return waiter;
-        yield return miniWater;
 
         textCounterAnimator.PlayAnimation
             (driftMultiplier,
                 1f,scoreCounter.TankDriftScoreMultiplier,oneActAnimationTime,AnimationType.floating);
 
         yield return waiter;
-        yield return miniWater;
 
         completedTime.text = scoreCounter.LevelCompleteTime.ConvertSecondsToTimer();
         
@@ -71,16 +73,32 @@ public class FinallyScoresObserver : MonoBehaviour
                 scoreCounter.GetTimeScoreMultiplier(),oneActAnimationTime,AnimationType.floating);
 
         yield return waiter;
-        yield return miniWater;
 
         finallyCalculates.text =
-            $"{scoreCounter.KilledEnemiesScore + scoreCounter.EnvironmentDestructionScore + scoreCounter.GetLevelCompleteScore()} * " +
+            $"{scoreCounter.KilledEnemiesScore + scoreCounter.EnvironmentDestructionScore + scoreCounter.GetScoreForLevelComplete()} * " +
             $"x{(scoreCounter.TankDriftScoreMultiplier + scoreCounter.GetTimeScoreMultiplier() - 1f).ConvertToString()} =";
         
         yield return miniWater;
 
+        var completedScore = scoreCounter.GetCompletedScore();
+        
         textCounterAnimator.PlayAnimation
             (finallyScore,0,scoreCounter.GetCompletedScore(),oneActAnimationTime,AnimationType.integer);
+        
+        yield return miniWater;
+        
+        if(completedScore > scoreCounter.GetCurrentLevelData().OneStarScore)
+            star1.SetActive(true);
+        
+        yield return miniWater;
+
+        if(completedScore > scoreCounter.GetCurrentLevelData().TwoStarScore)
+            star2.SetActive(true);
+        
+        yield return miniWater;
+
+        if(completedScore > scoreCounter.GetCurrentLevelData().ThreeStarScore)
+            star3.SetActive(true);
     }
 
     public void ResetValues()
@@ -96,10 +114,13 @@ public class FinallyScoresObserver : MonoBehaviour
 
         finallyCalculates.text = "--- * --- =";
         finallyScore.text = "0";
+
+        star1.SetActive(false);
+        star2.SetActive(false);
+        star3.SetActive(false);
         
         if(workCoroutine != null)
             StopCoroutine(workCoroutine);
-        
     }
 
     private void StartAnimation()

@@ -48,7 +48,7 @@ public class TextCounterAnimator : MonoBehaviour
         
         speed = (max - min) / animationTime;
         if (animationType == AnimationType.floating)
-            speed /= 4;
+            speed /= 6;
 
         this.animationType = animationType;
         

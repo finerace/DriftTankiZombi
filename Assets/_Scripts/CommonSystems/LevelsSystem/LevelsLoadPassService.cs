@@ -24,6 +24,8 @@ public class LevelsLoadPassService : MonoBehaviour
     
     private bool isCurrentLevelComplete = false;
     private Coroutine dieCoroutine;
+
+    private GameDataSaver gameDataSaver;
     
     private void Awake()
     {
@@ -45,6 +47,11 @@ public class LevelsLoadPassService : MonoBehaviour
                 StopLevel();
             }
         }
+    }
+
+    private void Start()
+    {
+        gameDataSaver = GameDataSaver.instance;
     }
 
     public void LoadLevel(LevelData levelData)
@@ -79,6 +86,16 @@ public class LevelsLoadPassService : MonoBehaviour
         if (currentLevelData == null)
             throw new Exception("Currently level is null!");
         
+        SaveHighScore();
+        void SaveHighScore()
+        {
+            var oldHighScore = gameDataSaver.GetLevelHighScore(currentLevelData.Id);
+            var currentScore = levelScoreCounter.GetUncompletedScore(); 
+            
+            if(currentScore > oldHighScore)
+                gameDataSaver.SetNewLeveHighScore(currentLevelData.Id,currentScore);
+        }
+
         gameMenu.OpenLocalMenu("StopLevel");
     }
 
@@ -118,8 +135,26 @@ public class LevelsLoadPassService : MonoBehaviour
     {
         if(isCurrentLevelComplete)
             return;
-        
+
+        gameMenu.isBackActionLock = true;
         isCurrentLevelComplete = true;
+        
+        SaveResults();
+        void SaveResults()
+        {
+            NewHighScoreWork();
+            void NewHighScoreWork()
+            {
+                var oldHighScore = gameDataSaver.GetLevelHighScore(currentLevelData.Id);
+                var currentScore = levelScoreCounter.GetCompletedScore(); 
+            
+                if(currentScore > oldHighScore)
+                    gameDataSaver.SetNewLeveHighScore(currentLevelData.Id,currentScore);
+            }
+
+            if (!gameDataSaver.IsLevelCompleted(currentLevelData.Id))
+                gameDataSaver.SetLevelCompletedState(currentLevelData.Id,true);
+        }
         
         DisableDieCoroutine();
         

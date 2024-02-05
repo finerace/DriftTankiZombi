@@ -17,9 +17,9 @@ namespace YG
 
         [SerializeField] public int trainingStage;
         
-        [SerializeField] public TankSaveData[] purchasedTanks;
+        [SerializeField] public TankSaveData[] tanksData = new TankSaveData[16];
 
-        [SerializeField] public LevelSaveData[] levelsOpenClose;
+        [SerializeField] public LevelSaveData[] levelsData = new LevelSaveData[16];
         
         [System.Serializable]
         public class TankSaveData
@@ -34,13 +34,25 @@ namespace YG
         [System.Serializable]
         public class LevelSaveData
         {
-            public bool isLevelOpen;
-            public int levelMaxScore;
+            public bool isLevelCompleted;
+            public bool isLevelUnlocked;
+            public int levelHighScore;
         }
 
         public SavesYG()
         {
-            
+            tanksData = new SavesYG.TankSaveData[16];
+            levelsData = new SavesYG.LevelSaveData[16];
+
+            for (var i = 0; i < tanksData.Length; i++)
+            {
+                tanksData[i] ??= new SavesYG.TankSaveData();
+            }
+
+            for (var i = 0; i < levelsData.Length; i++)
+            {
+                levelsData[i] ??= new SavesYG.LevelSaveData();
+            }
         }
     }
 }
