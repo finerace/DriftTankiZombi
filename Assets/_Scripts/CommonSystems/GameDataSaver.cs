@@ -27,8 +27,6 @@ public class GameDataSaver : MonoBehaviour
     {
         savesYg.levelsData[levelId].levelHighScore = newHighScore;
 
-        print(savesYg.levelsData[levelId].levelHighScore);
-        
         Save();
     }
 

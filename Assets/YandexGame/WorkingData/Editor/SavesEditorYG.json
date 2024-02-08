@@ -1,5 +1,5 @@
 {
-    "idSave": 13,
+    "idSave": 14,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -108,7 +108,7 @@
         {
             "isLevelCompleted": true,
             "isLevelUnlocked": false,
-            "levelHighScore": 21203
+            "levelHighScore": 21942
         },
         {
             "isLevelCompleted": true,
