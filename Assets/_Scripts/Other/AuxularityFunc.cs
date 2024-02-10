@@ -150,6 +150,30 @@ public static class AuxiliaryFunc
             particle.Play();
     }
 
+    public static string ToShortenInt(this int count)
+    {
+        var countStr = count.ToString();
+
+        switch (countStr.Length)
+        {
+            default:
+                return countStr;
+            
+            case 4:
+                return $"{countStr[0]}.{countStr[1]}{countStr[2]}k";
+            case 5:
+                return $"{countStr[0]}{countStr[1]}.{countStr[2]}k";
+            case 6:
+                return $"{countStr[0]}{countStr[1]}{countStr[2]}k";
+            case 7:
+                return $"{countStr[0]}.{countStr[1]}{countStr[2]}m";
+            case 8:
+                return $"{countStr[0]}{countStr[1]}.{countStr[2]}m";
+            case 9:
+                return $"{countStr[0]}{countStr[1]}{countStr[2]}m";
+        }
+    }
+
 }
 
 public static class Explosions

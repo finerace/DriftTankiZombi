@@ -13,6 +13,7 @@ namespace YG
         public bool promptDone;
 
         [SerializeField] public int playerMoney;
+        [SerializeField] public int playerDonateMoney;
         [SerializeField] public int playerXp;
 
         [SerializeField] public int trainingStage;

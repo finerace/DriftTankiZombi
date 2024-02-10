@@ -221,6 +221,8 @@ GameObject:
   - component: {fileID: 5254714259885140323}
   - component: {fileID: 8395325043146541581}
   - component: {fileID: 2065135763040814073}
+  - component: {fileID: 4187968851737854806}
+  - component: {fileID: 5157517468463189666}
   m_Layer: 5
   m_Name: Coin
   m_TagString: Untagged
@@ -286,6 +288,39 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4187968851737854806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026251901952949547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da17c1b474adf44cada065c33d17878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 6577699152012109953}
+  onDataLoadInit: 1
+  label: {fileID: 9160688580909962469}
+  textCounterAnimator: {fileID: 5157517468463189666}
+  observedNumId: 1
+  animationTime: 0.75
+--- !u!114 &5157517468463189666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026251901952949547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 257955e30e948cc4ea7568aa184da6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  useShortNum: 1
+  animationType: 0
 --- !u!1 &1302500899554698084
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +753,8 @@ GameObject:
   - component: {fileID: 8566841213932637582}
   - component: {fileID: 7725118697758977654}
   - component: {fileID: 1496058611001060796}
+  - component: {fileID: 1514308858439735603}
+  - component: {fileID: 6901179311137973745}
   m_Layer: 5
   m_Name: PlayerLevelFrame
   m_TagString: Untagged
@@ -783,6 +820,39 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1514308858439735603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692331946115184856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da17c1b474adf44cada065c33d17878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 6577699152012109953}
+  onDataLoadInit: 1
+  label: {fileID: 4673178256763564022}
+  textCounterAnimator: {fileID: 6901179311137973745}
+  observedNumId: 3
+  animationTime: 0
+--- !u!114 &6901179311137973745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692331946115184856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 257955e30e948cc4ea7568aa184da6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  useShortNum: 0
+  animationType: 0
 --- !u!1 &2703370142992438580
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +1019,7 @@ GameObject:
   - component: {fileID: 2220181464482442363}
   - component: {fileID: 8193231931259568127}
   - component: {fileID: 523107888128891723}
+  - component: {fileID: 6577699152012109953}
   m_Layer: 5
   m_Name: PlayerInfo
   m_TagString: Untagged
@@ -1019,6 +1090,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6577699152012109953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4489171220686083936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f70dd17b669e3a47aad0aa26e158eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4546602407187098294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,6 +1761,8 @@ GameObject:
   - component: {fileID: 2615248377782744947}
   - component: {fileID: 7233082486452299023}
   - component: {fileID: 6691516398748492743}
+  - component: {fileID: 1863530587714652196}
+  - component: {fileID: 1461199924322612314}
   m_Layer: 5
   m_Name: Core
   m_TagString: Untagged
@@ -1743,3 +1828,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1863530587714652196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8356681496922308145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da17c1b474adf44cada065c33d17878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 6577699152012109953}
+  onDataLoadInit: 1
+  label: {fileID: 6626641043803854990}
+  textCounterAnimator: {fileID: 1461199924322612314}
+  observedNumId: 2
+  animationTime: 0.75
+--- !u!114 &1461199924322612314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8356681496922308145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 257955e30e948cc4ea7568aa184da6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  useShortNum: 1
+  animationType: 0

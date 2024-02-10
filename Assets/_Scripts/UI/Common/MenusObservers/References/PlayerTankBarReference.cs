@@ -1,6 +1,6 @@
 using System;
 
-public class PlayerTankBarReference : BarReference, IBarNum
+public class PlayerTankObserveReference : NumObserveReference, IObserveNum
 {
     private PlayerTank playerTank;
 
@@ -22,4 +22,5 @@ public class PlayerTankBarReference : BarReference, IBarNum
     }
 
     public event Action OnBarParamChange;
+    public event Action<int,int> OnObserveNumChange;
 }

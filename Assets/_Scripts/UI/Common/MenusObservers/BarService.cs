@@ -8,10 +8,10 @@ public class BarService : MonoBehaviour
 
     [Space] 
     
-    [SerializeField] private BarReference IbarNumReference;
+    [SerializeField] private NumObserveReference IbarNumReference;
     [SerializeField] private int numId;
 
-    private IBarNum burNum;
+    private IObserveNum burNum;
     private float min;
     private float max;
 
@@ -20,7 +20,7 @@ public class BarService : MonoBehaviour
     
     private void Start()
     {
-        burNum = IbarNumReference.GetComponent<IBarNum>();
+        burNum = IbarNumReference.GetComponent<IObserveNum>();
         
         UpdateBarParam();
         burNum.OnBarParamChange += UpdateBarParam;
@@ -84,15 +84,16 @@ public class BarService : MonoBehaviour
     }
 }
 
-interface IBarNum
+interface IObserveNum
 {
     float GetNum(int id);
     (float min, float max) GetBarParam(int id);
 
     event Action OnBarParamChange;
+    event Action<int, int> OnObserveNumChange;
 }
 
-public abstract class BarReference : MonoBehaviour
+public abstract class NumObserveReference : MonoBehaviour
 {
     
 }

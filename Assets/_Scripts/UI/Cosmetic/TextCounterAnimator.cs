@@ -5,8 +5,9 @@ using UnityEngine;
 public class TextCounterAnimator : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private bool useShortNum = false;
     [SerializeField] private AnimationType animationType;
-    
+
     private TMP_Text target;
     private float min;
     private float max;
@@ -26,7 +27,7 @@ public class TextCounterAnimator : MonoBehaviour
                 currentNum = 
                     Mathf.RoundToInt(Mathf.MoveTowards(currentNum, max, speed * Time.unscaledDeltaTime));
 
-                target.text = ((int)currentNum).ToString();
+                target.text = !useShortNum ? ((int)currentNum).ToString() : ((int)currentNum).ToShortenInt();
             }
             else
             {
@@ -45,10 +46,22 @@ public class TextCounterAnimator : MonoBehaviour
 
         this.min = min;
         this.max = max;
+
+        if (animationTime <= 0)
+        {
+            if (animationType == AnimationType.integer)
+            {
+                target.text = !useShortNum ? ((int)min).ToString() : ((int)min).ToShortenInt();
+            }
+            else
+                target.text = $"x{min.ConvertToString()}";
+            
+            return;
+        }
         
         speed = (max - min) / animationTime;
         if (animationType == AnimationType.floating)
-            speed /= 6;
+            speed /= 10;
 
         this.animationType = animationType;
         
@@ -58,7 +71,9 @@ public class TextCounterAnimator : MonoBehaviour
     private void StartAnimation()
     {
         if (animationType == AnimationType.integer)
-            target.text = ((int)min).ToString();
+        {
+            target.text = !useShortNum ? ((int)min).ToString() : ((int)min).ToShortenInt();
+        }
         else
             target.text = $"x{min.ConvertToString()}";
 

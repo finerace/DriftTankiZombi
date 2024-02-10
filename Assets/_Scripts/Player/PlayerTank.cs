@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerTank : HealthBase, IBarNum
+public class PlayerTank : HealthBase, IObserveNum
 {
     
     [SerializeField] private Transform tankT;
@@ -273,4 +273,5 @@ public class PlayerTank : HealthBase, IBarNum
     }
 
     public event Action OnBarParamChange;
+    public event Action<int,int> OnObserveNumChange;
 }

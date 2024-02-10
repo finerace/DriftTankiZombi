@@ -3714,6 +3714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  useShortNum: 1
   animationType: 0
 --- !u!1 &8501412066236482304
 GameObject:
