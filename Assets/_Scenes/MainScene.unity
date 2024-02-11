@@ -50568,7 +50568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358388f2b8a92df438aa4101a5bb7beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newLevelCof: 0.1
+  toNextLevelDefaultXp: 250
+  newLevelCof: 0.25
 --- !u!1 &1488242426
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,6 +23,7 @@ public class BarService : MonoBehaviour
         burNum = IbarNumReference.GetComponent<IObserveNum>();
         
         UpdateBarParam();
+        BarInstantMove();
         burNum.OnBarParamChange += UpdateBarParam;
     }
     
@@ -69,19 +70,20 @@ public class BarService : MonoBehaviour
             return;
         
         UpdateBarParam();
-        
         BarInstantMove();
-        void BarInstantMove()
-        {
-            var num = burNum.GetNum(numId);
-            num -= min;
-
-            var trueMax = max - min;
-
-            var targetFillAmount = num / trueMax;
-            bar.fillAmount = targetFillAmount;
-        }
     }
+    
+    private void BarInstantMove()
+    {
+        var num = burNum.GetNum(numId);
+        num -= min;
+
+        var trueMax = max - min;
+
+        var targetFillAmount = num / trueMax;
+        bar.fillAmount = targetFillAmount;
+    }
+    
 }
 
 interface IObserveNum

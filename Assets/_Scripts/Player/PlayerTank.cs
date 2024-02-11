@@ -257,15 +257,12 @@ public class PlayerTank : HealthBase, IObserveNum
         {
             case 1:
                 return (0,maxHealth);
-                break;
             
             case 2:
                 return (0,maxFuel);
-                break;
             
             case 3:
                 return (0,playerTankCombat.GunCooldown); 
-                break;
             
             default:
                 throw new Exception("This num id is not exist!");

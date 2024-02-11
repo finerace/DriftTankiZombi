@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetHealth: {fileID: 328203934102423628}
-  moneyAddChance: 50
+  moneyAddChance: 250
   moneyAdd: 5
   donateMoneyAddChance: 1
   donateMoneyAdd: 1

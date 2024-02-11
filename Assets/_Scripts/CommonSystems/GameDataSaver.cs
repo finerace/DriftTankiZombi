@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using YG;
 
@@ -6,6 +7,10 @@ public class GameDataSaver : MonoBehaviour
 
     public static GameDataSaver instance;
     private SavesYG savesYg;
+
+    public Action OnDataLoad;
+    private bool isDataLoaded;
+    public bool IsDataLoaded => isDataLoaded;
 
     private void Awake()
     {
@@ -21,13 +26,13 @@ public class GameDataSaver : MonoBehaviour
     private void Start()
     {
         YandexGame.LoadProgress();
+        isDataLoaded = true;
+        OnDataLoad?.Invoke();
     }
 
     public void SetNewLeveHighScore(int levelId, int newHighScore)
     {
         savesYg.levelsData[levelId].levelHighScore = newHighScore;
-
-        Save();
     }
 
     public int GetLevelHighScore(int levelId)
@@ -56,8 +61,6 @@ public class GameDataSaver : MonoBehaviour
             return;
         
         savesYg.levelsData[levelId].isLevelCompleted = state;
-        
-        Save();
     }
 
     public bool IsLevelCompleted(int levelId)
@@ -65,7 +68,7 @@ public class GameDataSaver : MonoBehaviour
         return instance.savesYg.levelsData[levelId].isLevelCompleted;
     }
 
-    private void Save()
+    public void Save()
     {
         YandexGame.SaveProgress();
     }

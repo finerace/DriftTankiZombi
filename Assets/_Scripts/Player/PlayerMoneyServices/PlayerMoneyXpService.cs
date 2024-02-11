@@ -1,13 +1,10 @@
 using System;
-using UnityEditor.Media;
 using UnityEngine;
 using YG;
 
 public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
 {
     public static PlayerMoneyXpService instance;
-    
-    private const int toNextLevelDefaultXp = 100;
 
     public int PlayerMoney
     {
@@ -63,6 +60,7 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
             OnXpChanged?.Invoke(YandexGame.savesData.playerXp - oldValue);
         }
     }
+    [SerializeField] private int toNextLevelDefaultXp = 100;
     [SerializeField] private float newLevelCof;
     public event Action<int> OnXpChanged; 
 
@@ -110,7 +108,7 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
         OnXpChanged?.Invoke(PlayerXp - oldXp);
     }
 
-    public int GetCurrentLevel()
+    private int GetCurrentLevel()
     {
         var currentLevel = 1;
         
@@ -130,7 +128,7 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
         }
     }
 
-    public float GetToNextLevelAmount()
+    private float GetToNextLevelAmount()
     {
         var currentLevel = 1;
         
@@ -160,6 +158,8 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
                 return PlayerDonateMoney;
             case 3:
                 return GetCurrentLevel();
+            case 4:
+                return GetToNextLevelAmount();
             default:
                 throw new ArgumentException("This Num Id is not exist!");
         }
@@ -167,7 +167,13 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
 
     public (float min, float max) GetBarParam(int id)
     {
-        throw new NotImplementedException();
+        switch (id)
+        {
+            case 4:
+                return (0,1);
+            default:
+                throw new ArgumentException("This BarParam Id is not exist!");
+        }
     }
 
     public event Action OnBarParamChange;

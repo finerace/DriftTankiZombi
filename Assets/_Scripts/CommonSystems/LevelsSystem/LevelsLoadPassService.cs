@@ -95,6 +95,8 @@ public class LevelsLoadPassService : MonoBehaviour
             if(currentScore > oldHighScore)
                 gameDataSaver.SetNewLeveHighScore(currentLevelData.Id,currentScore);
         }
+        
+        gameDataSaver.Save();
 
         gameMenu.OpenLocalMenu("StopLevel");
     }
@@ -112,6 +114,8 @@ public class LevelsLoadPassService : MonoBehaviour
     
     public void UnloadLevel()
     {
+        gameDataSaver.Save();
+        
         currentLevelData = null;
         if(currentLevel != null)
             Destroy(currentLevel);
@@ -139,8 +143,8 @@ public class LevelsLoadPassService : MonoBehaviour
         gameMenu.isBackActionLock = true;
         isCurrentLevelComplete = true;
         
-        SaveResults();
-        void SaveResults()
+        SetNewResults();
+        void SetNewResults()
         {
             NewHighScoreWork();
             void NewHighScoreWork()
@@ -155,6 +159,8 @@ public class LevelsLoadPassService : MonoBehaviour
             if (!gameDataSaver.IsLevelCompleted(currentLevelData.Id))
                 gameDataSaver.SetLevelCompletedState(currentLevelData.Id,true);
         }
+        
+        gameDataSaver.Save();
         
         DisableDieCoroutine();
         

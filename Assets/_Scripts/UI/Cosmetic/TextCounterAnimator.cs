@@ -7,7 +7,8 @@ public class TextCounterAnimator : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private bool useShortNum = false;
     [SerializeField] private AnimationType animationType;
-
+    [SerializeField] private bool currentNumNotIgnored;
+    
     private TMP_Text target;
     private float min;
     private float max;
@@ -25,17 +26,17 @@ public class TextCounterAnimator : MonoBehaviour
             if (animationType == AnimationType.integer)
             {
                 currentNum = 
-                    Mathf.RoundToInt(Mathf.MoveTowards(currentNum, max, speed * Time.unscaledDeltaTime));
+                    Mathf.MoveTowards(currentNum, max, speed * Time.unscaledDeltaTime);
 
-                target.text = !useShortNum ? ((int)currentNum).ToString() : ((int)currentNum).ToShortenInt();
+                target.text = !useShortNum ? Mathf.RoundToInt(currentNum).ToString() : Mathf.RoundToInt(currentNum).ToShortenInt();
             }
             else
             {
                 currentNum = Mathf.MoveTowards(currentNum, max, speed);
                 target.text = $"x{currentNum.ConvertToString()}";
             }
-            
-            if (currentNum >= max)
+
+            if (currentNum >= max - 0.01f && currentNum <= max + 0.01f)
                 isWork = false;
         }
     }
@@ -46,20 +47,26 @@ public class TextCounterAnimator : MonoBehaviour
 
         this.min = min;
         this.max = max;
-
+        
         if (animationTime <= 0)
         {
             if (animationType == AnimationType.integer)
             {
-                target.text = !useShortNum ? ((int)min).ToString() : ((int)min).ToShortenInt();
+                target.text = !useShortNum ? ((int)max).ToString() : ((int)max).ToShortenInt();
             }
             else
                 target.text = $"x{min.ConvertToString()}";
-            
+
+            isWork = false;
             return;
         }
         
-        speed = (max - min) / animationTime;
+        if(!currentNumNotIgnored)
+            currentNum = min;
+        
+        speed = (max - currentNum) / animationTime;
+        speed = Mathf.Abs(speed);
+        
         if (animationType == AnimationType.floating)
             speed /= 10;
 
@@ -68,6 +75,16 @@ public class TextCounterAnimator : MonoBehaviour
         StartAnimation();
     }
 
+    public void StopAnimate()
+    {
+        isWork = false;
+    }
+
+    public void SetCurrentNum(float newNum)
+    {
+        currentNum = newNum;
+    }
+    
     private void StartAnimation()
     {
         if (animationType == AnimationType.integer)
@@ -76,8 +93,7 @@ public class TextCounterAnimator : MonoBehaviour
         }
         else
             target.text = $"x{min.ConvertToString()}";
-
-        currentNum = min;
+        
         isWork = true;
     }
     

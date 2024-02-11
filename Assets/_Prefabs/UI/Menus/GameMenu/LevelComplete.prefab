@@ -3714,8 +3714,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  useShortNum: 1
+  useShortNum: 0
   animationType: 0
+  currentNumNotIgnored: 0
 --- !u!1 &8501412066236482304
 GameObject:
   m_ObjectHideFlags: 0
@@ -5463,6 +5464,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6535759864934546067}
     m_Modifications:
+    - target: {fileID: 1461199924322612314, guid: 55a408dd37569db4abb2a8a26de7425b,
+        type: 3}
+      propertyPath: currentNumNotIgnored
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2220181464482442363, guid: 55a408dd37569db4abb2a8a26de7425b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5567,6 +5573,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157517468463189666, guid: 55a408dd37569db4abb2a8a26de7425b,
+        type: 3}
+      propertyPath: currentNumNotIgnored
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901179311137973745, guid: 55a408dd37569db4abb2a8a26de7425b,
+        type: 3}
+      propertyPath: currentNumNotIgnored
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
