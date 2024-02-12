@@ -15,9 +15,11 @@ MonoBehaviour:
   id: 1
   name: 36
   prefab: {fileID: 8829697421326049350, guid: 7fcfc87c3665d3f40bc7367d8ebb3e45, type: 3}
-  secrets: 1
   completeTime: 60
   completeScore: 3500
+  completeMoney: 500
+  completeDonateMoney: 15
+  completeXp: 2500
   oneStarScore: 5000
   twoStarScore: 8000
   threeStarScore: 12000

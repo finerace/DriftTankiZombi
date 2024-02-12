@@ -143,6 +143,11 @@ public class LevelsLoadPassService : MonoBehaviour
         gameMenu.isBackActionLock = true;
         isCurrentLevelComplete = true;
         
+        if (currentLevelData == null)
+            throw new Exception("Currently level is null!");
+        
+        gameMenu.OpenLocalMenu("LevelComplete");
+        
         SetNewResults();
         void SetNewResults()
         {
@@ -156,18 +161,33 @@ public class LevelsLoadPassService : MonoBehaviour
                     gameDataSaver.SetNewLeveHighScore(currentLevelData.Id,currentScore);
             }
 
-            if (!gameDataSaver.IsLevelCompleted(currentLevelData.Id))
-                gameDataSaver.SetLevelCompletedState(currentLevelData.Id,true);
+            var isLevelCompleted = gameDataSaver.IsLevelCompleted(currentLevelData.Id);
+
+            AddForLevelCompleteMoney();
+            void AddForLevelCompleteMoney()
+            {
+                var playerMoney = PlayerMoneyXpService.instance;
+                
+                if (!isLevelCompleted)
+                {
+                    playerMoney.PlayerMoney += currentLevelData.CompleteMoney;
+                    playerMoney.PlayerDonateMoney += currentLevelData.CompleteDonateMoney;
+                    playerMoney.PlayerXp += currentLevelData.CompleteXp;
+                }
+                else
+                {
+                    playerMoney.PlayerMoney += currentLevelData.CompleteMoney / 10;
+                    playerMoney.PlayerXp += currentLevelData.CompleteXp / 10;
+                }
+            }
+            
+            if (!isLevelCompleted)
+                gameDataSaver.SetLevelCompletedState(currentLevelData.Id, true);
         }
         
         gameDataSaver.Save();
         
         DisableDieCoroutine();
-        
-        if (currentLevelData == null)
-            throw new Exception("Currently level is null!");
-        
-        gameMenu.OpenLocalMenu("LevelComplete");
     }
 
     private void DisableDieCoroutine()

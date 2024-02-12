@@ -305,7 +305,7 @@ MonoBehaviour:
   label: {fileID: 9160688580909962469}
   textCounterAnimator: {fileID: 5157517468463189666}
   observedNumId: 1
-  animationTime: 0.75
+  animationTime: 1.5
 --- !u!114 &5157517468463189666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1865,7 +1865,7 @@ MonoBehaviour:
   label: {fileID: 6626641043803854990}
   textCounterAnimator: {fileID: 1461199924322612314}
   observedNumId: 2
-  animationTime: 0.75
+  animationTime: 1.5
 --- !u!114 &1461199924322612314
 MonoBehaviour:
   m_ObjectHideFlags: 0
