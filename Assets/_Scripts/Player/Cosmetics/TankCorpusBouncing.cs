@@ -22,11 +22,14 @@ public class TankCorpusBouncing : MonoBehaviour
         corpusBouncing = corpusBouncing.ClampMagnitude(maxBouncing);
 
         corpusBouncing *= maxBounceTimeCof;
-        
-        tankCorpusT.localEulerAngles = 
-            new Vector3(corpusBouncing.magnitude,0,0) * 
+
+        var localEulerAngles = tankCorpusT.localEulerAngles;
+        localEulerAngles = 
+            new Vector3(corpusBouncing.magnitude,localEulerAngles.y,localEulerAngles.z) * 
             ((float)Math.Cos(Time.time * bouncePower) * 
              (1 - Mathf.Clamp(tankRb.velocity.magnitude * bounceStartCof,0,1)));
+        
+        tankCorpusT.localEulerAngles = localEulerAngles;
     }
 
     public void TakeBounce(float bounce)
