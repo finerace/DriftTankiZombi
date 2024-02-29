@@ -63,7 +63,52 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerTank2_1 Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5631592161247243713, guid: 76f1b033c2bf3c641bcd3abf6a995318,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892951405926085610, guid: 76f1b033c2bf3c641bcd3abf6a995318,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172637967782992679, guid: 76f1b033c2bf3c641bcd3abf6a995318,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242701571750182811, guid: 76f1b033c2bf3c641bcd3abf6a995318,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743570949377037328, guid: 76f1b033c2bf3c641bcd3abf6a995318,
+        type: 3}
+      propertyPath: playerTank
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743570949377037328, guid: 76f1b033c2bf3c641bcd3abf6a995318,
+        type: 3}
+      propertyPath: playerTankCombat
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743570949377037328, guid: 76f1b033c2bf3c641bcd3abf6a995318,
+        type: 3}
+      propertyPath: tankCorpusBouncing
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030932796223651094, guid: 76f1b033c2bf3c641bcd3abf6a995318,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 427056621988804018, guid: 76f1b033c2bf3c641bcd3abf6a995318, type: 3}
+    - {fileID: 5631592161247243713, guid: 76f1b033c2bf3c641bcd3abf6a995318, type: 3}
+    - {fileID: 6892951405926085610, guid: 76f1b033c2bf3c641bcd3abf6a995318, type: 3}
+    - {fileID: 8172637967782992679, guid: 76f1b033c2bf3c641bcd3abf6a995318, type: 3}
+    - {fileID: 8743570949377037328, guid: 76f1b033c2bf3c641bcd3abf6a995318, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

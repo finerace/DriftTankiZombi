@@ -8,6 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 883735387973714889, guid: bee5d3ca2e16305498e35c5f7671019f,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818675406860325704, guid: bee5d3ca2e16305498e35c5f7671019f,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506622584742760032, guid: bee5d3ca2e16305498e35c5f7671019f,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723014298550895328, guid: bee5d3ca2e16305498e35c5f7671019f,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7196009248923456683, guid: bee5d3ca2e16305498e35c5f7671019f,
         type: 3}
       propertyPath: m_Name
@@ -63,7 +83,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8150346678600699710, guid: bee5d3ca2e16305498e35c5f7671019f,
+        type: 3}
+      propertyPath: playerTank
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150346678600699710, guid: bee5d3ca2e16305498e35c5f7671019f,
+        type: 3}
+      propertyPath: playerTankCombat
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150346678600699710, guid: bee5d3ca2e16305498e35c5f7671019f,
+        type: 3}
+      propertyPath: tankCorpusBouncing
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280706289861673785, guid: bee5d3ca2e16305498e35c5f7671019f,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6981094296040289213, guid: bee5d3ca2e16305498e35c5f7671019f, type: 3}
+    - {fileID: 3818675406860325704, guid: bee5d3ca2e16305498e35c5f7671019f, type: 3}
+    - {fileID: 883735387973714889, guid: bee5d3ca2e16305498e35c5f7671019f, type: 3}
+    - {fileID: 8280706289861673785, guid: bee5d3ca2e16305498e35c5f7671019f, type: 3}
+    - {fileID: 8150346678600699710, guid: bee5d3ca2e16305498e35c5f7671019f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

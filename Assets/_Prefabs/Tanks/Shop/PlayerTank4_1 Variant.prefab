@@ -8,10 +8,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 76938954169755180, guid: 885fdfbd18ebcff48a2b601720a6bafe,
+        type: 3}
+      propertyPath: playerTank
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 76938954169755180, guid: 885fdfbd18ebcff48a2b601720a6bafe,
+        type: 3}
+      propertyPath: playerTankCombat
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 76938954169755180, guid: 885fdfbd18ebcff48a2b601720a6bafe,
+        type: 3}
+      propertyPath: tankCorpusBouncing
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 834082182845116090, guid: 885fdfbd18ebcff48a2b601720a6bafe,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 931427421453046562, guid: 885fdfbd18ebcff48a2b601720a6bafe,
         type: 3}
       propertyPath: m_Name
       value: PlayerTank4_1 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837216345856065177, guid: 885fdfbd18ebcff48a2b601720a6bafe,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876268189006053907, guid: 885fdfbd18ebcff48a2b601720a6bafe,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256049914040260565, guid: 885fdfbd18ebcff48a2b601720a6bafe,
+        type: 3}
+      propertyPath: tankRb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501433883970643064, guid: 885fdfbd18ebcff48a2b601720a6bafe,
+        type: 3}
+      propertyPath: tankRb
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8416599244741069549, guid: 885fdfbd18ebcff48a2b601720a6bafe,
         type: 3}
@@ -63,7 +103,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7158362997849952051, guid: 885fdfbd18ebcff48a2b601720a6bafe, type: 3}
+    - {fileID: 6256049914040260565, guid: 885fdfbd18ebcff48a2b601720a6bafe, type: 3}
+    - {fileID: 7501433883970643064, guid: 885fdfbd18ebcff48a2b601720a6bafe, type: 3}
+    - {fileID: 5876268189006053907, guid: 885fdfbd18ebcff48a2b601720a6bafe, type: 3}
+    - {fileID: 76938954169755180, guid: 885fdfbd18ebcff48a2b601720a6bafe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

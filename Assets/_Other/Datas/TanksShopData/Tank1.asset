@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5810898bc4687ca41b230bce7f325ae1, type: 3}
+  m_Name: Tank1
+  m_EditorClassIdentifier: 
+  id: 1
+  nameLanguageId: 46
+  tank: {fileID: 6389124190662388087, guid: 35992d7b4fa8ca54f8a340966c0d4780, type: 3}
+  price: 0
+  priceDonate: 0
+  engineUpdatePrices: 19000000230000006400000096000000c80000002c01000090010000f4010000
+  engineParam1PerLevel:
+  - 9
+  - 9
+  - 9
+  - 9
+  - 9
+  - 9
+  - 9
+  - 9
+  engineParam2PerLevel:
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  gunsUpdatePrices: 1e0000002800000032000000640000007d00000096000000af000000c80000002c010000
+  gunsParam1PerLevel:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  gunsParam2PerLevel:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  fuelUpdatePrices: 0a0000000f00000014000000190000003200000064000000
+  fuelParam1PerLevel:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  manageChar: 0.5
+  gunChar: 0.167
+  speedChar: 0.2
+  fuelChar: 0.5
