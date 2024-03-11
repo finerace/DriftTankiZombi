@@ -20,7 +20,6 @@ public class ShopData : ScriptableObject
     [SerializeField] private float[] engineParam1PerLevel;
     [SerializeField] private float[] engineParam2PerLevel;
 
-    
     [Space] 
     
     [SerializeField] private int[] gunsUpdatePrices;
@@ -39,4 +38,37 @@ public class ShopData : ScriptableObject
     [SerializeField] [Range(0,1)] private float speedChar;
     [SerializeField] [Range(0,1)] private float fuelChar;
 
+    public int ID => id;
+
+    public int NameLanguageId => nameLanguageId;
+
+    public GameObject Tank => tank;
+
+    public int Price => price;
+
+    public int PriceDonate => priceDonate;
+
+    public int[] EngineUpdatePrices => engineUpdatePrices;
+
+    public float[] EngineParam1PerLevel => engineParam1PerLevel;
+
+    public float[] EngineParam2PerLevel => engineParam2PerLevel;
+
+    public int[] GunsUpdatePrices => gunsUpdatePrices;
+
+    public float[] GunsParam1PerLevel => gunsParam1PerLevel;
+
+    public float[] GunsParam2PerLevel => gunsParam2PerLevel;
+
+    public int[] FuelUpdatePrices => fuelUpdatePrices;
+
+    public float[] FuelParam1PerLevel => fuelParam1PerLevel;
+
+    public float ManageChar => manageChar;
+
+    public float GunChar => gunChar;
+
+    public float SpeedChar => speedChar;
+
+    public float FuelChar => fuelChar;
 }   
