@@ -27,9 +27,9 @@ namespace YG
         {
             public bool isTankPurchased;
 
-            public int engineImprovement;
-            public int gunsImprovement;
-            public int fuelImprovement;
+            public int engineImprovement = 1;
+            public int gunsImprovement = 1;
+            public int fuelImprovement = 1;
         }
         
         [System.Serializable]
