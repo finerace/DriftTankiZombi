@@ -9,7 +9,7 @@ public class TanksShopService : MonoBehaviour
     public static TanksShopService instance;
     
     [SerializeField] private ShopData[] tanksShopDatas;
-    [SerializeField] private ObjectsDragService objectsDragService;
+    [SerializeField] private ObjectsDragServiceReference objectsDragService;
 
     private PlayerMoneyXpService playerMoneyXpService;
     
@@ -40,8 +40,10 @@ public class TanksShopService : MonoBehaviour
     private void Start()
     {
         playerMoneyXpService = FindObjectOfType<PlayerMoneyXpService>();
-
-        objectsDragService.OnTargetObjectNumChange += SelectNewTank;
+        
+        if(objectsDragService != null)
+            objectsDragService.OnTargetObjectNumChange += SelectNewTank;
+        
         void SelectNewTank()
         {
             var currentNum = objectsDragService.TargetObjectNum;
@@ -171,6 +173,12 @@ public class TanksShopService : MonoBehaviour
             saveData.tanksData[targetNum].fuelImprovement++;
         }
 
+    }
+
+    public (ShopData tankShopData,SavesYG.TankSaveData tankSaveData) GetCurrentTankData()
+    {
+        return (tanksShopDatas[objectsDragService.TargetObjectNum],
+            YandexGame.savesData.tanksData[objectsDragService.TargetObjectNum]);
     }
     
     public enum TankCharacteristics

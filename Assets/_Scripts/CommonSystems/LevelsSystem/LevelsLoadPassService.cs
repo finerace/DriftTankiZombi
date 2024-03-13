@@ -26,27 +26,12 @@ public class LevelsLoadPassService : MonoBehaviour
     private Coroutine dieCoroutine;
 
     private GameDataSaver gameDataSaver;
-    
+
+    public event Action OnLevelLoad;
+
     private void Awake()
     {
         instance = this;
-        
-        SetPlayerDieAlgorithm();
-        void SetPlayerDieAlgorithm()
-        {
-            playerTankT.gameObject.GetComponent<PlayerTank>().OnDie += () =>
-            {
-                dieCoroutine = StartCoroutine(OnPlayerDie());
-            };
-
-            IEnumerator OnPlayerDie()
-            {
-                yield return new WaitForSeconds(3);
-
-                gameMenu.isBackActionLock = true;
-                StopLevel();
-            }
-        }
     }
 
     private void Start()
@@ -65,10 +50,13 @@ public class LevelsLoadPassService : MonoBehaviour
         SpawnPlayer();
         void SpawnPlayer()
         {
-            playerTankT.position = levelSpawnPoint.position;
-            playerTankT.rotation = levelSpawnPoint.rotation;
+            var tankData = TanksShopService.instance.GetCurrentTankData();
 
-            playerTankT.gameObject.SetActive(true);
+            playerTankT = 
+                Instantiate(tankData.tankShopData.Tank, levelSpawnPoint.position, levelSpawnPoint.rotation).transform;
+            
+            if(!playerTankT.gameObject.activeSelf)
+                playerTankT.gameObject.SetActive(true);
         }
         
         virtualCamera.SetActive(true);
@@ -79,6 +67,25 @@ public class LevelsLoadPassService : MonoBehaviour
         ChangeMenusActivity(false);
         
         globalGameEvents.SetLevelStartState(true);
+        
+        SetPlayerDieAlgorithm();
+        void SetPlayerDieAlgorithm()
+        {
+            playerTankT.gameObject.GetComponent<PlayerTank>().OnDie += () =>
+            {
+                dieCoroutine = StartCoroutine(OnPlayerDie());
+            };
+
+            IEnumerator OnPlayerDie()
+            {
+                yield return new WaitForSeconds(3);
+
+                gameMenu.isBackActionLock = true;
+                StopLevel();
+            }
+        }
+        
+        OnLevelLoad?.Invoke();
     }
 
     public void StopLevel()

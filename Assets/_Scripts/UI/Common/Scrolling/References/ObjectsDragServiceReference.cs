@@ -2,11 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ObjectDragServiceReference : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDragHandler
+public class ObjectsDragServiceReference : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDragHandler
 {
     [SerializeField] private int targetId;
     private ObjectDragServiceOutside dragService;
-    
+    public event Action OnTargetObjectNumChange;
+
+    public int TargetObjectNum => dragService.TargetObjectNum;
+
     private void Awake()
     {
         var services = FindObjectsOfType<ObjectDragServiceOutside>();
@@ -17,6 +20,8 @@ public class ObjectDragServiceReference : MonoBehaviour,IDragHandler,IBeginDragH
                 continue;
             
             dragService = target;
+
+            dragService.OnTargetObjectNumChange += () => {OnTargetObjectNumChange?.Invoke();};
             return;
         }
     }
@@ -35,4 +40,6 @@ public class ObjectDragServiceReference : MonoBehaviour,IDragHandler,IBeginDragH
     {
         dragService.OnEndDrag(eventData);
     }
+    
+    
 }

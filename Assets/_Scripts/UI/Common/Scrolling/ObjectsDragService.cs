@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))]
 public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDragHandler
 {
     [SerializeField] private Transform parentPoint;
@@ -12,6 +11,9 @@ public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,I
 
     [SerializeField] private Vector2 objectsDistance;
     [SerializeField] private float scrollSpeed;
+    [SerializeField] private float dragSpeed = 1;
+    [SerializeField] private bool invertNearestObjects = false;
+    
     private bool isBeginDrag;
     private int targetObjectNum;
     public int TargetObjectNum => targetObjectNum;
@@ -52,7 +54,7 @@ public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,I
         var trueDelta = Vector2.Dot(objectsDistance.normalized, eventData.delta.normalized) * objectsDistance.normalized *
                         eventData.delta.magnitude;
 
-        parentPoint.localPosition += (Vector3)trueDelta;
+        parentPoint.localPosition += (Vector3)trueDelta * dragSpeed;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -65,9 +67,16 @@ public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,I
         var newNum = FindNearestObject();
         int FindNearestObject()
         {
-            if (Vector2.Dot((startPoint.position - parentPoint.localPosition).normalized, objectsDistance.normalized) < 0)
-                return 0;
-            
+            var isWrong = Vector2.Dot((startPoint.position - parentPoint.localPosition).normalized,
+                objectsDistance.normalized) < 0;
+
+            switch (invertNearestObjects)
+            {
+                case false when isWrong:
+                case true when !isWrong:
+                    return 0;
+            }
+
             var unRoundNearestNum = ((Vector2)parentPoint.localPosition).magnitude / objectsDistance.magnitude;
             var nearestNum = Mathf.RoundToInt(unRoundNearestNum);
 

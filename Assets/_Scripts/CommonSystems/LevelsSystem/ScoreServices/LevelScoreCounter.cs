@@ -4,7 +4,9 @@ using UnityEngine;
 public class LevelScoreCounter : MonoBehaviour
 {
     public static LevelScoreCounter instance;
-    [SerializeField] private TankEffects playerTankEffects;
+
+    [SerializeField] private LevelsLoadPassService levelsLoadPassService;
+    private TankEffects playerTankEffects;
 
     [Space] 
     
@@ -27,6 +29,12 @@ public class LevelScoreCounter : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        levelsLoadPassService.OnLevelLoad += SetPlayerTankEffects;
+        void SetPlayerTankEffects()
+        {
+            playerTankEffects = FindObjectOfType<TankEffects>();
+        }
     }
 
     private void Update()
@@ -34,7 +42,7 @@ public class LevelScoreCounter : MonoBehaviour
         DriftScoreMultiplierWork();
         void DriftScoreMultiplierWork()
         {
-            if (playerTankEffects.IsTankDrifting)
+            if (playerTankEffects != null && playerTankEffects.IsTankDrifting)
             {
                 tankDriftScoreMultiplier += Time.deltaTime * driftScoreMultiplierPower;
             }

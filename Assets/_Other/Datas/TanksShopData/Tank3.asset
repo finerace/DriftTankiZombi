@@ -13,21 +13,25 @@ MonoBehaviour:
   m_Name: Tank3
   m_EditorClassIdentifier: 
   id: 3
-  nameLanguageId: 46
+  nameLanguageId: 48
   tank: {fileID: 5382026773408925685, guid: bb83a35dbc3a63b47a449e0ccd92d609, type: 3}
   price: 8000
   priceDonate: 0
-  engineUpgradePrices: 
+  engineUpgradePrices: 000000000000000000000000000000000000000000000000000000000000000000000000
   engineParam1PerLevel:
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   engineParam2PerLevel:
   - 1
+  - 0
+  - 0
   - 0
   - 0
   - 0
@@ -42,12 +46,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
   gunsParam2PerLevel:
   - 0
   - 0
@@ -55,14 +53,9 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  fuelUpgradePrices: 
+  fuelUpgradePrices: 1a000000370000006200000098000000fc000000
   fuelParam1PerLevel:
+  - 0
   - 0
   - 0
   - 0
