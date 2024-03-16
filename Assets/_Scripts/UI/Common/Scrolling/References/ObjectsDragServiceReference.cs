@@ -12,18 +12,10 @@ public class ObjectsDragServiceReference : MonoBehaviour,IDragHandler,IBeginDrag
 
     private void Awake()
     {
-        var services = FindObjectsOfType<ObjectDragServiceOutside>();
-
-        foreach (var target in services)
-        {
-            if (target.ID != targetId) 
-                continue;
-            
-            dragService = target;
-
-            dragService.OnTargetObjectNumChange += () => {OnTargetObjectNumChange?.Invoke();};
+        if(dragService != null)
             return;
-        }
+        
+        FindDragService();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -40,6 +32,29 @@ public class ObjectsDragServiceReference : MonoBehaviour,IDragHandler,IBeginDrag
     {
         dragService.OnEndDrag(eventData);
     }
+
+    private void FindDragService()
+    {
+        var services = FindObjectsOfType<ObjectDragServiceOutside>();
+
+        foreach (var target in services)
+        {
+            if (target.ID != targetId) 
+                continue;
+            
+            dragService = target;
+
+            dragService.OnTargetObjectNumChange += () => {OnTargetObjectNumChange?.Invoke();};
+            return;
+        }
+    }
     
+    public void InstantDragToObject(int num)
+    {
+        if(dragService == null)
+            FindDragService();
+        
+        dragService.InstantDragToObject(num);
+    }
     
 }

@@ -17,49 +17,59 @@ MonoBehaviour:
   tank: {fileID: 5382026773408925685, guid: bb83a35dbc3a63b47a449e0ccd92d609, type: 3}
   price: 8000
   priceDonate: 0
-  engineUpgradePrices: 000000000000000000000000000000000000000000000000000000000000000000000000
+  engineUpgradePrices: 0500000019000000370000004d0000007d000000ba00000000010000630100009b010000
   engineParam1PerLevel:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
   engineParam2PerLevel:
+  - 0.8
+  - 0.825
+  - 0.85
+  - 0.875
+  - 0.9
   - 1
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 1.05
+  - 1.1
+  - 1.2
+  engineMultiplier:
+  - 0.9
+  - 0.925
+  - 0.95
+  - 0.975
+  - 1
+  - 1.025
+  - 1.05
+  - 1.075
+  - 1.1
   gunsUpgradePrices: 1900000023000000a3000000ff00000033020000e5020000
   gunsParam1PerLevel:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 15
+  - 18
+  - 20
+  - 22
+  - 24
+  - 26
   gunsParam2PerLevel:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 2
+  - 3
+  - 4
+  - 5
+  - 7
+  - 9
   fuelUpgradePrices: 1a000000370000006200000098000000fc000000
   fuelParam1PerLevel:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 250
+  - 275
+  - 300
+  - 325
+  - 350
   manageChar: 0.34
   gunChar: 0.593
   speedChar: 0.333

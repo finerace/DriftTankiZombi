@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using YG;
 
 public class PlayerTank : HealthBase, IObserveNum
 {
@@ -269,6 +270,38 @@ public class PlayerTank : HealthBase, IObserveNum
         }
     }
 
+    public void SetTankCharacteristics(ShopData tankShopData, SavesYG.TankSaveData tankSaveData)
+    {
+        SetEngine();
+        void SetEngine()
+        {
+            var engineImprovement = tankSaveData.engineImprovement-1;
+            
+            maxSpeed = tankShopData.EngineParam1PerLevel[engineImprovement];
+            maxRotation = tankShopData.EngineParam2PerLevel[engineImprovement];
+            
+            enginePower *= tankShopData.EngineMultiplier[engineImprovement];
+        }
+
+        SetGuns();
+        void SetGuns()
+        {
+            var gunsImprovement = tankSaveData.gunsImprovement-1;
+            
+            playerTankCombat.SetGunsDamage(tankShopData.GunsParam1PerLevel[gunsImprovement],
+                tankShopData.GunsParam2PerLevel[gunsImprovement]);
+        }
+        
+        SetFuel();
+        void SetFuel()
+        {
+            var fuelImprovement = tankSaveData.fuelImprovement-1;
+
+            maxFuel = tankShopData.FuelParam1PerLevel[fuelImprovement];
+            fuel = tankShopData.FuelParam1PerLevel[fuelImprovement];
+        }
+    }
+    
     public event Action OnBarParamChange;
     public event Action<int,int> OnObserveNumChange;
 }

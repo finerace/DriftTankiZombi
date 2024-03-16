@@ -34744,8 +34744,8 @@ MonoBehaviour:
   tankEffects: {fileID: 2560162267904888661}
   enginePower: 5.25
   rotationPower: 7
-  maxSpeed: 16
-  maxRotation: 1.2
+  maxSpeed: 11
+  maxRotation: 0.8
   driftModeOnSpeed: 1
   onFlyMovementSpeedModifier: 0.05
   isMovementBlocked: 0

@@ -1,17 +1,27 @@
 using System;
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
+using YG;
 
 public class LevelsLoadPassService : MonoBehaviour
 {
     public static LevelsLoadPassService instance;
     
     [SerializeField] private GlobalGameEvents globalGameEvents;
+    
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private LevelScoreCounter levelScoreCounter;
+    
     [SerializeField] private Transform levelSpawnPoint;
     [SerializeField] private Transform playerTankT;
-    [SerializeField] private GameObject virtualCamera;
-    [SerializeField] private LevelScoreCounter levelScoreCounter;
 
+    [Space] 
+    
+    [SerializeField] private Transform menuRoom;
+    [SerializeField] private Transform mainCameraT;
+    [SerializeField] private Transform inMenuCameraPoint;
+    
     [Space] 
     
     [SerializeField] private MenuSystem mainMenu;
@@ -44,23 +54,29 @@ public class LevelsLoadPassService : MonoBehaviour
         if(currentLevel != null)
             Destroy(currentLevel);
 
-        currentLevelData = levelData;
-        currentLevel = Instantiate(currentLevelData.Prefab, levelSpawnPoint.position,Quaternion.identity);
-        
         SpawnPlayer();
         void SpawnPlayer()
         {
-            var tankData = TanksShopService.instance.GetCurrentTankData();
+            var currentTankAllData = TanksShopService.instance.GetCurrentTankData();
 
             playerTankT = 
-                Instantiate(tankData.tankShopData.Tank, levelSpawnPoint.position, levelSpawnPoint.rotation).transform;
+                Instantiate(currentTankAllData.tankShopData.Tank, levelSpawnPoint.position, levelSpawnPoint.rotation).transform;
+
+            playerTankT.gameObject.GetComponent<PlayerTank>()
+                .SetTankCharacteristics(currentTankAllData.tankShopData,currentTankAllData.tankSaveData);
             
             if(!playerTankT.gameObject.activeSelf)
                 playerTankT.gameObject.SetActive(true);
         }
         
-        virtualCamera.SetActive(true);
+        currentLevelData = levelData;
+        currentLevel = Instantiate(currentLevelData.Prefab, levelSpawnPoint.position,Quaternion.identity);
 
+        menuRoom.gameObject.SetActive(false);
+        virtualCamera.gameObject.SetActive(true);
+        virtualCamera.Follow = playerTankT;
+        virtualCamera.LookAt = playerTankT;
+        
         levelScoreCounter.ResetCounters();
         levelScoreCounter.SetNewCurrentLevelData(currentLevelData);
         
@@ -122,19 +138,22 @@ public class LevelsLoadPassService : MonoBehaviour
     public void UnloadLevel()
     {
         gameDataSaver.Save();
-        
+
+
         currentLevelData = null;
         if(currentLevel != null)
             Destroy(currentLevel);
 
         isCurrentLevelComplete = false;
         playerTankT.gameObject.SetActive(false);
-        
+
         ChangeMenusActivity(true);
         gameMenu.isBackActionLock = false;
-        
-        virtualCamera.SetActive(false);
 
+        menuRoom.gameObject.SetActive(true);
+        virtualCamera.gameObject.SetActive(false);
+        mainCameraT.SetPositionAndRotation(inMenuCameraPoint.position,inMenuCameraPoint.rotation);
+        
         DisableDieCoroutine();
         
         levelScoreCounter.SetNewCurrentLevelData(null);

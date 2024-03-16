@@ -19,39 +19,45 @@ MonoBehaviour:
   priceDonate: 0
   engineUpgradePrices: 3f0000007d000000ff000000af0100008e020000
   engineParam1PerLevel:
-  - 9
-  - 9
-  - 9
-  - 9
-  - 9
+  - 11
+  - 11.5
+  - 12
+  - 12.5
+  - 13
   engineParam2PerLevel:
+  - 0.65
+  - 0.675
+  - 0.7
+  - 0.725
+  - 0.75
+  engineMultiplier:
+  - 0.95
   - 1
-  - 0
-  - 0
-  - 0
-  - 0
+  - 1.05
+  - 1.1
+  - 1.2
   gunsUpgradePrices: 1900000023000000a3000000ff00000033020000e5020000
   gunsParam1PerLevel:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 15
+  - 16
+  - 17
+  - 18
+  - 20
+  - 22
   gunsParam2PerLevel:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 5
+  - 5.5
+  - 6
+  - 7
+  - 8
+  - 9
   fuelUpgradePrices: 1a000000370000006200000098000000fc000000
   fuelParam1PerLevel:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 200
+  - 225
+  - 250
+  - 275
+  - 300
   manageChar: 0.5
   gunChar: 0.167
   speedChar: 0.2

@@ -12,10 +12,12 @@ namespace YG
         public string language = "ru";
         public bool promptDone;
 
-        [SerializeField] public int playerMoney;
+        [SerializeField] public int playerMoney = 99999;
         [SerializeField] public int playerDonateMoney;
         [SerializeField] public int playerXp;
 
+        [SerializeField] public int selectedTankNum = 0;
+        
         [SerializeField] public int trainingStage;
         
         [SerializeField] public TankSaveData[] tanksData = new TankSaveData[16];
@@ -54,6 +56,8 @@ namespace YG
             {
                 levelsData[i] ??= new SavesYG.LevelSaveData();
             }
+
+            tanksData[0].isTankPurchased = true;
         }
     }
 }

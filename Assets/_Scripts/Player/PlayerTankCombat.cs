@@ -99,6 +99,12 @@ public class PlayerTankCombat : MonoBehaviour
         }
     }
 
+    public void SetGunsDamage(float main, float second)
+    {
+        gunExplosionDamage = main;
+        machineGunDamage = second;
+    }
+    
     public void Reset()
     {
         gunCooldownTimer = 0;

@@ -67,7 +67,6 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
     private void Awake()
     {
         instance = this;
-
         InitObserveNumChangesEvents();
         void InitObserveNumChangesEvents()
         {
@@ -76,7 +75,7 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
             OnXpChanged += (int difference) => {OnObserveNumChange?.Invoke(3,difference);};
         }
     }
-    
+
     public bool TryTakeMoney(int moneyCount)
     {
         if (PlayerMoney < moneyCount) 

@@ -19,6 +19,7 @@ public class ShopData : ScriptableObject
     [SerializeField] private int[] engineUpgradePrices;
     [SerializeField] private float[] engineParam1PerLevel;
     [SerializeField] private float[] engineParam2PerLevel;
+    [SerializeField] private float[] engineMultiplier;
 
     [Space] 
     
@@ -53,6 +54,8 @@ public class ShopData : ScriptableObject
     public float[] EngineParam1PerLevel => engineParam1PerLevel;
 
     public float[] EngineParam2PerLevel => engineParam2PerLevel;
+    
+    public float[] EngineMultiplier => engineMultiplier;
 
     public int[] GunsUpgradePrices => gunsUpgradePrices;
 

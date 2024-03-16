@@ -94,4 +94,13 @@ public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,I
         
         isBeginDrag = false;
     }
+
+    public void InstantDragToObject(int num)
+    {
+        var targetPos = startPoint.localPosition + -(Vector3)objectsDistance * targetObjectNum;
+        parentPoint.localPosition = targetPos;
+
+        targetObjectNum = num;
+        OnTargetObjectNumChange?.Invoke();
+    }
 }
