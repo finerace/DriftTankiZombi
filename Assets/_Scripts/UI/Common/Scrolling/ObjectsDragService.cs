@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,IEndDragHandler
 {
@@ -9,10 +8,11 @@ public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,I
     [SerializeField] private Transform[] objects;
     [SerializeField] private Transform startPoint;
 
-    [SerializeField] private Vector2 objectsDistance;
+    [SerializeField] private Vector3 objectsDistance;
     [SerializeField] private float scrollSpeed;
     [SerializeField] private float dragSpeed = 1;
     [SerializeField] private bool invertNearestObjects = false;
+    [SerializeField] private bool unlinkObjectsPosParamToParent = false;
     
     private bool isBeginDrag;
     private int targetObjectNum;
@@ -29,7 +29,10 @@ public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,I
             
             for (int i = 0; i < objects.Length; i++)
             {
-                objects[i].localPosition = (Vector3)objectsDistance * i;
+                if(!unlinkObjectsPosParamToParent)
+                    objects[i].localPosition = (Vector3)objectsDistance * i;
+                else
+                    objects[i].position += (Vector3)objectsDistance * i;
             }
         }
     }
@@ -67,14 +70,19 @@ public class ObjectsDragService : MonoBehaviour,IDragHandler,IBeginDragHandler,I
         var newNum = FindNearestObject();
         int FindNearestObject()
         {
-            var isWrong = Vector2.Dot((startPoint.position - parentPoint.localPosition).normalized,
-                objectsDistance.normalized) < 0;
+            var startParentDot = -Vector3.Dot((startPoint.localPosition - parentPoint.localPosition)
+                .normalized, objectsDistance.normalized);  
+            
+            var isWrong = startParentDot < 0;
 
             switch (invertNearestObjects)
             {
                 case false when isWrong:
-                case true when !isWrong:
                     return 0;
+                case true when !isWrong:
+                {
+                    return 0;
+                }
             }
 
             var unRoundNearestNum = ((Vector2)parentPoint.localPosition).magnitude / objectsDistance.magnitude;

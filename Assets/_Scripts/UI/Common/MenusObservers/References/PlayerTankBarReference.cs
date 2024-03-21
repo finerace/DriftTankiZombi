@@ -4,10 +4,13 @@ public class PlayerTankObserveReference : NumObserveReference, IObserveNum
 {
     private PlayerTank playerTank;
 
-    private void Awake()
+    private void OnEnable()
     {
         playerTank = FindObjectOfType<PlayerTank>();
-
+        
+        if(playerTank == null)
+            return;
+        
         playerTank.OnBarParamChange += () => {OnBarParamChange?.Invoke();};
     }
 

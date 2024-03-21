@@ -1,11 +1,11 @@
 {
-    "idSave": 9,
+    "idSave": 23,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "playerMoney": 80715,
-    "playerDonateMoney": 0,
-    "playerXp": 7230,
+    "playerMoney": 81600,
+    "playerDonateMoney": 20,
+    "playerXp": 18620,
     "selectedTankNum": 2,
     "trainingStage": 0,
     "tanksData": [
@@ -108,14 +108,14 @@
     ],
     "levelsData": [
         {
-            "isLevelCompleted": false,
+            "isLevelCompleted": true,
             "isLevelUnlocked": false,
-            "levelHighScore": 0
+            "levelHighScore": 11162
         },
         {
-            "isLevelCompleted": false,
+            "isLevelCompleted": true,
             "isLevelUnlocked": false,
-            "levelHighScore": 0
+            "levelHighScore": 10902
         },
         {
             "isLevelCompleted": false,
