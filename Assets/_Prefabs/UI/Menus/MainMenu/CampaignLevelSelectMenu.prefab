@@ -839,8 +839,11 @@ MonoBehaviour:
   - {fileID: 4882951847064852482}
   - {fileID: 7538444757091087279}
   startPoint: {fileID: 6919552440238757390}
-  objectsDistance: {x: 450, y: 0}
+  objectsDistance: {x: 450, y: 0, z: 0}
   scrollSpeed: 15
+  dragSpeed: 1
+  invertNearestObjects: 1
+  unlinkObjectsPosParamToParent: 0
 --- !u!114 &1719187562442857291
 MonoBehaviour:
   m_ObjectHideFlags: 0

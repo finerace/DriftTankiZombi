@@ -1,31 +1,31 @@
 {
-    "idSave": 23,
+    "idSave": 2,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "playerMoney": 81600,
-    "playerDonateMoney": 20,
-    "playerXp": 18620,
+    "playerMoney": 92034,
+    "playerDonateMoney": 0,
+    "playerXp": 1320,
     "selectedTankNum": 2,
     "trainingStage": 0,
     "tanksData": [
         {
             "isTankPurchased": true,
-            "engineImprovement": 4,
-            "gunsImprovement": 5,
-            "fuelImprovement": 4
+            "engineImprovement": 1,
+            "gunsImprovement": 1,
+            "fuelImprovement": 1
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 1,
+            "gunsImprovement": 1,
+            "fuelImprovement": 1
         },
         {
             "isTankPurchased": true,
-            "engineImprovement": 7,
-            "gunsImprovement": 8,
-            "fuelImprovement": 6
-        },
-        {
-            "isTankPurchased": true,
-            "engineImprovement": 8,
-            "gunsImprovement": 5,
-            "fuelImprovement": 4
+            "engineImprovement": 1,
+            "gunsImprovement": 1,
+            "fuelImprovement": 1
         },
         {
             "isTankPurchased": false,
@@ -108,14 +108,14 @@
     ],
     "levelsData": [
         {
-            "isLevelCompleted": true,
+            "isLevelCompleted": false,
             "isLevelUnlocked": false,
-            "levelHighScore": 11162
+            "levelHighScore": 1948
         },
         {
-            "isLevelCompleted": true,
+            "isLevelCompleted": false,
             "isLevelUnlocked": false,
-            "levelHighScore": 10902
+            "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,

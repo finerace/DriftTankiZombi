@@ -9,6 +9,7 @@ public class TanksShopService : MonoBehaviour
     public static TanksShopService instance;
     
     [SerializeField] private ShopData[] tanksShopDatas;
+    [SerializeField] private ShopLockData[] shopLockData;
     [SerializeField] private ObjectsDragServiceReference objectsDragService;
     
     private PlayerMoneyXpService playerMoneyXpService;
@@ -51,16 +52,49 @@ public class TanksShopService : MonoBehaviour
         UpdateUI();
     }
 
+    private void OnDisable()
+    {
+        objectsDragService.InstantDragToObject(selectedTankShopData.ID-1);
+    }
+
     private void Awake()
     {
         instance = this;
 
-        var selectedTankNum = YandexGame.savesData.selectedTankNum;
+        selectedTankShopData = tanksShopDatas[0];
         
-        selectedTankShopData = tanksShopDatas[selectedTankNum];
-        objectsDragService.InstantDragToObject(selectedTankNum);
-        
-        UpdateUI();
+        YandexGame.GetDataEvent += InitSavedSelectedTank;
+        void InitSavedSelectedTank()
+        {
+            var selectedTankNum = YandexGame.savesData.selectedTankNum;
+
+            selectedTankShopData = tanksShopDatas[selectedTankNum];
+            objectsDragService.InstantDragToObject(selectedTankNum);
+
+            UpdateUI();
+            
+            shopLockData = FindObjectOfType<ShopLockDatas>().ShopLockDatass;
+            UpdateLockTanks();
+            void UpdateLockTanks()
+            {
+                for (int i = 0; i < tanksShopDatas.Length; i++)
+                {
+                    if (YandexGame.savesData.tanksData[i].isTankPurchased)
+                    {
+                        shopLockData[i].gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        shopLockData[i].MoneyPrice.text = tanksShopDatas[i].Price.ToShortenInt();
+
+                        if (tanksShopDatas[i].PriceDonate != 0)
+                            shopLockData[i].DonateMoneyPrice.text = tanksShopDatas[i].Price.ToShortenInt();
+                        else
+                            shopLockData[i].DonationMoneyPrice.gameObject.SetActive(false);
+                    }
+                }
+            }
+        }
     }
 
     private void Start()
@@ -157,7 +191,8 @@ public class TanksShopService : MonoBehaviour
         YandexGame.SaveProgress();
         
         UpdateUI();
-
+        shopLockData[targetNum].gameObject.SetActive(false);
+        
         OnTankPurchased?.Invoke(targetNum);
     }
 

@@ -8,13 +8,19 @@ public class ObjectsDragServiceReference : MonoBehaviour,IDragHandler,IBeginDrag
     private ObjectDragServiceOutside dragService;
     public event Action OnTargetObjectNumChange;
 
-    public int TargetObjectNum => dragService.TargetObjectNum;
+    public int TargetObjectNum
+    {
+        get
+        {
+            if(dragService == null)
+                FindDragService();
+            
+            return dragService.TargetObjectNum;       
+        }
+    }
 
     private void Awake()
     {
-        if(dragService != null)
-            return;
-        
         FindDragService();
     }
 
@@ -35,6 +41,9 @@ public class ObjectsDragServiceReference : MonoBehaviour,IDragHandler,IBeginDrag
 
     private void FindDragService()
     {
+        if(dragService != null)
+            return;
+        
         var services = FindObjectsOfType<ObjectDragServiceOutside>();
 
         foreach (var target in services)
