@@ -1,19 +1,31 @@
 {
-    "idSave": 2,
+    "idSave": 32,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "playerMoney": 92034,
-    "playerDonateMoney": 0,
-    "playerXp": 1320,
-    "selectedTankNum": 2,
+    "playerMoney": 50270,
+    "playerDonateMoney": 7,
+    "playerXp": 26810,
+    "selectedTankNum": 4,
     "trainingStage": 0,
     "tanksData": [
         {
             "isTankPurchased": true,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
+            "engineImprovement": 4,
+            "gunsImprovement": 5,
+            "fuelImprovement": 4
+        },
+        {
+            "isTankPurchased": true,
+            "engineImprovement": 7,
+            "gunsImprovement": 8,
+            "fuelImprovement": 6
+        },
+        {
+            "isTankPurchased": true,
+            "engineImprovement": 8,
+            "gunsImprovement": 5,
+            "fuelImprovement": 4
         },
         {
             "isTankPurchased": false,
@@ -23,33 +35,21 @@
         },
         {
             "isTankPurchased": true,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
+            "engineImprovement": 8,
+            "gunsImprovement": 5,
+            "fuelImprovement": 4
         },
         {
-            "isTankPurchased": false,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
+            "isTankPurchased": true,
+            "engineImprovement": 8,
+            "gunsImprovement": 5,
+            "fuelImprovement": 4
         },
         {
-            "isTankPurchased": false,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
-        },
-        {
-            "isTankPurchased": false,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
-        },
-        {
-            "isTankPurchased": false,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
+            "isTankPurchased": true,
+            "engineImprovement": 8,
+            "gunsImprovement": 5,
+            "fuelImprovement": 4
         },
         {
             "isTankPurchased": false,
@@ -108,9 +108,9 @@
     ],
     "levelsData": [
         {
-            "isLevelCompleted": false,
+            "isLevelCompleted": true,
             "isLevelUnlocked": false,
-            "levelHighScore": 1948
+            "levelHighScore": 23518
         },
         {
             "isLevelCompleted": false,

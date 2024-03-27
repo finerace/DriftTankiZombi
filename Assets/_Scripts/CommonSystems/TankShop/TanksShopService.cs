@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using YG;
 
-public class TanksShopService : MonoBehaviour
+public class TanksShopService : NumObserveReference,IObserveNum
 {
     public static TanksShopService instance;
     
@@ -18,11 +18,6 @@ public class TanksShopService : MonoBehaviour
     
     [SerializeField] private TMP_Text tankName;
 
-    [SerializeField] private Image charManage;
-    [SerializeField] private Image charGun;
-    [SerializeField] private Image charEngine;
-    [SerializeField] private Image charFuel;
-    
     [Space]
     
     [SerializeField] private TMP_Text engineUpgradesLabel;
@@ -38,8 +33,15 @@ public class TanksShopService : MonoBehaviour
     [Space] 
     
     [SerializeField] private TMP_Text buyOrSelectTankButtonLabel;
+    
+    [SerializeField] private float charUiBarImprovementPower = 0.01f;
 
     private ShopData selectedTankShopData;
+    
+    private float charManage; 
+    private float charGun;
+    private float charEngine; 
+    private float charFuel;
 
     public event Action<int> OnTankPurchased;
 
@@ -116,11 +118,13 @@ public class TanksShopService : MonoBehaviour
         
         SetCharacteristicsFillAmount(); 
         void SetCharacteristicsFillAmount()
-            {
-                charManage.fillAmount = newTankData.ManageChar;
-                charGun.fillAmount = newTankData.GunChar;
-                charEngine.fillAmount = newTankData.SpeedChar;
-                charFuel.fillAmount = newTankData.FuelChar;
+        {
+            var savedData = YandexGame.savesData.tanksData[currentNum];
+                
+                charManage = newTankData.ManageChar + savedData.engineImprovement * charUiBarImprovementPower;
+                charGun = newTankData.GunChar + savedData.gunsImprovement * charUiBarImprovementPower;
+                charEngine = newTankData.SpeedChar + savedData.engineImprovement * charUiBarImprovementPower;
+                charFuel = newTankData.FuelChar + savedData.fuelImprovement * charUiBarImprovementPower;
             }
 
         SetUpgradesLabel();
@@ -201,7 +205,10 @@ public class TanksShopService : MonoBehaviour
         var targetNum = objectsDragService.TargetObjectNum;
         var currentTankData = tanksShopDatas[targetNum];
         var saveData = YandexGame.savesData;
-
+        
+        if(!saveData.tanksData[targetNum].isTankPurchased)
+            return;
+            
         switch ((TankCharacteristics)tankCharacteristics)
         {
             case TankCharacteristics.engine:
@@ -280,4 +287,29 @@ public class TanksShopService : MonoBehaviour
         gun,
         fuel
     }
+
+    public float GetNum(int id)
+    {
+        switch (id)
+        {
+            case 1:
+                return charManage;
+            case 2:
+                return charGun;
+            case 3:
+                return charEngine;
+            case 4:
+                return charFuel;
+        }
+
+        return 0;
+    }
+
+    public (float min, float max) GetBarParam(int id)
+    {
+        return (0f, 1f);
+    }
+
+    public event Action OnBarParamChange;
+    public event Action<int, int> OnObserveNumChange;
 }

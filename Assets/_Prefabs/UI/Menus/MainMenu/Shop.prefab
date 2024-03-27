@@ -1836,6 +1836,7 @@ GameObject:
   - component: {fileID: 5372123505296229286}
   - component: {fileID: 642970611021820370}
   - component: {fileID: 1206298006257236071}
+  - component: {fileID: 719113718880527375}
   m_Layer: 5
   m_Name: charEngine
   m_TagString: Untagged
@@ -1900,6 +1901,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &719113718880527375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234805419187425490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c52db7c66f7a124696966e1b10ddfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 1206298006257236071}
+  IbarNumReference: {fileID: 8904532211454866962}
+  numId: 3
+  speed: 10
+  inverted: 0
 --- !u!1 &3241000417129288253
 GameObject:
   m_ObjectHideFlags: 0
@@ -2634,6 +2652,7 @@ GameObject:
   - component: {fileID: 7361138901456041415}
   - component: {fileID: 960683584588928638}
   - component: {fileID: 9137934562193621889}
+  - component: {fileID: 1007298308900810139}
   m_Layer: 5
   m_Name: charManage
   m_TagString: Untagged
@@ -2698,6 +2717,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1007298308900810139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149629323099416514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c52db7c66f7a124696966e1b10ddfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 9137934562193621889}
+  IbarNumReference: {fileID: 8904532211454866962}
+  numId: 1
+  speed: 10
+  inverted: 0
 --- !u!1 &5342548904732314623
 GameObject:
   m_ObjectHideFlags: 0
@@ -3396,6 +3432,7 @@ GameObject:
   - component: {fileID: 6387533293929673347}
   - component: {fileID: 1324157190501430457}
   - component: {fileID: 456342720848582570}
+  - component: {fileID: 5662266719183094691}
   m_Layer: 5
   m_Name: charFuel
   m_TagString: Untagged
@@ -3460,6 +3497,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5662266719183094691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6227742845154373153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c52db7c66f7a124696966e1b10ddfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 456342720848582570}
+  IbarNumReference: {fileID: 8904532211454866962}
+  numId: 4
+  speed: 10
+  inverted: 0
 --- !u!1 &6346274014570359453
 GameObject:
   m_ObjectHideFlags: 0
@@ -4239,6 +4293,7 @@ GameObject:
   - component: {fileID: 1019259677447796168}
   - component: {fileID: 274723412495052690}
   - component: {fileID: 5969553671605480201}
+  - component: {fileID: 5688287046481441076}
   m_Layer: 5
   m_Name: charGun
   m_TagString: Untagged
@@ -4303,6 +4358,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5688287046481441076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7882929006460320478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c52db7c66f7a124696966e1b10ddfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 5969553671605480201}
+  IbarNumReference: {fileID: 8904532211454866962}
+  numId: 2
+  speed: 10
+  inverted: 0
 --- !u!1 &7938362693134668340
 GameObject:
   m_ObjectHideFlags: 0
@@ -4767,12 +4839,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f103d7f4cad06214892bcab0242bb7a9, type: 2}
   - {fileID: 11400000, guid: def92690185ce5347b4e1260c173210f, type: 2}
   - {fileID: 11400000, guid: 1114c5146f73a0f468ebc3a837e4a903, type: 2}
+  - {fileID: 11400000, guid: e13457136bd91d749a8736e7d4d5c516, type: 2}
+  - {fileID: 11400000, guid: 5eadc9d0a91482c4c909ce34960683b4, type: 2}
+  - {fileID: 11400000, guid: 209cd988be4dd3641978039bf63d9cd3, type: 2}
+  - {fileID: 11400000, guid: 49dc6ca0ada4d644585535dc50824f8b, type: 2}
+  shopLockData: []
   objectsDragService: {fileID: 3226682222730065012}
   tankName: {fileID: 6248654406778145834}
-  charManage: {fileID: 9137934562193621889}
-  charGun: {fileID: 5969553671605480201}
-  charEngine: {fileID: 1206298006257236071}
-  charFuel: {fileID: 456342720848582570}
   engineUpgradesLabel: {fileID: 8061732066116290365}
   gunsUpgradesLabel: {fileID: 3128454390876431023}
   fuelUpgradesLabel: {fileID: 8413527450459381990}
@@ -4780,6 +4853,7 @@ MonoBehaviour:
   gunUpgradePrice: {fileID: 8032548282574193000}
   fuelUpgradePrice: {fileID: 381909600523828291}
   buyOrSelectTankButtonLabel: {fileID: 8393514817234584738}
+  charUiBarImprovementPower: 0.03
 --- !u!1 &8951477385458228960
 GameObject:
   m_ObjectHideFlags: 0
