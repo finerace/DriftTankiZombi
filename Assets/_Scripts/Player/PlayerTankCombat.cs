@@ -73,7 +73,7 @@ public class PlayerTankCombat : MonoBehaviour
                 0,
                 gunShotLayerMask,gunShotLayerMask);
             
-            tankRb.AddForce(-gunShotPoint.forward * gunExplosionDamage * 10,ForceMode.Acceleration);
+            tankRb.AddForce(-gunShotPoint.forward * gunExplosionDamage * gunExplosionPower,ForceMode.Acceleration);
             onGunShot?.Invoke(explosionPos);
         }
         

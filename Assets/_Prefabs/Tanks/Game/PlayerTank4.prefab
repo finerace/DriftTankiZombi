@@ -5064,8 +5064,8 @@ MonoBehaviour:
   tankEffects: {fileID: 76938954169755180}
   enginePower: 10
   rotationPower: 10
-  maxSpeed: 18
-  maxRotation: 0.85
+  maxSpeed: 13
+  maxRotation: 0.7
   driftModeOnSpeed: 4
   onFlyMovementSpeedModifier: 0.05
   isMovementBlocked: 0
@@ -5108,7 +5108,7 @@ MonoBehaviour:
   headT: {fileID: 7284394506162313470}
   gunExplosionDamage: 20
   gunCooldown: 2
-  gunExplosionPower: 10
+  gunExplosionPower: 16
   gunExplosionRadius: 15
   gunShotDistance: 10
   gunShotLayerMask:

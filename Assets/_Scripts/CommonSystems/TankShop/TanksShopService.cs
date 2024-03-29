@@ -90,7 +90,7 @@ public class TanksShopService : NumObserveReference,IObserveNum
                         shopLockData[i].MoneyPrice.text = tanksShopDatas[i].Price.ToShortenInt();
 
                         if (tanksShopDatas[i].PriceDonate != 0)
-                            shopLockData[i].DonateMoneyPrice.text = tanksShopDatas[i].Price.ToShortenInt();
+                            shopLockData[i].DonateMoneyPrice.text = tanksShopDatas[i].PriceDonate.ToShortenInt();
                         else
                             shopLockData[i].DonationMoneyPrice.gameObject.SetActive(false);
                     }

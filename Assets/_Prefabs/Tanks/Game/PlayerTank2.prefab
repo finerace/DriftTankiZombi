@@ -29656,7 +29656,7 @@ MonoBehaviour:
   headT: {fileID: 2576359310064696717}
   gunExplosionDamage: 20
   gunCooldown: 2
-  gunExplosionPower: 10
+  gunExplosionPower: 14
   gunExplosionRadius: 15
   gunShotDistance: 10
   gunShotLayerMask:

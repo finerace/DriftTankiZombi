@@ -5126,7 +5126,7 @@ Transform:
   m_GameObject: {fileID: 720838609056628009}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4999985, y: -0.49999863, z: -0.50000125, w: 0.5000016}
-  m_LocalPosition: {x: 0.031, y: 1.595, z: 0.82}
+  m_LocalPosition: {x: 0.228, y: 1.595, z: 0.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40086,7 +40086,7 @@ Transform:
   m_GameObject: {fileID: 7291144020913354225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4999985, y: -0.49999863, z: -0.50000125, w: 0.5000016}
-  m_LocalPosition: {x: 0.031, y: -1.402, z: 0.823}
+  m_LocalPosition: {x: 0.228, y: -1.402, z: 0.823}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40117,7 +40117,7 @@ Transform:
   m_GameObject: {fileID: 7372032029349942272}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4999985, y: -0.49999863, z: -0.50000125, w: 0.5000016}
-  m_LocalPosition: {x: 0.031, y: 1.595, z: -0.9}
+  m_LocalPosition: {x: 0.228, y: 1.595, z: -0.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40148,7 +40148,7 @@ Transform:
   m_GameObject: {fileID: 7965019825110125081}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4999985, y: -0.49999863, z: -0.50000125, w: 0.5000016}
-  m_LocalPosition: {x: 0.031, y: -1.402, z: -0.899}
+  m_LocalPosition: {x: 0.228, y: -1.402, z: -0.899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40203,7 +40203,7 @@ Rigidbody:
   m_Mass: 38
   m_Drag: 0.1
   m_AngularDrag: 0.1
-  m_CenterOfMass: {x: 0, y: -0.45, z: 0}
+  m_CenterOfMass: {x: 0, y: -0.36, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -40237,8 +40237,8 @@ MonoBehaviour:
   tankRb: {fileID: 3060340039376798032}
   playerTankCombat: {fileID: 5527461675987143388}
   tankEffects: {fileID: 5313816435364630117}
-  enginePower: 12
-  rotationPower: 11
+  enginePower: 10
+  rotationPower: 10
   maxSpeed: 20
   maxRotation: 1.75
   driftModeOnSpeed: 4
@@ -40265,7 +40265,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   isFly: 0
-  groundCheckDistance: 0.4
+  groundCheckDistance: 0.5
 --- !u!114 &5527461675987143388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40283,7 +40283,7 @@ MonoBehaviour:
   headT: {fileID: 614454427581337734}
   gunExplosionDamage: 20
   gunCooldown: 2
-  gunExplosionPower: 10
+  gunExplosionPower: 19
   gunExplosionRadius: 15
   gunShotDistance: 10
   gunShotLayerMask:
