@@ -23,6 +23,9 @@ public class FinallyScoresObserver : MonoBehaviour
     [SerializeField] private TMP_Text finallyCalculates;
     [SerializeField] private TMP_Text finallyScore;
 
+    [SerializeField] private TMP_Text earnedMoney;
+    [SerializeField] private TMP_Text earnedDonateMoney;
+    
     [Space] 
     
     [SerializeField] private GameObject star1;
@@ -85,8 +88,11 @@ public class FinallyScoresObserver : MonoBehaviour
         textCounterAnimator.PlayAnimation
             (finallyScore,0,scoreCounter.GetCompletedScore(),oneActAnimationTime,AnimationType.integer);
         
-        yield return miniWater;
+        yield return waiter;
         
+        textCounterAnimator.PlayAnimation
+            (earnedMoney,0,scoreCounter.EarnedMoney,oneActAnimationTime,AnimationType.integer);
+
         if(completedScore > scoreCounter.GetCurrentLevelData().OneStarScore)
             star1.SetActive(true);
         
@@ -96,6 +102,9 @@ public class FinallyScoresObserver : MonoBehaviour
             star2.SetActive(true);
         
         yield return miniWater;
+
+        textCounterAnimator.PlayAnimation
+            (earnedDonateMoney,0,scoreCounter.EarnedDonateMoney,oneActAnimationTime,AnimationType.integer);
 
         if(completedScore > scoreCounter.GetCurrentLevelData().ThreeStarScore)
             star3.SetActive(true);
@@ -115,6 +124,9 @@ public class FinallyScoresObserver : MonoBehaviour
         finallyCalculates.text = "--- * --- =";
         finallyScore.text = "0";
 
+        earnedMoney.text = "0";
+        earnedDonateMoney.text = "0";
+        
         star1.SetActive(false);
         star2.SetActive(false);
         star3.SetActive(false);

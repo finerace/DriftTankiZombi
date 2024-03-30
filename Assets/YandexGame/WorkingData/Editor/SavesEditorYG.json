@@ -1,18 +1,18 @@
 {
-    "idSave": 36,
+    "idSave": 71,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "playerMoney": 674,
+    "playerMoney": 594,
     "playerDonateMoney": 9771,
-    "playerXp": 27345,
-    "selectedTankNum": 5,
+    "playerXp": 49765,
+    "selectedTankNum": 6,
     "trainingStage": 0,
     "tanksData": [
         {
             "isTankPurchased": true,
-            "engineImprovement": 3,
-            "gunsImprovement": 3,
+            "engineImprovement": 4,
+            "gunsImprovement": 5,
             "fuelImprovement": 4
         },
         {
@@ -42,7 +42,7 @@
         {
             "isTankPurchased": true,
             "engineImprovement": 9,
-            "gunsImprovement": 5,
+            "gunsImprovement": 6,
             "fuelImprovement": 6
         },
         {

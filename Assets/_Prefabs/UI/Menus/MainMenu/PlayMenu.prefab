@@ -1211,6 +1211,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3491151941183141899}
     m_Modifications:
+    - target: {fileID: 203776012369646959, guid: 2d2bd4fc86947814fb90dce1214495a2,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 47867368d17d9ef449b53a2388efc860,
+        type: 3}
+    - target: {fileID: 1952136228475143159, guid: 2d2bd4fc86947814fb90dce1214495a2,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 47867368d17d9ef449b53a2388efc860,
+        type: 3}
     - target: {fileID: 2376330097773091518, guid: 2d2bd4fc86947814fb90dce1214495a2,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1412,6 +1424,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3491151941183141899}
     m_Modifications:
+    - target: {fileID: 203776012369646959, guid: 2d2bd4fc86947814fb90dce1214495a2,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9b12d78d797093b458d310cf1b6fbc20,
+        type: 3}
+    - target: {fileID: 1952136228475143159, guid: 2d2bd4fc86947814fb90dce1214495a2,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9b12d78d797093b458d310cf1b6fbc20,
+        type: 3}
     - target: {fileID: 2376330097773091518, guid: 2d2bd4fc86947814fb90dce1214495a2,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1613,6 +1637,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3491151941183141899}
     m_Modifications:
+    - target: {fileID: 203776012369646959, guid: 2d2bd4fc86947814fb90dce1214495a2,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ae7d6d1a794df77409119e1182bf029c,
+        type: 3}
+    - target: {fileID: 1952136228475143159, guid: 2d2bd4fc86947814fb90dce1214495a2,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ae7d6d1a794df77409119e1182bf029c,
+        type: 3}
     - target: {fileID: 2376330097773091518, guid: 2d2bd4fc86947814fb90dce1214495a2,
         type: 3}
       propertyPath: m_LocalPosition.z

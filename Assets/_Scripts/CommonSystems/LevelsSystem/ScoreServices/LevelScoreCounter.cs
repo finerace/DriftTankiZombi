@@ -8,7 +8,12 @@ public class LevelScoreCounter : MonoBehaviour
     [SerializeField] private LevelsLoadPassService levelsLoadPassService;
     private TankEffects playerTankEffects;
 
-    [Space] 
+    [Space]
+    
+    [SerializeField] private int earnedMoney;
+    [SerializeField] private int earnedDonateMoney;
+    
+    [Space]
     
     [SerializeField] private int environmentDestructionScore = 0;
     [SerializeField] private int killedEnemiesScore = 0;
@@ -26,6 +31,10 @@ public class LevelScoreCounter : MonoBehaviour
     public int EnvironmentDestructionScore => environmentDestructionScore;
     public int KilledEnemiesScore => killedEnemiesScore;
 
+    public int EarnedMoney => earnedMoney;
+
+    public int EarnedDonateMoney => earnedDonateMoney;
+
     private void Awake()
     {
         instance = this;
@@ -34,6 +43,15 @@ public class LevelScoreCounter : MonoBehaviour
         void SetPlayerTankEffects()
         {
             playerTankEffects = FindObjectOfType<TankEffects>();
+        }
+
+        InitMoneyEarnCounter();
+        void InitMoneyEarnCounter()
+        {
+            var playerMoney = FindObjectOfType<PlayerMoneyXpService>();
+
+            playerMoney.OnMoneyChange += i => { earnedMoney += i;};
+            playerMoney.OnDonateMoneyChange += i => { earnedDonateMoney += i;};
         }
     }
 
@@ -102,6 +120,9 @@ public class LevelScoreCounter : MonoBehaviour
     
     public void ResetCounters()
     {
+        earnedMoney = 0;
+        earnedDonateMoney = 0;
+        
         environmentDestructionScore = 0;
         killedEnemiesScore = 0;
         tankDriftScoreMultiplier = 1;
