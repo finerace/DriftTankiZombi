@@ -12494,6 +12494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelsLoadPassService: {fileID: 1155258907}
+  earnedMoney: 0
+  earnedDonateMoney: 0
   environmentDestructionScore: 0
   killedEnemiesScore: 0
   tankDriftScoreMultiplier: 1

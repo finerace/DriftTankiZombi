@@ -56,6 +56,27 @@ public class PlayerTank : HealthBase, IObserveNum
     public Transform TankT => tankT;
     public Rigidbody TankRb => tankRb;
 
+    public float Fuel
+    {
+        get => fuel;
+
+        set
+        {
+            if(value < 0)
+                throw new ArgumentException("VALUE BE LESS THAN ZERO!!!!111");
+
+            if (value > maxFuel)
+            {
+                fuel = maxFuel;
+                return;
+            }
+
+            fuel = value;
+        }
+    }
+
+    public float MaxFuel => maxFuel;
+    
     public bool IsFly => isFly;
     
     private void FixedUpdate()
