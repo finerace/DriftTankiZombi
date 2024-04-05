@@ -54,12 +54,12 @@ MonoBehaviour:
   - 24
   - 25
   gunsParam2PerLevel:
+  - 6
+  - 7
   - 8
   - 9
   - 10
-  - 12
-  - 14
-  - 16
+  - 11
   fuelUpgradePrices: fa000000f4010000ee020000e8030000e2040000dc050000d6060000d0070000
   fuelParam1PerLevel:
   - 300

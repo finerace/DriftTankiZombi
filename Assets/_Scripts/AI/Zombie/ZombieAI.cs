@@ -33,6 +33,9 @@ public class ZombieAI : HealthBase
     public bool IsAnnoyed => isAnnoyed;
     public bool IsDie => isDie;
 
+    public bool isAttacking => 
+        Vector3.Distance(zombieT.position, targetT.position) <= attackDistance && attackCooldown >= 0 && !IsDie;
+
     public event Action onAnnoyedChange;
     
     private void Start()

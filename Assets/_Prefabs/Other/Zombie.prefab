@@ -504,7 +504,7 @@ MonoBehaviour:
   maxHealth: 15
   zombieT: {fileID: 604150794339260880}
   zombieRb: {fileID: 7538701122922831456}
-  damage: 5
+  damage: 2
   attackDistance: 4
   attackCooldown: 2.5
   speed: 3

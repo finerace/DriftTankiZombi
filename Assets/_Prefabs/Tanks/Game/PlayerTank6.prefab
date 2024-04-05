@@ -40291,7 +40291,7 @@ MonoBehaviour:
     m_Bits: 67
   gunShotPoint: {fileID: 1546421872910837484}
   machineGunDamage: 8
-  machineGunCooldown: 0.1
+  machineGunCooldown: 0.15
   machineGunShotDistance: 15
   machineGunShotLayerMask:
     serializedVersion: 2
@@ -45290,8 +45290,8 @@ Transform:
   m_GameObject: {fileID: 8990986904190493284}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.000000029802322, w: 1}
-  m_LocalPosition: {x: 0.65, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.6561, y: 0.0047371, z: -0.00066539}
+  m_LocalScale: {x: 0.93813, y: 0.93813, z: 0.8676577}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7498864978872326975}

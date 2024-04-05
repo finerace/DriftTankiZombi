@@ -5445,8 +5445,8 @@ Transform:
   m_GameObject: {fileID: 3531708094966667173}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.000000029802322, w: 1}
-  m_LocalPosition: {x: 0.65, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.65523, y: 0.017512, z: -0.00062889}
+  m_LocalScale: {x: 0.94697, y: 0.94697, z: 0.8749245}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3076243273879111033}
@@ -35447,7 +35447,7 @@ Rigidbody:
   m_Mass: 33
   m_Drag: 0.1
   m_AngularDrag: 0.1
-  m_CenterOfMass: {x: 0, y: -0.2, z: 0}
+  m_CenterOfMass: {x: 0, y: -0.35, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -35509,7 +35509,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   isFly: 0
-  groundCheckDistance: 0.45
+  groundCheckDistance: 0.55
 --- !u!114 &883735387973714889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35535,7 +35535,7 @@ MonoBehaviour:
     m_Bits: 67
   gunShotPoint: {fileID: 2159178136279925751}
   machineGunDamage: 8
-  machineGunCooldown: 0.1
+  machineGunCooldown: 0.15
   machineGunShotDistance: 15
   machineGunShotLayerMask:
     serializedVersion: 2

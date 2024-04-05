@@ -61,11 +61,11 @@ MonoBehaviour:
   - 4
   - 5
   - 6
+  - 6.5
   - 7
+  - 7.5
   - 8
-  - 9
-  - 10
-  - 11
+  - 8.5
   fuelUpgradePrices: 1900000032000000640000007d00000096000000c8000000fa000000
   fuelParam1PerLevel:
   - 200
