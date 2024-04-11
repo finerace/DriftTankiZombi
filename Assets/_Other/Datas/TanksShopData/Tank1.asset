@@ -25,11 +25,11 @@ MonoBehaviour:
   - 12.5
   - 13
   engineParam2PerLevel:
-  - 0.65
-  - 0.675
-  - 0.7
-  - 0.725
   - 0.75
+  - 0.8
+  - 0.85
+  - 0.9
+  - 1
   engineMultiplier:
   - 0.95
   - 1
