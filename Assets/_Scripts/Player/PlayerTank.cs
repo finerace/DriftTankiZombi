@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.ProBuilder;
 using YG;
 
 public class PlayerTank : HealthBase, IObserveNum
@@ -51,7 +52,9 @@ public class PlayerTank : HealthBase, IObserveNum
     
     private bool isDriftModOn;
     
-    private Coroutine flyChecker;
+    private bool isMobileManageOn;
+    private float mobileManageAxisVertical;
+    private float mobileManageAxisHorizontal;
     
     public Transform TankT => tankT;
     public Rigidbody TankRb => tankRb;
@@ -81,9 +84,44 @@ public class PlayerTank : HealthBase, IObserveNum
     
     private void FixedUpdate()
     {
-        var vertical = Input.GetAxisRaw("Vertical");
-        var horizontal = Input.GetAxisRaw("Horizontal");
+        var vertical = GetMovementAxis("Vertical");
+        var horizontal = GetMovementAxis("Horizontal");
 
+        float GetMovementAxis(string axis)
+        {
+            if (!isMobileManageOn)
+                return Input.GetAxisRaw(axis);
+
+            switch (axis)
+            {
+                case "Vertical":
+                    return mobileManageAxisVertical;
+                case "Horizontal":
+                    return mobileManageAxisHorizontal;
+            }
+
+            throw new ArgumentException($"Axis \"{axis}\" doesn't exist!" );
+        }
+        
+        CheckFlying();
+        void CheckFlying()
+        {
+            isFly = true;
+
+            if (tankRb.velocity.magnitude < 0.15f)
+            {
+                isFly = false;
+                return;
+            }
+            
+            foreach (var groundCheck in groundCheckT)
+                if (groundCheck.Raycast(groundCheck.forward, groundCheckDistance, groundMask).distance != 0)
+                {
+                    isFly = false;
+                    break;
+                }
+        }
+        
         if (isFly)
         {
             vertical *= onFlyMovementSpeedModifier;
@@ -196,43 +234,9 @@ public class PlayerTank : HealthBase, IObserveNum
 
     private void OnEnable()
     {
-        if(flyChecker != null)
-            StopCoroutine(flyChecker);
-        
-        flyChecker = StartCoroutine(FlyChecker());
-        
         Reset();
     }
 
-    private void OnDisable()
-    {
-        StopCoroutine(flyChecker);
-    }
-
-    IEnumerator FlyChecker()
-    {
-        var wait = new WaitForSeconds(0.15f);
-        while (true)
-        {
-            yield return wait;
-                
-            isFly = true;
-
-            if (tankRb.velocity.magnitude < 0.15f)
-            {
-                isFly = false;
-                continue;
-            }
-            
-            foreach (var groundCheck in groundCheckT)
-                if (groundCheck.Raycast(groundCheck.forward, groundCheckDistance, groundMask).distance != 0)
-                {
-                    isFly = false;
-                    break;
-                }
-        }
-    }
-    
     public void Reset()
     {
         isDie = false;
@@ -248,6 +252,8 @@ public class PlayerTank : HealthBase, IObserveNum
 
         playerTankCombat.Reset();
         tankEffects.Reset();
+
+        isMobileManageOn = YandexGame.EnvironmentData.isMobile;
         
         OnBarParamChange?.Invoke();
     }
@@ -323,6 +329,25 @@ public class PlayerTank : HealthBase, IObserveNum
         }
     }
     
+    public void SetMobileMovementAxis(string axis,float value)
+    {
+        if (!isMobileManageOn)
+            throw new ArgumentException($"The mobile manage state is not enable!" ); ;
+
+        switch (axis)
+        {
+            case "Vertical":
+                mobileManageAxisVertical = value;
+                break;
+            case "Horizontal":
+                mobileManageAxisHorizontal = value;
+                break;
+            
+            default:
+                throw new ArgumentException($"Axis \"{axis}\" doesn't exist!" );
+        }
+    }
+
     public event Action OnBarParamChange;
     public event Action<int,int> OnObserveNumChange;
 }
