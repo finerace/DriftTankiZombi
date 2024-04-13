@@ -43,21 +43,7 @@ public class BarService : MonoBehaviour
         BarMove();
         void BarMove()
         {
-            var num = burNum.GetNum(numId);
-            var trueMax = 0f;
-
-            if (!inverted)
-            {
-                num -= min;
-                trueMax = max - min;
-            }
-            else
-            {
-                num -= max;
-                trueMax = min - max;
-            }
-            
-            var targetFillAmount = num / trueMax;
+            var targetFillAmount = GetTargetFillAmount();
             var timeStep = Time.deltaTime * speed;
 
             bar.fillAmount = Mathf.Lerp(bar.fillAmount, targetFillAmount, timeStep);
@@ -75,15 +61,28 @@ public class BarService : MonoBehaviour
     
     private void BarInstantMove()
     {
-        var num = burNum.GetNum(numId);
-        num -= min;
-
-        var trueMax = max - min;
-
-        var targetFillAmount = num / trueMax;
-        bar.fillAmount = targetFillAmount;
+        bar.fillAmount = GetTargetFillAmount();
     }
-    
+
+    private float GetTargetFillAmount()
+    {
+        var num = burNum.GetNum(numId);
+        var trueMax = 0f;
+            
+        if (!inverted)
+        {
+            num -= min;
+            trueMax = max - min;
+        }
+        else
+        {
+            num -= max;
+            trueMax = min - max;
+        }
+
+        return num / trueMax;
+    }
+
 }
 
 interface IObserveNum

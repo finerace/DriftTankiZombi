@@ -83,6 +83,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2240382208915008672, guid: 3999dfebfe377814b95bade6b11fec9f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.2998047
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491151941183141899, guid: 3999dfebfe377814b95bade6b11fec9f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.6000977
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050658370220176548, guid: 3999dfebfe377814b95bade6b11fec9f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -76.200195
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837352507681619685, guid: 3999dfebfe377814b95bade6b11fec9f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.18164062
+      objectReference: {fileID: 0}
     - target: {fileID: 5170192057731729784, guid: 3999dfebfe377814b95bade6b11fec9f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -116,12 +136,12 @@ PrefabInstance:
     - target: {fileID: 5170192057731729784, guid: 3999dfebfe377814b95bade6b11fec9f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 5170192057731729784, guid: 3999dfebfe377814b95bade6b11fec9f,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 5170192057731729784, guid: 3999dfebfe377814b95bade6b11fec9f,
         type: 3}
@@ -192,6 +212,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7217928234748493512, guid: 3999dfebfe377814b95bade6b11fec9f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.1005859
       objectReference: {fileID: 0}
     - target: {fileID: 7243420161061245225, guid: 3999dfebfe377814b95bade6b11fec9f,
         type: 3}
