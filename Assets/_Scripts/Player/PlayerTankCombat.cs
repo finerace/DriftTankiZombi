@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerTankCombat : MonoBehaviour
 {
+    private PlayerTank playerTank;
     [SerializeField] private Transform tankT;
     [SerializeField] private Rigidbody tankRb;
 
@@ -34,7 +35,12 @@ public class PlayerTankCombat : MonoBehaviour
     public float MachineGunCooldownTimer => machineGunCooldownTimer;
 
     public event Action<Vector3> onGunShot;
-    public event Action<Vector3> onMachineGunShot; 
+    public event Action<Vector3> onMachineGunShot;
+
+    private void Start()
+    {
+        playerTank = GetComponent<PlayerTank>();
+    }
 
     private void Update()
     {
@@ -47,9 +53,30 @@ public class PlayerTankCombat : MonoBehaviour
             if (machineGunCooldownTimer > 0)
                 machineGunCooldownTimer -= Time.deltaTime;
         }
-        
-        if (Input.GetKeyUp(KeyCode.LeftControl))
-            UseGun();
+
+        if(!playerTank.IsMobileManageOn)
+            ManagePC();
+        else
+            ManageMobile();
+            
+        void ManagePC()
+        {
+            if (Input.GetKeyUp(KeyCode.LeftControl))
+                UseGun();
+
+            if (Input.GetKey(KeyCode.Space))
+                UseMachineGun();
+        }
+        void ManageMobile()
+        {
+            var joystickM = playerTank.TankHeadJoystickMagnitude;
+            
+            if(joystickM >= 0.5f)
+                UseMachineGun();
+            
+            if(joystickM >= 0.95f)
+                UseGun();
+        }
         
         void UseGun()
         {
@@ -76,10 +103,6 @@ public class PlayerTankCombat : MonoBehaviour
             tankRb.AddForce(-gunShotPoint.forward * gunExplosionDamage * gunExplosionPower,ForceMode.Acceleration);
             onGunShot?.Invoke(explosionPos);
         }
-        
-        if(Input.GetKey(KeyCode.Space))
-            UseMachineGun();
-        
         void UseMachineGun()
         {
             if(machineGunCooldownTimer > 0)

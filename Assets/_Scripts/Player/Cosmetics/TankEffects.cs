@@ -87,10 +87,25 @@ public class TankEffects : MonoBehaviour
 
     private void Update()
     {
-        var vertical = Input.GetAxisRaw("Vertical");
-        var horizontal = Input.GetAxisRaw("Horizontal");
+        var vertical = 0f;
+        var horizontal = 0f;
         var driftDot = Vector2.Dot(playerTank.TankT.forward.ToVectorXZ()
             , playerTank.TankRb.velocity.normalized.ToVectorXZ());
+
+        SetAxis();
+        void SetAxis()
+        {
+            if (!playerTank.IsMobileManageOn)
+            {
+                vertical = Input.GetAxis("Vertical");
+                horizontal = Input.GetAxis("Horizontal");
+            }
+            else
+            {
+                vertical = playerTank.MobileManageAxisVertical;
+                horizontal = playerTank.MobileManageAxisHorizontal;
+            }
+        }
         
         MetalSparksEffectWork();
         void MetalSparksEffectWork()

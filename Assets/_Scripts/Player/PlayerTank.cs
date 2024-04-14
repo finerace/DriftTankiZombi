@@ -55,7 +55,18 @@ public class PlayerTank : HealthBase, IObserveNum
     private bool isMobileManageOn;
     private float mobileManageAxisVertical;
     private float mobileManageAxisHorizontal;
-    
+
+    private Vector2 tankHeadLookDirectionMobile;
+    private float tankHeadJoystickMagnitude;
+
+    private Transform cameraT;
+
+    public bool IsMobileManageOn => isMobileManageOn;
+    public float MobileManageAxisVertical => mobileManageAxisVertical;
+    public float MobileManageAxisHorizontal => mobileManageAxisHorizontal;
+
+    public float TankHeadJoystickMagnitude => tankHeadJoystickMagnitude;
+
     public Transform TankT => tankT;
     public Rigidbody TankRb => tankRb;
 
@@ -81,12 +92,20 @@ public class PlayerTank : HealthBase, IObserveNum
     public float MaxFuel => maxFuel;
     
     public bool IsFly => isFly;
-    
+
+    private void Start()
+    {
+        cameraT = Camera.main.transform;
+    }
+
     private void FixedUpdate()
     {
         var vertical = GetMovementAxis("Vertical");
         var horizontal = GetMovementAxis("Horizontal");
 
+        //if (vertical < 0)
+            //horizontal *= -1;
+        
         float GetMovementAxis(string axis)
         {
             if (!isMobileManageOn)
@@ -95,9 +114,43 @@ public class PlayerTank : HealthBase, IObserveNum
             switch (axis)
             {
                 case "Vertical":
-                    return mobileManageAxisVertical;
+                {
+                    var preValue = mobileManageAxisVertical * 1.75f;
+
+                    preValue = Mathf.Clamp(preValue, -1, 1);
+                    
+                    if (Mathf.Abs(preValue) <= 0.35f)
+                        return 0;
+                    
+                    return preValue;
+                }
                 case "Horizontal":
-                    return mobileManageAxisHorizontal;
+                {
+                    var preValue = mobileManageAxisHorizontal;
+                    
+                    if (Mathf.Abs(preValue) < 0.95f)
+                    {
+                        preValue *= 1.25f;
+
+                        var clamp = 0.5f;
+                        if (Mathf.Abs(preValue) <= clamp)
+                            return 0;
+
+                        switch (preValue)
+                        {
+                            case > 0:
+                                preValue -= clamp;
+                                break;
+                            case < 0:
+                                preValue += clamp;
+                                break;
+                        }
+                    }
+                    else preValue *= 2;
+                    
+                    preValue = Mathf.Clamp(preValue, -1, 1);
+                    return preValue;
+                }
             }
 
             throw new ArgumentException($"Axis \"{axis}\" doesn't exist!" );
@@ -189,22 +242,56 @@ public class PlayerTank : HealthBase, IObserveNum
         TankHeadRotation();
         void TankHeadRotation()
         {
-            var direction = 0;
-
-            if (Input.GetKey(KeyCode.Q))
-                direction = -1;
-            else if (Input.GetKey(KeyCode.E))
-                direction = 1;
-            else return;
-
-            var euler = tankHead.localEulerAngles;
-            var smooth = 0.01f;
+            if(!isMobileManageOn)
+                ManagePC();
+            else
+                ManageMobile();    
             
-            tankHead.localEulerAngles = 
-                new Vector3(euler.x,euler.y + tankHeadRotationSpeed * smooth * direction,euler.z);
+            void ManagePC()
+            {
+                var direction = 0;
+
+                if (Input.GetKey(KeyCode.Q))
+                    direction = -1;
+                else if (Input.GetKey(KeyCode.E))
+                    direction = 1;
+                else return;
+
+                var euler = tankHead.localEulerAngles;
+                var smooth = 0.01f;
+
+                tankHead.localEulerAngles =
+                    new Vector3(euler.x, euler.y + tankHeadRotationSpeed * smooth * direction, euler.z);
+            }
+
+            void ManageMobile()
+            {
+                var joystickDirection = tankHeadLookDirectionMobile;
+                if (joystickDirection.magnitude == 0)
+                    return;
+                
+                var currentRotation = tankHead.localRotation;
+                var targetRotation = GetTargetRotation();
+                Quaternion GetTargetRotation()
+                {
+                    var realDirection = 
+                        cameraT.forward * joystickDirection.y + cameraT.right * joystickDirection.x;
+                    realDirection.y = 0;
+
+                    var tankRotationEuler = tankT.eulerAngles;
+                    tankRotationEuler.x = 0;
+                    tankRotationEuler.z = 0;
+
+                    return Quaternion.Euler(Quaternion.LookRotation(realDirection).eulerAngles - tankRotationEuler);
+                }
+
+                var timeStep = Time.deltaTime * tankHeadRotationSpeed;
+                
+                tankHead.localRotation = Quaternion.RotateTowards(currentRotation,targetRotation,timeStep);
+            }
         }
         
-        EatFuel();
+        //EatFuel();
         void EatFuel()
         {
             if (fuel <= 0)
@@ -337,15 +424,25 @@ public class PlayerTank : HealthBase, IObserveNum
         switch (axis)
         {
             case "Vertical":
+            {
                 mobileManageAxisVertical = value;
+            }
                 break;
             case "Horizontal":
+            {
                 mobileManageAxisHorizontal = value;
+            }
                 break;
             
             default:
                 throw new ArgumentException($"Axis \"{axis}\" doesn't exist!" );
         }
+    }
+
+    public void SetMobileTankHeadManageData(Vector2 lookDirection, float joystickMagnitude)
+    {
+        tankHeadLookDirectionMobile = lookDirection;
+        tankHeadJoystickMagnitude = joystickMagnitude;
     }
 
     public event Action OnBarParamChange;

@@ -20866,7 +20866,7 @@ MonoBehaviour:
     menuPrefab: {fileID: 8760854661346352926, guid: f26a0c32c9c599a4ebad65d146d1ab01,
       type: 3}
     menu: {fileID: 0}
-    isCursorActive: 0
+    isCursorActive: 1
     isTimeNotActive: 0
     childsMenusData:
     - menuID: LevelComplete
