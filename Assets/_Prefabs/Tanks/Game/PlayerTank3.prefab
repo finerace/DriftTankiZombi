@@ -34749,6 +34749,7 @@ MonoBehaviour:
   driftModeOnSpeed: 1
   onFlyMovementSpeedModifier: 0.05
   isMovementBlocked: 0
+  mobileRotationMultiplier: 0.9
   fuel: 350
   maxFuel: 350
   fuelEatSpeed: 15

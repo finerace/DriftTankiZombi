@@ -40015,7 +40015,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6389124190662388087}
   serializedVersion: 4
-  m_Mass: 30
+  m_Mass: 28
   m_Drag: 0.1
   m_AngularDrag: 0.1
   m_CenterOfMass: {x: 0, y: -0.45, z: 0}
@@ -40059,6 +40059,7 @@ MonoBehaviour:
   driftModeOnSpeed: 8
   onFlyMovementSpeedModifier: 0.05
   isMovementBlocked: 0
+  mobileRotationMultiplier: 1
   fuel: 300
   maxFuel: 300
   fuelEatSpeed: 15

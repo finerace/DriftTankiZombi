@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.ProBuilder;
 using YG;
 
 public class PlayerTank : HealthBase, IObserveNum
@@ -21,7 +19,8 @@ public class PlayerTank : HealthBase, IObserveNum
     [SerializeField] private float driftModeOnSpeed = 5;
     [SerializeField] private float onFlyMovementSpeedModifier = 0.05f;
     [SerializeField] private bool isMovementBlocked;
-
+    [SerializeField] private float mobileRotationMultiplier = 1f;
+    
     public bool IsMovementBlocked => isMovementBlocked;
     
     [Space] 
@@ -115,13 +114,13 @@ public class PlayerTank : HealthBase, IObserveNum
             {
                 case "Vertical":
                 {
-                    var preValue = mobileManageAxisVertical * 1.75f;
+                    var preValue = mobileManageAxisVertical * 2f;
+
+
+                    if (Mathf.Abs(preValue) <= 0.15f)
+                        return 0;
 
                     preValue = Mathf.Clamp(preValue, -1, 1);
-                    
-                    if (Mathf.Abs(preValue) <= 0.35f)
-                        return 0;
-                    
                     return preValue;
                 }
                 case "Horizontal":
@@ -130,7 +129,7 @@ public class PlayerTank : HealthBase, IObserveNum
                     
                     if (Mathf.Abs(preValue) < 0.95f)
                     {
-                        preValue *= 1.25f;
+                        preValue *= 1.45f;
 
                         var clamp = 0.5f;
                         if (Mathf.Abs(preValue) <= clamp)
@@ -145,6 +144,8 @@ public class PlayerTank : HealthBase, IObserveNum
                                 preValue += clamp;
                                 break;
                         }
+
+                        preValue *= mobileRotationMultiplier;
                     }
                     else preValue *= 2;
                     
