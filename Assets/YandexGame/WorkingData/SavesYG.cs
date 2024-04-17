@@ -19,6 +19,10 @@ namespace YG
         [SerializeField] public int selectedTankNum = 0;
         
         [SerializeField] public int trainingStage;
+
+        [SerializeField] public float masterVolume;
+        [SerializeField] public float musicVolume;
+        [SerializeField] public bool mobileManageAlternativeMenu; 
         
         [SerializeField] public TankSaveData[] tanksData = new TankSaveData[16];
 

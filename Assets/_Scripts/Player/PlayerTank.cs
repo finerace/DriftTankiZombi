@@ -101,7 +101,7 @@ public class PlayerTank : HealthBase, IObserveNum
     {
         var vertical = GetMovementAxis("Vertical");
         var horizontal = GetMovementAxis("Horizontal");
-
+        
         //if (vertical < 0)
             //horizontal *= -1;
         

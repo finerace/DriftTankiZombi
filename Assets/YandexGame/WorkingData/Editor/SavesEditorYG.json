@@ -1,13 +1,16 @@
 {
-    "idSave": 147,
+    "idSave": 180,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "playerMoney": 25414,
+    "playerMoney": 26114,
     "playerDonateMoney": 9784,
-    "playerXp": 162605,
+    "playerXp": 208180,
     "selectedTankNum": 3,
     "trainingStage": 0,
+    "masterVolume": 0.0,
+    "musicVolume": 0.0,
+    "mobileManageAlternativeMenu": false,
     "tanksData": [
         {
             "isTankPurchased": true,
