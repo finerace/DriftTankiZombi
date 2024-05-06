@@ -600,6 +600,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadRotate_2
       objectReference: {fileID: 0}
+    - target: {fileID: 506862598749687097, guid: c5c1e4277bef1274f8ac5c20ffd4ada7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7557,6 +7562,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadLine_2_1
       objectReference: {fileID: 0}
+    - target: {fileID: 7940528129861561176, guid: f717ecb38c977734587d51fd47e0d88f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8114,6 +8124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crossroads_2r4
       objectReference: {fileID: 0}
+    - target: {fileID: 6902616031868998324, guid: 570e547dc5e693d4392dd08e102ab380,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8553,6 +8568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoadRotate_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 506862598749687097, guid: c5c1e4277bef1274f8ac5c20ffd4ada7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18493,6 +18513,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crossroads_2r3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586890280056681788, guid: 1286e6bd42d3a73469721effc92c923b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3842575838140127842, guid: 1286e6bd42d3a73469721effc92c923b,
         type: 3}

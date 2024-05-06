@@ -7,210 +7,167 @@ public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private RoadsPrefs roads;
     [SerializeField] private int levelScale = 18;
-    
+
     private (int,int)[,] levelMap;
+
+#if UNITY_EDITOR
     
+    [ContextMenu("Generate Level")]
     private void GenerateLevel()
     {
         levelMap = new(int,int)[levelScale, levelScale];
         
-        var maxSteps = 128;
+        var maxSteps = levelScale * 8;
         var currentSteps = 0;
+        const int rotationMultiplier = 90;
+        const int cellScale = 15;
+        
+        var generationPoints = new List<Transform>(128);
         
         if (levelScale < 4)
             throw new Exception("Level is too small!");
 
-        var generationPoints = new List<Transform>(64);
-
-        void GenerateFirstRoad()
-        {
-            var levelCell = 
-                levelMap[levelScale / 2, levelScale / 2] = (Random.Range(0, 3),Random.Range(1, 5));
-            var generationPoint = new GameObject().transform;
-            generationPoints.Add(generationPoint);
-
-            switch (levelCell)
-            {
-               case (0,_):
-               {
-                   SetRotationY(generationPoint,0);
-                   
-                   break;
-               }
-               
-               case (1,_):
-               {
-                   SetRotationY(generationPoint,90);
-                   break;
-               }
-
-               case (2,_):
-               {
-                   SetRotationY(generationPoint,0);
-                   break;
-               }
-            }
-            void SetRotationY(Transform target, int defaultRotation)
-            {
-                target.eulerAngles =  
-                    new Vector3(0, defaultRotation + levelCell.Item2 * 90,0);
-            }
-            
-            SpawnLevelPart(generationPoint,levelCell.Item1);
-
-            GenerationPointWork
-                (GetLevelCell(generationPoint),generationPoint,true);
-        }
-        
-        GenerateFirstRoad();
-        
-        void GenerateRoad()
-        {
-            if(currentSteps >= maxSteps)
-                return;
-            currentSteps++;
-            
-            for (int i = 0; i < generationPoints.Count; i++)
-            {
-                var generationPoint = generationPoints[i];
-                
-                
-            }
-
-            bool IsLevelCellEmpty(Transform generationPoint)
-            {
-                return GetLevelCell(generationPoint).Item1 != 0;
-            }
-            
-        }
-
-        void GenerationPointWork((int,int) levelPoint,Transform generatedPoint, bool clear = false)
-        {
-            const int rotationMultiplier = 90;
-            const int movementDistance = 15;
-            var generatePointOldRotation = generatedPoint.rotation;
-            var generatePointOldPosition = generatedPoint.position;
-            
-            void GoForward(Transform target)
-            {
-                target.position += target.forward * movementDistance;
-            }
-
-            void SetRotationY(Transform target, int defaultRotation)
-            {
-                target.eulerAngles =  new Vector3(0, defaultRotation + levelPoint.Item2 * rotationMultiplier,0);
-            }
-
-            Transform CreatePoint()
-            {
-                var newPoint = new GameObject().transform;
-                newPoint.position = generatePointOldPosition;
-                newPoint.rotation = generatePointOldRotation;
-
-                return newPoint;
-            }
-            
-            switch (levelPoint)
-            {
-                case (0, _):
-                {
-                    SetRotationY(generatedPoint,0);
-                    GoForward(generatedPoint); 
-                    
-                    if (clear)
-                    {
-                        var point2 = CreatePoint();
-                        SetRotationY(point2,180);
-                        GoForward(point2);
-                        
-                        generationPoints.Add(point2);
-                    }
-                    
-                    break;
-                }
-
-                case (1, _):
-                {
-                    var point2 = CreatePoint();
-
-                    SetRotationY(generatedPoint,90);
-                    SetRotationY(point2,-90);
-                    
-                    GoForward(generatedPoint);
-                    GoForward(point2);
-                    
-                    generationPoints.Add(point2);
-                    
-                    if (clear)
-                    {
-                        var point3 = CreatePoint();
-                        SetRotationY(point3,180);
-                        GoForward(point3);
-                        generationPoints.Add(point3);                        
-                    }
-
-                    break;
-                }
-                
-                case (2, _):
-                {
-                    var point2 = CreatePoint();
-                    var point3 = CreatePoint();
-                    
-                    SetRotationY(generatedPoint,0);
-                    SetRotationY(point2,-90);
-                    SetRotationY(point3,90);
-                    
-                    GoForward(generatedPoint);
-                    GoForward(point2);
-                    GoForward(point3);
-                    
-                    generationPoints.Add(point2);
-                    generationPoints.Add(point3);
-                    
-                    if (clear)
-                    {
-                        var point4 = CreatePoint();
-                        SetRotationY(point4,180);
-                        GoForward(point4);
-                        generationPoints.Add(point4);
-                    }
-                    
-                    break;
-                }
-                
-                case (3, _):
-                {
-                    SetRotationY(generatedPoint,-90);
-                    GoForward(generatedPoint); 
-                    
-                    if (clear)
-                    {
-                        var point2 = CreatePoint();
-                        SetRotationY(point2,180);
-                        GoForward(point2);
-                        
-                        generationPoints.Add(point2);
-                    }
-                    
-                    break;
-                }
-            }
-        }
-
-        void SpawnLevelPart(Transform generatePoint,int id,bool isGreen = false)
-        {
-            var cityPart = roads.GetCityPart(id, isGreen);
-
-            Instantiate(cityPart, generatePoint.position,generatePoint.rotation);
-        }
-
         (int, int) GetLevelCell(Transform generationPoint)
         {
-            return levelMap[(int)(generationPoint.position.x / 15), (int)(generationPoint.position.z / 15)];
+            var x = (int)(generationPoint.position.x / cellScale);
+            var z = (int)(generationPoint.position.z / cellScale);
+
+            if (x < 0 || x >= cellScale || z < 0 || z >= cellScale)
+                return (-9, -9);
+            
+            return levelMap[(int)(generationPoint.position.x / cellScale), (int)(generationPoint.position.z / cellScale)];
+        }
+
+        void SetLevelCell(Transform generationPoint,(int,int) value)
+        {
+            levelMap[(int)(generationPoint.position.x / cellScale), (int)(generationPoint.position.z / cellScale)]
+                = value;
+        }
+        
+        GenerateRoads();
+        void GenerateRoads()
+        {
+            Transform CreatePoint(Transform parent,int rotationId)
+            {
+                var newGenerationPoint = new GameObject().transform;
+
+                newGenerationPoint.position = parent.position;
+                newGenerationPoint.eulerAngles = parent.eulerAngles + new Vector3(0,rotationId * rotationMultiplier,0);
+
+                return newGenerationPoint;
+            }
+
+            void GoForward(Transform point)
+            {
+                point.position += point.forward * cellScale;
+            }
+            void SetRotation(Transform point,int rotationId,Transform parent = null)
+            {
+                if(parent == null)
+                    point.eulerAngles = new Vector3(0, rotationId * rotationMultiplier, 0);
+                else
+                    point.eulerAngles = parent.eulerAngles + new Vector3(0, rotationId * rotationMultiplier, 0);
+            }
+            
+            bool RandChance(int chance)
+            {
+                var rand = Random.Range(0, 100);
+
+                return chance >= rand;
+            }
+            
+            levelMap[levelScale / 2, levelScale / 2] = (-1, 0);
+
+            var firstPoint = CreateFirstPoint();
+            Transform CreateFirstPoint()
+            {
+                var firstPoint = new GameObject().transform;
+                firstPoint.position = new Vector3(levelScale / 2 * 15, 0, levelScale / 2 * 15);
+                firstPoint.eulerAngles = new Vector3(0, Random.Range(0, 4) * rotationMultiplier, 0);
+                
+                generationPoints.Add(firstPoint);
+                return firstPoint;
+            }
+            
+            RotateParentPointAndGenerateNewPoints(firstPoint,true);
+            void RotateParentPointAndGenerateNewPoints(Transform parent,bool isFirst = false)
+            {
+                if (!isFirst)
+                {
+                    if (RandChance(30))
+                        CreatePoint(parent, -1);
+                    
+                    if (RandChance(30))
+                        CreatePoint(parent, 1);
+                }
+                else
+                {
+                    if (RandChance(75))
+                        CreatePoint(parent, -1);
+                    
+                    if (RandChance(75))
+                        CreatePoint(parent, 1);
+                    
+                    if (RandChance(75))
+                        CreatePoint(parent, 2);
+                }
+            }
+            
+            PointsMoving();
+            
+            void PointsMoving()
+            {
+                while (currentSteps <= maxSteps)
+                {
+                    currentSteps++;
+
+                    for (int i = 0; i < generationPoints.Count; i++)
+                    {
+                        var point = generationPoints[i];
+                        
+                        GoForward(point);
+
+                        if(RandChance(40))
+                            RotateParentPointAndGenerateNewPoints(point);
+                        else if (RandChance(50))
+                            SetRotation(point,Random.Range(-1,2),point);
+
+                        var currentLevelCell = GetLevelCell(point);
+                        
+                        if (currentLevelCell.Item1 != 0)
+                            generationPoints.Remove(point);
+                        else
+                            SetLevelCell(point,(-1,currentLevelCell.Item2));
+                    }
+                }
+            }
+            
+        }
+
+        End();
+        void End()
+        {
+            for (int i = generationPoints.Count-1; i >= 0; i--)
+            {
+                DestroyImmediate(generationPoints[i]);
+            }
+
+            for (int i = 0; i < levelScale; i++)
+            {
+                for (int j = 0; j < levelScale; j++)
+                {
+                    if (levelMap[i, j].Item1 != 0)
+                        Instantiate(roads.GetCityPart
+                            (5),new Vector3
+                                (i*cellScale - levelScale/2*cellScale/2,0,j*cellScale- levelScale/2*cellScale/2)
+                            ,Quaternion.identity);
+                }
+            }
+            
         }
     }
-
+#endif
+    
     [Serializable]
     public class RoadsPrefs
     {
