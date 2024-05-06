@@ -8,6 +8,17 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private RoadsPrefs roads;
     [SerializeField] private int levelScale = 18;
 
+    [Space] 
+    
+    [SerializeField] private int newPointGenerateAllowChance = 30;
+    [SerializeField] private int pointRotateChance = 40;
+
+    [Space] 
+    
+    [SerializeField] private int newPointGenerateChance = 30;
+
+    [SerializeField] private int startPointsGenerateChance = 75;
+    
     private (int,int)[,] levelMap;
 
 #if UNITY_EDITOR
@@ -29,10 +40,10 @@ public class LevelGenerator : MonoBehaviour
 
         (int, int) GetLevelCell(Transform generationPoint)
         {
-            var x = (int)(generationPoint.position.x / cellScale);
-            var z = (int)(generationPoint.position.z / cellScale);
+            var x = Mathf.CeilToInt(generationPoint.position.x / cellScale);
+            var z = Mathf.CeilToInt(generationPoint.position.z / cellScale);
 
-            if (x < 0 || x >= levelScale || z < 0 || z >= levelScale)
+            if ((x < 0 || x >= levelScale) || (z < 0 || z >= levelScale))
                 return (-9, -9);
             
             return levelMap[x, z];
@@ -40,7 +51,8 @@ public class LevelGenerator : MonoBehaviour
 
         void SetLevelCell(Transform generationPoint,(int,int) value)
         {
-            levelMap[(int)(generationPoint.position.x / cellScale), (int)(generationPoint.position.z / cellScale)]
+            levelMap[Mathf.CeilToInt(generationPoint.position.x / cellScale), 
+                    Mathf.CeilToInt(generationPoint.position.z / cellScale)]
                 = value;
         }
         
@@ -53,7 +65,8 @@ public class LevelGenerator : MonoBehaviour
 
                 newGenerationPoint.position = parent.position;
                 newGenerationPoint.eulerAngles = parent.eulerAngles + new Vector3(0,rotationId * rotationMultiplier,0);
-
+                generationPoints.Add(newGenerationPoint);
+                
                 return newGenerationPoint;
             }
 
@@ -94,21 +107,21 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (!isFirst)
                 {
-                    if (RandChance(30))
+                    if (RandChance(newPointGenerateChance))
                         CreatePoint(parent, -1);
                     
-                    if (RandChance(30))
+                    if (RandChance(newPointGenerateChance))
                         CreatePoint(parent, 1);
                 }
                 else
                 {
-                    if (RandChance(75))
+                    if (RandChance(startPointsGenerateChance))
                         CreatePoint(parent, -1);
                     
-                    if (RandChance(75))
+                    if (RandChance(startPointsGenerateChance))
                         CreatePoint(parent, 1);
                     
-                    if (RandChance(75))
+                    if (RandChance(startPointsGenerateChance))
                         CreatePoint(parent, 2);
                 }
             }
@@ -121,34 +134,34 @@ public class LevelGenerator : MonoBehaviour
                 while (currentSteps <= maxSteps)
                 {
                     currentSteps++;
-                    
                     for (int i = 0; i < generationPoints.Count; i++)
                     {
                         d++;
                         var point = generationPoints[i];
-                        if(point == null)
-                            return;
-                        
+
                         GoForward(point);
 
-                        if(RandChance(40))
+                        if(RandChance(newPointGenerateAllowChance))
                             RotateParentPointAndGenerateNewPoints(point);
-                        else if (RandChance(50))
+                        
+                        if (RandChance(pointRotateChance))
                             SetRotation(point,Random.Range(-1,2),point);
 
                         var currentLevelCell = GetLevelCell(point);
                         
-                        print(currentLevelCell.Item1);
                         if (currentLevelCell.Item1 == 0)
-                        {
                             SetLevelCell(point,(-1,currentLevelCell.Item2));
+                        else
+                        {
+                            generationPoints.Remove(point);
+                            DestroyImmediate(point.gameObject);
                         }
                         
                         
                     }
                 }
                 
-                print(d + " d");
+                //print(d + " d");
                 //print(currentSteps);
             }
             
@@ -163,8 +176,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 var item = points[i];
                 if(item != null)
-                    DestroyImmediate(generationPoints[i]);
-                
+                    DestroyImmediate(generationPoints[i].gameObject);
             }
 
             for (int i = 0; i < levelScale; i++)
@@ -175,7 +187,7 @@ public class LevelGenerator : MonoBehaviour
                         Instantiate(roads.GetCityPart
                             (2),new Vector3
                                 (i*cellScale - levelScale/2*cellScale,0,j*cellScale- levelScale/2*cellScale)
-                            ,Quaternion.identity);
+                            ,Quaternion.identity).transform.parent = transform;
                 }
             }
             
