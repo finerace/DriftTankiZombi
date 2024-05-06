@@ -22,7 +22,7 @@ public class LevelGenerator : MonoBehaviour
         const int rotationMultiplier = 90;
         const int cellScale = 15;
         
-        var generationPoints = new List<Transform>(128);
+        var generationPoints = new List<Transform>(1024);
         
         if (levelScale < 4)
             throw new Exception("Level is too small!");
@@ -32,10 +32,10 @@ public class LevelGenerator : MonoBehaviour
             var x = (int)(generationPoint.position.x / cellScale);
             var z = (int)(generationPoint.position.z / cellScale);
 
-            if (x < 0 || x >= cellScale || z < 0 || z >= cellScale)
+            if (x < 0 || x >= levelScale || z < 0 || z >= levelScale)
                 return (-9, -9);
             
-            return levelMap[(int)(generationPoint.position.x / cellScale), (int)(generationPoint.position.z / cellScale)];
+            return levelMap[x, z];
         }
 
         void SetLevelCell(Transform generationPoint,(int,int) value)
@@ -117,13 +117,17 @@ public class LevelGenerator : MonoBehaviour
             
             void PointsMoving()
             {
+                var d = 0;
                 while (currentSteps <= maxSteps)
                 {
                     currentSteps++;
-
+                    
                     for (int i = 0; i < generationPoints.Count; i++)
                     {
+                        d++;
                         var point = generationPoints[i];
+                        if(point == null)
+                            return;
                         
                         GoForward(point);
 
@@ -134,12 +138,18 @@ public class LevelGenerator : MonoBehaviour
 
                         var currentLevelCell = GetLevelCell(point);
                         
-                        if (currentLevelCell.Item1 != 0)
-                            generationPoints.Remove(point);
-                        else
+                        print(currentLevelCell.Item1);
+                        if (currentLevelCell.Item1 == 0)
+                        {
                             SetLevelCell(point,(-1,currentLevelCell.Item2));
+                        }
+                        
+                        
                     }
                 }
+                
+                print(d + " d");
+                //print(currentSteps);
             }
             
         }
@@ -147,9 +157,14 @@ public class LevelGenerator : MonoBehaviour
         End();
         void End()
         {
-            for (int i = generationPoints.Count-1; i >= 0; i--)
+            var points = generationPoints.ToArray();
+            
+            for (int i = 0; i < points.Length; i++)
             {
-                DestroyImmediate(generationPoints[i]);
+                var item = points[i];
+                if(item != null)
+                    DestroyImmediate(generationPoints[i]);
+                
             }
 
             for (int i = 0; i < levelScale; i++)
@@ -158,8 +173,8 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if (levelMap[i, j].Item1 != 0)
                         Instantiate(roads.GetCityPart
-                            (5),new Vector3
-                                (i*cellScale - levelScale/2*cellScale/2,0,j*cellScale- levelScale/2*cellScale/2)
+                            (2),new Vector3
+                                (i*cellScale - levelScale/2*cellScale,0,j*cellScale- levelScale/2*cellScale)
                             ,Quaternion.identity);
                 }
             }
@@ -203,12 +218,12 @@ public class LevelGenerator : MonoBehaviour
             }
 
             if (id > pavements.Length + pavementsBuildings.Length + 3)
-                return borders[id];
+                return borders[id-borders.Length];
             
             if (id > pavements.Length + 3)
-                return pavementsBuildings[id];
+                return pavementsBuildings[id-pavementsBuildings.Length];
             
-            return pavements[id];
+            return pavements[id-pavements.Length];
         }
     }
     
