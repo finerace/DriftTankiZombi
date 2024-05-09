@@ -118,7 +118,7 @@ public class LevelGenerator : MonoBehaviour
             return finalCof;
         }
 
-        GenerateRoads();
+        //GenerateRoads();
         void GenerateRoads()
         {
             Transform CreatePoint(Transform parent,int rotationId)
@@ -279,10 +279,10 @@ public class LevelGenerator : MonoBehaviour
             {
                 for (int j = 0; j < levelScale; j++)
                 {
-                    if(levelMap[j,i] == (0,0))
+                    if(levelMap[i,j] == (0,0))
                         continue;
                         
-                    var cellEnvironmentVector = GetCellEnvironmentCof(new Vector3(j*cellScale,0,i*cellScale));
+                    var cellEnvironmentVector = GetCellEnvironmentCof(new Vector3(i*cellScale,0,j*cellScale));
                     var cellEnvironment = (cellEnvironmentVector.x, cellEnvironmentVector.y);
 
                     print(cellEnvironment);
@@ -394,7 +394,7 @@ public class LevelGenerator : MonoBehaviour
                     if (result.Item2 == 0)
                         result.Item2 = 2;
                     
-                    levelMap[j, i] = result;
+                    levelMap[i, j] = result;
                 }   
             }
         }
