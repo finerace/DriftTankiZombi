@@ -272,8 +272,135 @@ public class LevelGenerator : MonoBehaviour
             
         }
 
-        End();
-        void End()
+        SetRoads();
+        void SetRoads()
+        {
+            for (int i = 0; i < levelScale; i++)
+            {
+                for (int j = 0; j < levelScale; j++)
+                {
+                    if(levelMap[j,i] == (0,0))
+                        continue;
+                        
+                    var cellEnvironmentVector = GetCellEnvironmentCof(new Vector3(j*cellScale,0,i*cellScale));
+                    var cellEnvironment = (cellEnvironmentVector.x, cellEnvironmentVector.y);
+
+                    print(cellEnvironment);
+                    
+                    var result = (0, 0);
+                    
+                    switch (cellEnvironment)
+                    {
+                        case (0,0):
+                        {
+                            result = (3, 0);
+                            break;
+                        }
+                        
+                        case (1,0):
+                        {
+                            result = (2, 1);
+                            break;
+                        }
+
+                        case (-1,0):
+                        {
+                            result = (2, -1);
+                            break;
+                        }
+
+                        case (0,1):
+                        {
+                            result = (2, 2);
+                            break;
+                        }
+
+                        case (0,-1):
+                        {
+                            result = (2, 0);
+                            break;
+                        }
+
+                        case (1,-1):
+                        {
+                            result = (4, 0);
+                            break;
+                        }
+
+                        case (1,1):
+                        {
+                            result = (4, 1);
+                            break;
+                        }
+                        
+                        case (-1,1):
+                        {
+                            result = (4, 2);
+                            break;
+                        }
+                        
+                        case (-1,-1):
+                        {
+                            result = (4, -1);
+                            break;
+                        }
+                        
+                        case (-9,0):
+                        {
+                            result = (1, 0);
+                            break;
+                        }
+                        
+                        case (0,-9):
+                        {
+                            result = (1, 1);
+                            break;
+                        }
+                        
+                        case (1,-9):
+                        {
+                            result = (1, 0);
+                            break;
+                        }
+                        
+                        case (-1,-9):
+                        {
+                            result = (1, 0);
+                            break;
+                        }
+                        
+                        case (-9,1):
+                        {
+                            result = (1, 1);
+                            break;
+                        }
+                        
+                        case (-9,-1):
+                        {
+                            result = (1, 1);
+                            break;
+                        }
+                        
+                        default:
+                        {
+                            result = (3, 0);
+                            break;
+                        }
+                    }
+
+                    if(result.Item2 > -2)
+                        result.Item2 = -result.Item2;
+
+                    if (result.Item2 == 0)
+                        result.Item2 = 2;
+                    
+                    levelMap[j, i] = result;
+                }   
+            }
+        }
+
+        FinalSpawn();
+        void FinalSpawn()
         {
             var points = generationPoints.ToArray();
             
@@ -288,11 +415,14 @@ public class LevelGenerator : MonoBehaviour
             {
                 for (int j = 0; j < levelScale; j++)
                 {
-                    if (levelMap[i, j].Item1 != 0)
+                    var cellData = levelMap[j, i];
+                    
+                    if (cellData.Item1 != 0)
                         Instantiate(roads.GetCityPart
-                            (2),new Vector3
+                            (cellData.Item1-1),new Vector3
                                 (j*cellScale - levelScale/2*cellScale,0,i*cellScale- levelScale/2*cellScale)
-                            ,Quaternion.identity).transform.parent = transform;
+                            ,Quaternion.Euler(new Vector3(0,rotationMultiplier*cellData.Item2,0)))
+                            .transform.parent = transform;
                 }
             }
             
