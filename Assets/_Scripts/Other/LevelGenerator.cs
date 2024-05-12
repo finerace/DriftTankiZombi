@@ -406,6 +406,34 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        int GetShortestRoadDistance((int, int) id)
+        {
+            var result = 4;
+
+            bool IsCellRoad((int,int) id)
+            {
+                return true;
+            }
+
+            return 0;
+
+        }
+        
+        SetCity();
+        void SetCity()
+        {
+            for (int i = 0; i < levelScale; i++)
+            {
+                for (int j = 0; j < levelScale; j++)
+                {
+                    if(levelMap[i,j] != (0,0))
+                        continue;
+                    
+                }   
+            }
+
+        }
+
         FinalSpawn();
         void FinalSpawn()
         {
@@ -434,7 +462,7 @@ public class LevelGenerator : MonoBehaviour
                         parentT.rotation =
                             Quaternion.Euler(new Vector3(0, rotationMultiplier * cellData.Item2, 0));
 
-                        var spawnedCityPart = (GameObject)PrefabUtility.InstantiatePrefab(roads.GetCityPart
+                        var spawnedCityPart = (GameObject)PrefabUtility.InstantiatePrefab(roads.GetRoad
                             (cellData.Item1 - 1),parentT);
 
                         spawnedCityPart.transform.parent = transform;
@@ -462,7 +490,7 @@ public class LevelGenerator : MonoBehaviour
 
         [Space] public GameObject[] borders;
 
-        public GameObject GetCityPart(int id, bool isGreen = false)
+        public GameObject GetRoad(int id, bool isGreen = false)
         {
             switch (id)
             {
@@ -483,14 +511,24 @@ public class LevelGenerator : MonoBehaviour
                     return !isGreen ? turnRoads[0] : turnRoads[1];
             }
 
-            if (id > pavements.Length + pavementsBuildings.Length + 3)
-                return borders[id-borders.Length];
-            
-            if (id > pavements.Length + 3)
-                return pavementsBuildings[id-pavementsBuildings.Length];
-            
-            return pavements[id-pavements.Length];
+            throw new ArgumentException("Wrong id!");
         }
+        
+        public GameObject GetPavement()
+        {
+            return pavements[Random.Range(0, pavements.Length)];
+        }
+        
+        public GameObject GetPavementBuildings()
+        {
+            return pavementsBuildings[Random.Range(0, pavementsBuildings.Length)];
+        }
+
+        public GameObject GetBorders()
+        {
+            return borders[Random.Range(0, borders.Length)];
+        }
+
     }
     
 }
