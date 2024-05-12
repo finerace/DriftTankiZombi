@@ -102,6 +102,16 @@ public static class AuxiliaryFunc
             objectT.GetChild(i).gameObject.SetActive(active);
         }
     }
+    
+    public static void DeleteChilds(this Transform objectT)
+    {
+        var count = objectT.childCount;
+        
+        for (int i = 0; i < count; i++)
+        {
+            UnityEngine.Object.DestroyImmediate(objectT.GetChild(0).gameObject);
+        }
+    }
 
     public static Vector3 ClampMagnitude(this Vector3 vector, float max)
     {

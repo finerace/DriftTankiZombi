@@ -21917,10 +21917,10 @@ MonoBehaviour:
     - {fileID: 4613950721949695203, guid: e610b5d9db354ac40bc3ed76e8b6825d, type: 3}
     - {fileID: 1901640225334650124, guid: 4549987c5f9e17442abcbfd8add9d054, type: 3}
     - {fileID: 8880273812228511262, guid: 4f6724114a81f0e42a9ce04d7c9dd2c3, type: 3}
-  levelScale: 256
-  newPointGenerateAllowChance: 20
-  pointRotateChance: 20
-  newPointGenerateChance: 20
+  levelScale: 32
+  newPointGenerateAllowChance: 15
+  pointRotateChance: 15
+  newPointGenerateChance: 65
   startPointsGenerateChance: 75
 --- !u!4 &2072215489
 Transform:

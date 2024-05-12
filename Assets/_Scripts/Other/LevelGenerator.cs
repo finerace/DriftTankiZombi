@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -26,9 +27,15 @@ public class LevelGenerator : MonoBehaviour
     [ContextMenu("Generate Level")]
     private void GenerateLevel()
     {
+        ClearChilds();
+        void ClearChilds()
+        {
+            transform.DeleteChilds();
+        }
+        
         levelMap = new(int,int)[levelScale, levelScale];
         
-        var maxSteps = levelScale * 8;
+        var maxSteps = levelScale * levelScale * 8;
         var currentSteps = 0;
         const int rotationMultiplier = 90;
         const int cellScale = 15;
@@ -38,24 +45,87 @@ public class LevelGenerator : MonoBehaviour
         if (levelScale < 4)
             throw new Exception("Level is too small!");
 
-        (int, int) GetLevelCell(Transform generationPoint)
+        (int, int) GetLevelCell(Transform point)
         {
-            var x = Mathf.CeilToInt(generationPoint.position.x / cellScale);
-            var z = Mathf.CeilToInt(generationPoint.position.z / cellScale);
+            var x = Mathf.RoundToInt(point.position.x / cellScale);
+            var z = Mathf.RoundToInt(point.position.z / cellScale);
 
             if ((x < 0 || x >= levelScale) || (z < 0 || z >= levelScale))
                 return (-9, -9);
             
-            return levelMap[x, z];
+            return levelMap[z, x];
         }
+        (int, int) GetLevelCellNext(Vector3 pointPos,Vector3 direction,bool isDat = false)
+        {
+            var x = Mathf.RoundToInt((pointPos.x + direction.x * cellScale) / cellScale);
+            var z = Mathf.RoundToInt((pointPos.z + direction.z * cellScale) / cellScale);
 
+            if ((x < 0 || x >= levelScale) || (z < 0 || z >= levelScale))
+                return (-9, -9);
+
+            if (!isDat)
+                return levelMap[x, z];
+            else
+                return levelMap[z, x];
+        }
         void SetLevelCell(Transform generationPoint,(int,int) value)
         {
-            levelMap[Mathf.CeilToInt(generationPoint.position.x / cellScale), 
-                    Mathf.CeilToInt(generationPoint.position.z / cellScale)]
+            levelMap[Mathf.RoundToInt(generationPoint.position.z / cellScale), 
+                    Mathf.RoundToInt(generationPoint.position.x / cellScale)]
                 = value;
         }
-        
+        Vector2 GetCellEnvironmentCof(Vector3 cellPos,Transform parent = null,bool isDat = false)
+        {
+            var finalCof = new Vector2();
+            var checkBool = false;
+
+            var forward = Vector3.forward;
+            var right = Vector3.right;
+
+            if (parent != null)
+            {
+                forward = parent.forward;
+                right = parent.right;
+            }
+
+            bool IsCellNotEmpty(int cellId)
+            {
+                return cellId != 0 && cellId != 9;
+            }
+            if (IsCellNotEmpty(GetLevelCellNext(cellPos, forward,isDat).Item1))
+            {
+                checkBool = true;
+                finalCof.y++;
+            }
+
+            if (IsCellNotEmpty(GetLevelCellNext(cellPos, -forward,isDat).Item1))
+            {
+                checkBool = true;
+                finalCof.y--;
+            }
+
+            if (!checkBool)
+                finalCof.y = -9;
+            checkBool = false;
+            
+            if (IsCellNotEmpty(GetLevelCellNext(cellPos, -right,isDat).Item1))
+            {
+                checkBool = true;
+                finalCof.x--;
+            }
+
+            if (IsCellNotEmpty(GetLevelCellNext(cellPos, right,isDat).Item1))
+            {
+                checkBool = true;
+                finalCof.x++;
+            }
+            
+            if (!checkBool)
+                finalCof.x = -9;
+            
+            return finalCof;
+        }
+
         GenerateRoads();
         void GenerateRoads()
         {
@@ -70,6 +140,12 @@ public class LevelGenerator : MonoBehaviour
                 return newGenerationPoint;
             }
 
+            bool RandChance(int chance)
+            {
+                var rand = Random.Range(0, 100);
+
+                return chance >= rand;
+            }
             void GoForward(Transform point)
             {
                 point.position += point.forward * cellScale;
@@ -81,12 +157,40 @@ public class LevelGenerator : MonoBehaviour
                 else
                     point.eulerAngles = parent.eulerAngles + new Vector3(0, rotationId * rotationMultiplier, 0);
             }
-            
-            bool RandChance(int chance)
+            bool IsPointLifeAllow(Transform parent, int rotationId,bool isForNewPoints = false)
             {
-                var rand = Random.Range(0, 100);
+                var cof = GetCellEnvironmentCof(parent.position,parent,true);
+                var result = cof.x < -2;
 
-                return chance >= rand;
+                if (!isForNewPoints) 
+                    return result;
+                
+                cof = GetCellEnvironmentCof(parent.position + parent.forward * cellScale,parent,true);
+                var cof2 = GetCellEnvironmentCof(parent.position - parent.forward * cellScale,parent,true);
+
+                result = ((cof.x < -2 || cof.x != rotationId) && cof.x != 0) &&
+                         ((cof2.x < -2 || cof2.x != rotationId) && cof2.x != 0);
+
+                return result;
+            }
+           
+            //Test();
+            //return;
+            void Test()
+            {
+                levelMap[17, 15] = (-1, 0);
+                levelMap[15, 17] = (-1, 0);
+
+                var point = 
+                    new GameObject().transform;
+                point.position = new Vector3(16 * cellScale, 0, 16 * cellScale);
+            
+                point.Rotate(new Vector3(0,0,0));
+            
+                var data = GetCellEnvironmentCof(point.position,point);
+                //print(data.x);
+                print(IsPointLifeAllow(point,-1,true));
+                DestroyImmediate(point.gameObject);
             }
             
             levelMap[levelScale / 2, levelScale / 2] = (-1, 0);
@@ -107,10 +211,10 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (!isFirst)
                 {
-                    if (RandChance(newPointGenerateChance))
+                    if (IsPointLifeAllow(parent,-1,true) && RandChance(newPointGenerateChance))
                         CreatePoint(parent, -1);
                     
-                    if (RandChance(newPointGenerateChance))
+                    if (IsPointLifeAllow(parent,1,true) && RandChance(newPointGenerateChance))
                         CreatePoint(parent, 1);
                 }
                 else
@@ -127,37 +231,44 @@ public class LevelGenerator : MonoBehaviour
             }
             
             PointsMoving();
-            
             void PointsMoving()
             {
-                var d = 0;
                 while (currentSteps <= maxSteps)
                 {
                     currentSteps++;
                     for (int i = 0; i < generationPoints.Count; i++)
                     {
-                        d++;
                         var point = generationPoints[i];
 
-                        GoForward(point);
-
-                        if(RandChance(newPointGenerateAllowChance))
-                            RotateParentPointAndGenerateNewPoints(point);
-                        
-                        if (RandChance(pointRotateChance))
-                            SetRotation(point,Random.Range(-1,2),point);
-
-                        var currentLevelCell = GetLevelCell(point);
-                        
-                        if (currentLevelCell.Item1 == 0)
-                            SetLevelCell(point,(-1,currentLevelCell.Item2));
-                        else
+                        void PointDelete()
                         {
                             generationPoints.Remove(point);
                             DestroyImmediate(point.gameObject);
                         }
                         
-                        
+                        GoForward(point);
+
+                        var currentLevelCell = GetLevelCell(point);
+                        if (currentLevelCell.Item1 == 0)
+                        {
+                            SetLevelCell(point,(-1,currentLevelCell.Item2));
+                            
+                            if (!IsPointLifeAllow(point,0))
+                            {
+                                PointDelete();
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            PointDelete();
+                            continue;
+                        }
+
+                        if (RandChance(pointRotateChance))
+                            SetRotation(point,Random.Range(-1,2),point);
+                        else if(RandChance(newPointGenerateAllowChance))
+                            RotateParentPointAndGenerateNewPoints(point);
                     }
                 }
                 
@@ -167,8 +278,136 @@ public class LevelGenerator : MonoBehaviour
             
         }
 
-        End();
-        void End()
+        SetRoads();
+        void SetRoads()
+        {
+            // levelMap[levelScale / 2, levelScale / 2] = (-1, 0);
+            // levelMap[levelScale / 2-1, levelScale / 2] = (-1, 0);
+            // levelMap[levelScale / 2+1, levelScale / 2] = (-1, 0);
+            // levelMap[levelScale / 2-1, levelScale / 2+1] = (-1, 0);
+            // levelMap[levelScale / 2, levelScale / 2+1] = (-1, 0);
+            //
+            // print(GetCellEnvironmentCof(
+            //     new Vector3((levelScale / 2)*cellScale,0, (levelScale / 2+1)*cellScale)));
+            
+            for (int i = 0; i < levelScale; i++)
+            {
+                for (int j = 0; j < levelScale; j++)
+                {
+                    if(levelMap[i,j] == (0,0))
+                        continue;
+                        
+                    var cellEnvironmentVector = GetCellEnvironmentCof(new Vector3(i*cellScale,0,j*cellScale));
+                    var cellEnvironment = (cellEnvironmentVector.x, cellEnvironmentVector.y);
+
+                    var result = (0, 0);
+                    
+                    switch (cellEnvironment)
+                    {
+                        case (0,0):
+                        {
+                            result = (3, 0);
+                            break;
+                        }
+                        
+                        case (1,0):
+                        {
+                            result = (2, -1);
+                            break;
+                        }
+
+                        case (-1,0):
+                        {
+                            result = (2, 1);
+                            break;
+                        }
+
+                        case (0,1):
+                        {
+                            result = (2, 2);
+                            break;
+                        }
+
+                        case (0,-1):
+                        {
+                            result = (2, 0);
+                            break;
+                        }
+
+                        case (1,-1):
+                        {
+                            result = (4, -1);
+                            break;
+                        }
+
+                        case (1,1):
+                        {
+                            result = (4, 2);
+                            break;
+                        }
+                        
+                        case (-1,1):
+                        {
+                            result = (4, 1);
+                            break;
+                        }
+                        
+                        case (-1,-1):
+                        {
+                            result = (4, 0);
+                            break;
+                        }
+                        
+                        case (-9,0):
+                        {
+                            result = (1, 0);
+                            break;
+                        }
+                        
+                        case (0,-9):
+                        {
+                            result = (1, 1);
+                            break;
+                        }
+                        
+                        case (1,-9):
+                        {
+                            result = (1, 1);
+                            break;
+                        }
+                        
+                        case (-1,-9):
+                        {
+                            result = (1, 1);
+                            break;
+                        }
+                        
+                        case (-9,1):
+                        {
+                            result = (1, 0);
+                            break;
+                        }
+                        
+                        case (-9,-1):
+                        {
+                            result = (1, 0);
+                            break;
+                        }
+                        
+                        default:
+                        {
+                            result = (3, 0);
+                            break;
+                        }
+                    }
+
+                    levelMap[i, j] = result;
+                }   
+            }
+        }
+
+        FinalSpawn();
+        void FinalSpawn()
         {
             var points = generationPoints.ToArray();
             
@@ -179,17 +418,32 @@ public class LevelGenerator : MonoBehaviour
                     DestroyImmediate(generationPoints[i].gameObject);
             }
 
+            var parentT = new GameObject().transform;
+            
             for (int i = 0; i < levelScale; i++)
             {
                 for (int j = 0; j < levelScale; j++)
                 {
-                    if (levelMap[i, j].Item1 != 0)
-                        Instantiate(roads.GetCityPart
-                            (2),new Vector3
-                                (i*cellScale - levelScale/2*cellScale,0,j*cellScale- levelScale/2*cellScale)
-                            ,Quaternion.identity).transform.parent = transform;
+                    var cellData = levelMap[j, i];
+                    if (cellData.Item1 != 0)
+                    {
+                        parentT.position = new Vector3
+                            (j * cellScale - levelScale / 2 * cellScale, 0, 
+                                i * cellScale - levelScale / 2 * cellScale);
+
+                        parentT.rotation =
+                            Quaternion.Euler(new Vector3(0, rotationMultiplier * cellData.Item2, 0));
+
+                        var spawnedCityPart = (GameObject)PrefabUtility.InstantiatePrefab(roads.GetCityPart
+                            (cellData.Item1 - 1),parentT);
+
+                        spawnedCityPart.transform.parent = transform;
+                    }
+
                 }
             }
+            
+            DestroyImmediate(parentT.gameObject);
             
         }
     }
