@@ -8,7 +8,7 @@ public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private RoadsPrefs roads;
     [SerializeField] private int levelScale = 18;
-
+    
     [Space] 
     
     [SerializeField] private int newPointGenerateAllowChance = 30;
@@ -19,7 +19,13 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int newPointGenerateChance = 30;
 
     [SerializeField] private int startPointsGenerateChance = 75;
+
+    [Space] 
     
+    [SerializeField] private int additionLevelSize = 4;
+    [SerializeField] private int cityDepth = 2;
+    [SerializeField] private int bordersDepth = 2;
+
     private (int,int)[,] levelMap;
 
 #if UNITY_EDITOR
@@ -34,7 +40,7 @@ public class LevelGenerator : MonoBehaviour
         }
         
         levelMap = new(int,int)[levelScale, levelScale];
-        
+
         var maxSteps = levelScale * levelScale * 8;
         var currentSteps = 0;
         const int rotationMultiplier = 90;
@@ -406,34 +412,140 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
+        bool IsIdOffLevel((int,int) id)
+        {
+            return id.Item1 < 0 || id.Item1 >= levelScale || id.Item2 < 0 || id.Item2 >= levelScale;
+        }
+        
         int GetShortestRoadDistance((int, int) id)
         {
             var result = 4;
-
-            bool IsCellRoad((int,int) id)
+            var check = 0;
+            
+            int GetToRoadDistance(Vector2Int direction)
             {
-                return true;
+                bool IsCellRoad((int,int) id)
+                {
+                    if (IsIdOffLevel(id))
+                        return false;
+                        
+                    var cellId = levelMap[id.Item1, id.Item2].Item1;
+
+                    return cellId is >= 1 and <= 4;
+                }
+
+                var c1 = id.Item1;
+                var c2 = id.Item2;
+
+                var maxDistance = cityDepth + bordersDepth + 1;
+                
+                for (int i = 0; i <= maxDistance; i++)
+                {
+                    var checkingId = (c1 + direction.x * (i + 1), c2 + direction.y * (i + 1));
+                    
+                    if (IsCellRoad(checkingId))
+                        return i;
+                }
+
+                return maxDistance;
             }
 
-            return 0;
+            check = GetToRoadDistance(new Vector2Int(1, 0));
+            if (check < result)
+                result = check;
 
+            if (result <= 0)
+                return result;
+
+            check = GetToRoadDistance(new Vector2Int(1, 1));
+            if (check < result)
+                result = check;
+            
+            if (result <= 0)
+                return result;
+            
+            check = GetToRoadDistance(new Vector2Int(-1, 1));
+            if (check < result)
+                result = check;
+            
+            if (result <= 0)
+                return result;
+            
+            check = GetToRoadDistance(new Vector2Int(-1, -1));
+            if (check < result)
+                result = check;
+            
+            if (result <= 0)
+                return result;
+            
+            check = GetToRoadDistance(new Vector2Int(0, 1));
+            if (check < result)
+                result = check;
+            
+            if (result <= 0)
+                return result;
+            
+            check = GetToRoadDistance(new Vector2Int(0, -1));
+            if (check < result)
+                result = check;
+            
+            if (result <= 0)
+                return result;
+            
+            check = GetToRoadDistance(new Vector2Int(1, -1));
+            if (check < result)
+                result = check;
+            
+            if (result <= 0)
+                return result;
+            
+            check = GetToRoadDistance(new Vector2Int(-1, 0));
+            if (check < result)
+                result = check;
+
+            return result;
         }
+        
+        var offLevelMap = new(int,int)[levelScale + additionLevelSize*2, levelScale + additionLevelSize*2];
         
         SetCity();
         void SetCity()
         {
-            for (int i = 0; i < levelScale; i++)
+            for (int i = -additionLevelSize; i < levelScale + additionLevelSize; i++)
             {
-                for (int j = 0; j < levelScale; j++)
+                for (int j = -additionLevelSize; j < levelScale + additionLevelSize; j++)
                 {
+                    var currentId = (i, j);
+                    var toRoad = 0;
+
+                    if (IsIdOffLevel(currentId))
+                    {
+                        toRoad = GetShortestRoadDistance(currentId);
+
+                        var trueI = i + additionLevelSize;
+                        var trueJ = j + additionLevelSize;
+                        
+                        if (toRoad <= cityDepth)
+                            offLevelMap[trueI, trueJ] = (5, 0);
+                        else if (toRoad < cityDepth+bordersDepth)
+                            offLevelMap[trueI, trueJ] = (6, 0);
+                        
+                        continue;
+                    }
+                    
                     if(levelMap[i,j] != (0,0))
                         continue;
                     
+                    toRoad = GetShortestRoadDistance(currentId);
+
+                    if (toRoad <= cityDepth)
+                        levelMap[i, j] = (5, 0);
+                    else if (toRoad <= cityDepth+bordersDepth)
+                        levelMap[i, j] = (6, 0);
                 }   
             }
-
         }
-
+    
         FinalSpawn();
         void FinalSpawn()
         {
@@ -448,12 +560,46 @@ public class LevelGenerator : MonoBehaviour
 
             var parentT = new GameObject().transform;
             
-            for (int i = 0; i < levelScale; i++)
+            for (int i = -additionLevelSize; i < levelScale + additionLevelSize; i++)
             {
-                for (int j = 0; j < levelScale; j++)
+                for (int j = -additionLevelSize; j < levelScale + additionLevelSize; j++)
                 {
+                    if (IsIdOffLevel((j, i)))
+                    {
+                        var trueJ = j + additionLevelSize;
+                        var trueI = i + additionLevelSize;
+                        
+                        var offCellData = offLevelMap[trueJ,trueI];
+                        if(offCellData == (0,0))
+                            continue;
+
+                        var miniCellScale = cellScale / 4f;
+
+                        void SpawnMiniCell(int x,int y)
+                        {
+                            parentT.position = new Vector3
+                            (j * cellScale - (levelScale) / 2 * cellScale + miniCellScale * x, 0, 
+                                i * cellScale - (levelScale) / 2 * cellScale + miniCellScale * y);
+
+                            parentT.rotation =
+                                Quaternion.Euler(new Vector3(0, rotationMultiplier * Random.Range(0, 4), 0));
+                            
+                            var spawnedCityPart = (GameObject)PrefabUtility.InstantiatePrefab(roads.GetRoad
+                                (offCellData.Item1 - 1),parentT);
+
+                            spawnedCityPart.transform.parent = transform;
+                        }
+                        
+                        SpawnMiniCell(1,1);
+                        SpawnMiniCell(1,-1);
+                        SpawnMiniCell(-1,-1);
+                        SpawnMiniCell(-1,1);
+                        
+                        continue;
+                    }
+                    
                     var cellData = levelMap[j, i];
-                    if (cellData.Item1 != 0)
+                    if (cellData.Item1 > 0 && cellData.Item1 <= 4)
                     {
                         parentT.position = new Vector3
                             (j * cellScale - levelScale / 2 * cellScale, 0, 
@@ -467,7 +613,30 @@ public class LevelGenerator : MonoBehaviour
 
                         spawnedCityPart.transform.parent = transform;
                     }
+                    else
+                    {
+                        var miniCellScale = cellScale / 4f;
 
+                        void SpawnMiniCell(int x,int y)
+                        {
+                            parentT.position = new Vector3
+                            ((j * cellScale - levelScale / 2 * cellScale) + miniCellScale * x, 0,
+                                i * cellScale - levelScale / 2 * cellScale + miniCellScale * y);
+
+                            parentT.rotation =
+                                Quaternion.Euler(new Vector3(0, rotationMultiplier * Random.Range(0, 4), 0));
+                            
+                            var spawnedCityPart = (GameObject)PrefabUtility.InstantiatePrefab(roads.GetRoad
+                                (cellData.Item1 - 1),parentT);
+
+                            spawnedCityPart.transform.parent = transform;
+                        }
+                        
+                        SpawnMiniCell(1,1);
+                        SpawnMiniCell(1,-1);
+                        SpawnMiniCell(-1,-1);
+                        SpawnMiniCell(-1,1);
+                    }
                 }
             }
             
@@ -509,9 +678,27 @@ public class LevelGenerator : MonoBehaviour
                 
                 case 3:
                     return !isGreen ? turnRoads[0] : turnRoads[1];
+                
+                case 4:
+                    return GetMiniCell();
+                
+                case 5:
+                    return GetBorders();
             }
 
             throw new ArgumentException("Wrong id!");
+        }
+
+        public GameObject GetMiniCell()
+        {
+            var rand = Random.Range(0, 2);
+
+            return rand switch
+            {
+                0 => GetPavement(),
+                1 => GetPavementBuildings(),
+                _ => null
+            };
         }
         
         public GameObject GetPavement()
