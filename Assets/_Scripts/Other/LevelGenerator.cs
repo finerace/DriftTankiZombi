@@ -400,6 +400,12 @@ public class LevelGenerator : MonoBehaviour
                             break;
                         }
                         
+                        case (-9,-9):
+                        {
+                            result = (0, 0);
+                            break;
+                        }
+                        
                         default:
                         {
                             result = (3, 0);
@@ -419,12 +425,7 @@ public class LevelGenerator : MonoBehaviour
         
         int GetShortestRoadDistance((int, int) id)
         {
-            var result = 4;
-            var check = 0;
-            
-            int GetToRoadDistance(Vector2Int direction)
-            {
-                bool IsCellRoad((int,int) id)
+            bool IsCellRoad((int,int) id)
                 {
                     if (IsIdOffLevel(id))
                         return false;
@@ -434,76 +435,59 @@ public class LevelGenerator : MonoBehaviour
                     return cellId is >= 1 and <= 4;
                 }
 
-                var c1 = id.Item1;
-                var c2 = id.Item2;
-
-                var maxDistance = cityDepth + bordersDepth + 1;
+            var maxDistance = cityDepth + bordersDepth + 1;
                 
-                for (int i = 0; i <= maxDistance; i++)
+            for (int i = 1; i <= maxDistance+1; i++)
+            {
+                for (int j = 1; j <= i+2; j++)
                 {
-                    var checkingId = (c1 + direction.x * (i + 1), c2 + direction.y * (i + 1));
+                    var direction = new Vector2Int(1, 0);
+                    var cx = id.Item1 - i;
+                    var cy = id.Item2 + i;
+
+                    (int,int) CheckIdCalculate()
+                    {
+                        return (cx + direction.x * j, cy + direction.y * j);
+                    }
+                    
+                    var checkingId = CheckIdCalculate();
                     
                     if (IsCellRoad(checkingId))
-                        return i;
+                        return i-1;
+                        
+                        
+                    direction = new Vector2Int(0, -1);
+                    cx = id.Item1 + i;
+                    cy = id.Item2 + i;
+                        
+                    checkingId = CheckIdCalculate();
+                    
+                    if (IsCellRoad(checkingId))
+                        return i-1;
+                        
+                        
+                    direction = new Vector2Int(-1, 0);
+                    cx = id.Item1 + i;
+                    cy = id.Item2 - i;
+                        
+                    checkingId = CheckIdCalculate();
+                    
+                    if (IsCellRoad(checkingId))
+                        return i-1;
+                        
+                        
+                    direction = new Vector2Int(0, 1);
+                    cx = id.Item1 - i;
+                    cy = id.Item2 - i;
+                        
+                    checkingId = CheckIdCalculate();
+                    
+                    if (IsCellRoad(checkingId))
+                        return i-1;
                 }
-
-                return maxDistance;
             }
 
-            check = GetToRoadDistance(new Vector2Int(1, 0));
-            if (check < result)
-                result = check;
-
-            if (result <= 0)
-                return result;
-
-            check = GetToRoadDistance(new Vector2Int(1, 1));
-            if (check < result)
-                result = check;
-            
-            if (result <= 0)
-                return result;
-            
-            check = GetToRoadDistance(new Vector2Int(-1, 1));
-            if (check < result)
-                result = check;
-            
-            if (result <= 0)
-                return result;
-            
-            check = GetToRoadDistance(new Vector2Int(-1, -1));
-            if (check < result)
-                result = check;
-            
-            if (result <= 0)
-                return result;
-            
-            check = GetToRoadDistance(new Vector2Int(0, 1));
-            if (check < result)
-                result = check;
-            
-            if (result <= 0)
-                return result;
-            
-            check = GetToRoadDistance(new Vector2Int(0, -1));
-            if (check < result)
-                result = check;
-            
-            if (result <= 0)
-                return result;
-            
-            check = GetToRoadDistance(new Vector2Int(1, -1));
-            if (check < result)
-                result = check;
-            
-            if (result <= 0)
-                return result;
-            
-            check = GetToRoadDistance(new Vector2Int(-1, 0));
-            if (check < result)
-                result = check;
-
-            return result;
+            return maxDistance;
         }
         
         var offLevelMap = new(int,int)[levelScale + additionLevelSize*2, levelScale + additionLevelSize*2];
@@ -515,6 +499,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 for (int j = -additionLevelSize; j < levelScale + additionLevelSize; j++)
                 {
+                    
                     var currentId = (i, j);
                     var toRoad = 0;
 
@@ -615,8 +600,11 @@ public class LevelGenerator : MonoBehaviour
                     }
                     else
                     {
+                        if(cellData.Item1 == 0)
+                            continue;
+                        
                         var miniCellScale = cellScale / 4f;
-
+                            
                         void SpawnMiniCell(int x,int y)
                         {
                             parentT.position = new Vector3
@@ -641,7 +629,6 @@ public class LevelGenerator : MonoBehaviour
             }
             
             DestroyImmediate(parentT.gameObject);
-            
         }
     }
 #endif
@@ -686,7 +673,7 @@ public class LevelGenerator : MonoBehaviour
                     return GetBorders();
             }
 
-            throw new ArgumentException("Wrong id!");
+            throw new ArgumentException($"Wrong id! {id}");
         }
 
         public GameObject GetMiniCell()
