@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   name: 36
-  prefab: {fileID: 8829697421326049350, guid: 7fcfc87c3665d3f40bc7367d8ebb3e45, type: 3}
+  prefab: {fileID: 6425080884795807355, guid: 1771f6ef5839c4f4793dbd59ae44d426, type: 3}
   completeTime: 60
   completeScore: 3500
   completeMoney: 500

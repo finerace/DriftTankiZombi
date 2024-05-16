@@ -26,6 +26,11 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int cityDepth = 2;
     [SerializeField] private int bordersDepth = 2;
 
+    [Space] 
+    
+    [SerializeField] private int maxZombiesPerRoad = 6;
+    [SerializeField] private int zombieSpawnChance = 35;
+    
     private (int,int)[,] levelMap;
 
 #if UNITY_EDITOR
@@ -131,7 +136,13 @@ public class LevelGenerator : MonoBehaviour
             
             return finalCof;
         }
+        bool RandChance(int chance)
+        {
+            var rand = Random.Range(0, 100);
 
+            return chance >= rand;
+        }
+        
         GenerateRoads();
         void GenerateRoads()
         {
@@ -146,12 +157,6 @@ public class LevelGenerator : MonoBehaviour
                 return newGenerationPoint;
             }
 
-            bool RandChance(int chance)
-            {
-                var rand = Random.Range(0, 100);
-
-                return chance >= rand;
-            }
             void GoForward(Transform point)
             {
                 point.position += point.forward * cellScale;
@@ -586,17 +591,47 @@ public class LevelGenerator : MonoBehaviour
                     var cellData = levelMap[j, i];
                     if (cellData.Item1 > 0 && cellData.Item1 <= 4)
                     {
-                        parentT.position = new Vector3
-                            (j * cellScale - levelScale / 2 * cellScale, 0, 
-                                i * cellScale - levelScale / 2 * cellScale);
+                        var cellCenter = new Vector3
+                        (j * cellScale - levelScale / 2 * cellScale, 0,
+                            i * cellScale - levelScale / 2 * cellScale);
+                        
+                        SpawnRoad();
+                        void SpawnRoad()
+                        {
+                            parentT.position = cellCenter;
 
-                        parentT.rotation =
-                            Quaternion.Euler(new Vector3(0, rotationMultiplier * cellData.Item2, 0));
+                            parentT.rotation =
+                                Quaternion.Euler(new Vector3(0, rotationMultiplier * cellData.Item2, 0));
 
-                        var spawnedCityPart = (GameObject)PrefabUtility.InstantiatePrefab(roads.GetRoad
-                            (cellData.Item1 - 1),parentT);
+                            var spawnedCityPart = (GameObject)PrefabUtility.InstantiatePrefab(roads.GetRoad
+                                (cellData.Item1 - 1), parentT);
 
-                        spawnedCityPart.transform.parent = transform;
+                            spawnedCityPart.transform.parent = transform;
+                        }
+
+                        SpawnZombies();
+                        void SpawnZombies()
+                        {
+                            for (int k = 0; k < maxZombiesPerRoad; k++)
+                            {
+                                if(!RandChance(zombieSpawnChance))
+                                    continue;
+
+                                var halfCellScale = cellScale / 2f;
+                                
+                                var spawnPos = 
+                                    new Vector3(Random.Range(-halfCellScale, halfCellScale),0,
+                                        Random.Range(-halfCellScale, halfCellScale));
+
+                                var spawnRotation = Quaternion.Euler(new Vector3(0,Random.Range(0,360),0));
+
+                                parentT.position = cellCenter + spawnPos;
+                                parentT.rotation = spawnRotation;
+                                
+                                var zombie = (GameObject)PrefabUtility.InstantiatePrefab(roads.zombie, parentT);
+                                zombie.transform.parent = transform;
+                            }
+                        }
                     }
                     else
                     {
@@ -645,6 +680,8 @@ public class LevelGenerator : MonoBehaviour
         public GameObject[] pavementsBuildings;
 
         [Space] public GameObject[] borders;
+
+        public GameObject zombie;
 
         public GameObject GetRoad(int id, bool isGreen = false)
         {
