@@ -87,5 +87,6 @@ MonoBehaviour:
   additionLevelSize: 3
   cityDepth: 0
   bordersDepth: 3
-  maxZombiesPerRoad: 32
-  zombieSpawnChance: 85
+  maxZombiesPerRoad: 6
+  zombieSpawnChance: 75
+  seed: 0

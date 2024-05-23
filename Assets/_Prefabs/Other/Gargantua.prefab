@@ -360,7 +360,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7844297399249159596}
   - component: {fileID: 7062085609413561400}
-  - component: {fileID: 8285834353201438887}
   - component: {fileID: 4947316919813270951}
   - component: {fileID: 6325904889445526397}
   - component: {fileID: 2113704334443443772}
@@ -411,33 +410,6 @@ CapsuleCollider:
   m_Height: 2.6389406
   m_Direction: 1
   m_Center: {x: -0.050000023, y: 1.2914699, z: 0.21380474}
---- !u!54 &8285834353201438887
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5776181545850555967}
-  serializedVersion: 4
-  m_Mass: 5
-  m_Drag: 2
-  m_AngularDrag: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!114 &4947316919813270951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,18 +422,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6adfeedf27761f64f9fe4a7040fcd0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 125
-  maxHealth: 125
+  health: 200
+  maxHealth: 200
   zombieT: {fileID: 7844297399249159596}
-  zombieRb: {fileID: 8285834353201438887}
+  zombieRb: {fileID: 0}
   damage: 10
   attackDistance: 3
   attackCooldown: 1.5
   speed: 7
   rotationSpeed: 2
   targetT: {fileID: 0}
-  lookTargetDistance: 15
+  lookTargetDistance: 10
   lookTargetDotFov: 0.5
+  isGargantua: 1
 --- !u!114 &6325904889445526397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,9 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieAI: {fileID: 4947316919813270951}
-  zombieRb: {fileID: 8285834353201438887}
   zombieMeshAnimator: {fileID: 2599618952272645876}
-  toFlyModOnPower: 255
 --- !u!114 &2113704334443443772
 MonoBehaviour:
   m_ObjectHideFlags: 0

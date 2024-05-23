@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using Random = System.Random;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -31,17 +30,22 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int maxZombiesPerRoad = 6;
     [SerializeField] private int zombieSpawnChance = 35;
     
+    [SerializeField] private int maxZombiesGPerRoad = 0;
+    [SerializeField] private int zombieGSpawnChance = 0;
+    
+    [SerializeField] private bool generateNewSeed = false;
+    [SerializeField] private int seed;
+    
     private (int,int)[,] levelMap;
-
-#if UNITY_EDITOR
     
     [ContextMenu("Generate Level")]
-    private void GenerateLevel()
+    public void GenerateLevel()
     {
         ClearChilds();
         void ClearChilds()
         {
-            transform.DeleteChilds();
+            if(generateNewSeed)
+                transform.DeleteChilds();
         }
         
         levelMap = new(int,int)[levelScale, levelScale];
@@ -52,6 +56,12 @@ public class LevelGenerator : MonoBehaviour
         const int cellScale = 15;
         
         var generationPoints = new List<Transform>(1024);
+
+        if(generateNewSeed)
+            seed = UnityEngine.Random.Range(-9999999,9999999);
+        
+        var randomizer = new Random(seed);
+        roads.randomizer = randomizer;
         
         if (levelScale < 4)
             throw new Exception("Level is too small!");
@@ -138,7 +148,7 @@ public class LevelGenerator : MonoBehaviour
         }
         bool RandChance(int chance)
         {
-            var rand = Random.Range(0, 100);
+            var rand = randomizer.Next(0, 100);
 
             return chance >= rand;
         }
@@ -211,7 +221,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 var firstPoint = new GameObject().transform;
                 firstPoint.position = new Vector3(levelScale / 2 * 15, 0, levelScale / 2 * 15);
-                firstPoint.eulerAngles = new Vector3(0, Random.Range(0, 4) * rotationMultiplier, 0);
+                firstPoint.eulerAngles = new Vector3(0, randomizer.Next(0, 4) * rotationMultiplier, 0);
                 
                 generationPoints.Add(firstPoint);
                 return firstPoint;
@@ -277,7 +287,7 @@ public class LevelGenerator : MonoBehaviour
                         }
 
                         if (RandChance(pointRotateChance))
-                            SetRotation(point,Random.Range(-1,2),point);
+                            SetRotation(point,randomizer.Next(-1,2),point);
                         else if(RandChance(newPointGenerateAllowChance))
                             RotateParentPointAndGenerateNewPoints(point);
                     }
@@ -572,9 +582,9 @@ public class LevelGenerator : MonoBehaviour
                                 i * cellScale - (levelScale) / 2 * cellScale + miniCellScale * y);
 
                             parentT.rotation =
-                                Quaternion.Euler(new Vector3(0, rotationMultiplier * Random.Range(0, 4), 0));
+                                Quaternion.Euler(new Vector3(0, rotationMultiplier * randomizer.Next(0, 4), 0));
                             
-                            var spawnedCityPart = (GameObject)PrefabUtility.InstantiatePrefab(roads.GetRoad
+                            var spawnedCityPart = Instantiate(roads.GetRoad
                                 (offCellData.Item1 - 1),parentT);
 
                             spawnedCityPart.transform.parent = transform;
@@ -603,7 +613,7 @@ public class LevelGenerator : MonoBehaviour
                             parentT.rotation =
                                 Quaternion.Euler(new Vector3(0, rotationMultiplier * cellData.Item2, 0));
 
-                            var spawnedCityPart = (GameObject)PrefabUtility.InstantiatePrefab(roads.GetRoad
+                            var spawnedCityPart = Instantiate(roads.GetRoad
                                 (cellData.Item1 - 1), parentT);
 
                             spawnedCityPart.transform.parent = transform;
@@ -620,15 +630,35 @@ public class LevelGenerator : MonoBehaviour
                                 var halfCellScale = cellScale / 2f;
                                 
                                 var spawnPos = 
-                                    new Vector3(Random.Range(-halfCellScale, halfCellScale),0,
-                                        Random.Range(-halfCellScale, halfCellScale));
+                                    new Vector3(randomizer.Next((int)-halfCellScale, (int)halfCellScale),0,
+                                        randomizer.Next((int)-halfCellScale, (int)halfCellScale));
 
-                                var spawnRotation = Quaternion.Euler(new Vector3(0,Random.Range(0,360),0));
+                                var spawnRotation = Quaternion.Euler(new Vector3(0,randomizer.Next(0,360),0));
 
                                 parentT.position = cellCenter + spawnPos;
                                 parentT.rotation = spawnRotation;
                                 
-                                var zombie = (GameObject)PrefabUtility.InstantiatePrefab(roads.zombie, parentT);
+                                var zombie = Instantiate(roads.zombie, parentT);
+                                zombie.transform.parent = transform;
+                            }
+                            
+                            for (int k = 0; k < maxZombiesGPerRoad; k++)
+                            {
+                                if(!RandChance(zombieGSpawnChance))
+                                    continue;
+
+                                var halfCellScale = cellScale / 2f;
+                                
+                                var spawnPos = 
+                                    new Vector3(randomizer.Next((int)-halfCellScale, (int)halfCellScale),0,
+                                        randomizer.Next((int)-halfCellScale, (int)halfCellScale));
+
+                                var spawnRotation = Quaternion.Euler(new Vector3(0,randomizer.Next(0,360),0));
+
+                                parentT.position = cellCenter + spawnPos;
+                                parentT.rotation = spawnRotation;
+                                
+                                var zombie = Instantiate(roads.zombieG, parentT);
                                 zombie.transform.parent = transform;
                             }
                         }
@@ -647,9 +677,9 @@ public class LevelGenerator : MonoBehaviour
                                 i * cellScale - levelScale / 2 * cellScale + miniCellScale * y);
 
                             parentT.rotation =
-                                Quaternion.Euler(new Vector3(0, rotationMultiplier * Random.Range(0, 4), 0));
+                                Quaternion.Euler(new Vector3(0, rotationMultiplier * randomizer.Next(0, 4), 0));
                             
-                            var spawnedCityPart = (GameObject)PrefabUtility.InstantiatePrefab(roads.GetRoad
+                            var spawnedCityPart = Instantiate(roads.GetRoad
                                 (cellData.Item1 - 1),parentT);
 
                             spawnedCityPart.transform.parent = transform;
@@ -666,7 +696,6 @@ public class LevelGenerator : MonoBehaviour
             DestroyImmediate(parentT.gameObject);
         }
     }
-#endif
     
     [Serializable]
     public class RoadsPrefs
@@ -682,6 +711,9 @@ public class LevelGenerator : MonoBehaviour
         [Space] public GameObject[] borders;
 
         public GameObject zombie;
+        public GameObject zombieG;
+        
+        public Random randomizer;
 
         public GameObject GetRoad(int id, bool isGreen = false)
         {
@@ -695,7 +727,7 @@ public class LevelGenerator : MonoBehaviour
 
                 case 2:
                 {
-                    var rand = Random.Range(0, 2);
+                    var rand = randomizer.Next(0, 2);
                     
                     return !isGreen ? fourTurnsRoads[rand] : fourTurnsRoads[rand+2];
                 }
@@ -715,7 +747,7 @@ public class LevelGenerator : MonoBehaviour
 
         public GameObject GetMiniCell()
         {
-            var rand = Random.Range(0, 2);
+            var rand = randomizer.Next(0, 2);
 
             return rand switch
             {
@@ -727,17 +759,17 @@ public class LevelGenerator : MonoBehaviour
         
         public GameObject GetPavement()
         {
-            return pavements[Random.Range(0, pavements.Length)];
+            return pavements[randomizer.Next(0, pavements.Length)];
         }
         
         public GameObject GetPavementBuildings()
         {
-            return pavementsBuildings[Random.Range(0, pavementsBuildings.Length)];
+            return pavementsBuildings[randomizer.Next(0, pavementsBuildings.Length)];
         }
 
         public GameObject GetBorders()
         {
-            return borders[Random.Range(0, borders.Length)];
+            return borders[randomizer.Next(0, borders.Length)];
         }
 
     }

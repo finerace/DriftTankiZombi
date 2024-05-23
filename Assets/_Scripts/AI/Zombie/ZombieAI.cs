@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class ZombieAI : HealthBase
 {
     [SerializeField] private Transform zombieT;
-    [SerializeField] private Rigidbody zombieRb;
+    [SerializeField] public Rigidbody zombieRb;
 
     [Space] 
     
@@ -23,12 +23,14 @@ public class ZombieAI : HealthBase
     [SerializeField] private float rotationSpeed;
 
     private bool isAnnoyed = false;
-    
+
     [Space]
     
     [SerializeField] private Transform targetT;
     [SerializeField] private float lookTargetDistance;
     [SerializeField] private float lookTargetDotFov;
+
+    [SerializeField] private bool isGargantua;
 
     public bool IsAnnoyed => isAnnoyed;
     public bool IsDie => isDie;
@@ -72,6 +74,7 @@ public class ZombieAI : HealthBase
                 if (Vector3.Dot(zombieT.forward, toTargetDirection) >= lookTargetDotFov)
                 {
                     isAnnoyed = true;
+                    AddRb();
                     
                     onAnnoyedChange?.Invoke();
                 }
@@ -84,6 +87,8 @@ public class ZombieAI : HealthBase
                 return;
             
             isAnnoyed = true;
+            AddRb();
+            
             onAnnoyedChange?.Invoke();
         };
         
@@ -140,6 +145,8 @@ public class ZombieAI : HealthBase
     
     public override void Died()
     {
+        AddRb();
+        
         DisableAnnoying();
         void DisableAnnoying()
         {
@@ -155,5 +162,30 @@ public class ZombieAI : HealthBase
         
         gameObject.layer = 8;
         Destroy(gameObject,30f);
+    }
+
+    private void AddRb()
+    {
+        if(zombieRb == null)
+            zombieRb = gameObject.AddComponent<Rigidbody>();
+
+        if (!isGargantua)
+            zombieRb.mass = 1;
+        else
+            zombieRb.mass = 6;
+        
+        zombieRb.drag = 2;
+        zombieRb.angularDrag = 0;
+        zombieRb.automaticInertiaTensor = true;
+
+        if (!isGargantua)
+            zombieRb.useGravity = false;
+        else
+            zombieRb.useGravity = true;
+        
+        if (!isGargantua)
+            zombieRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+        else
+            zombieRb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 }

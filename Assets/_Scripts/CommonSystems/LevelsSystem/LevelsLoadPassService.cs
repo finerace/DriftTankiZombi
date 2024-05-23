@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using Cinemachine;
 using UnityEngine;
-using YG;
+using UnityEngine.SceneManagement;
 
 public class LevelsLoadPassService : MonoBehaviour
 {
@@ -70,7 +70,8 @@ public class LevelsLoadPassService : MonoBehaviour
         }
         
         currentLevelData = levelData;
-        currentLevel = Instantiate(currentLevelData.Prefab, levelSpawnPoint.position,Quaternion.identity);
+        currentLevel = Instantiate(currentLevelData.LevelPrefab);
+        currentLevel.GetComponent<LevelGenerator>().GenerateLevel();
 
         menuRoom.gameObject.SetActive(false);
         virtualCamera.gameObject.SetActive(true);
