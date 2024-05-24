@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
@@ -47,7 +48,7 @@ public class LevelGenerator : MonoBehaviour
             if(generateNewSeed)
                 transform.DeleteChilds();
         }
-        
+
         levelMap = new(int,int)[levelScale, levelScale];
 
         var maxSteps = levelScale * levelScale * 8;
@@ -298,7 +299,7 @@ public class LevelGenerator : MonoBehaviour
             }
             
         }
-
+        
         SetRoads();
         void SetRoads()
         {
@@ -545,7 +546,7 @@ public class LevelGenerator : MonoBehaviour
                 }   
             }
         }
-    
+        
         FinalSpawn();
         void FinalSpawn()
         {

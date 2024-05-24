@@ -162,8 +162,6 @@ GameObject:
   - component: {fileID: 6921951666037022009}
   - component: {fileID: 4155688410700913678}
   - component: {fileID: 2572647015820259776}
-  - component: {fileID: 8225355220083518960}
-  - component: {fileID: -4803043305834049960}
   - component: {fileID: 4455719558706553535}
   m_Layer: 0
   m_Name: Tree
@@ -231,40 +229,6 @@ MonoBehaviour:
   drag: 0.25
   massCenter: {x: 0, y: 1.25, z: 0}
   boxCollider: {fileID: 4155688410700913678}
---- !u!114 &8225355220083518960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1669371413868462269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169f661e48cbd3e46a2cc041010e4c96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 2572647015820259776}
-  scoreType: 0
-  scoreValue: 15
---- !u!114 &-4803043305834049960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1669371413868462269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe1e61822c608cc4e8bc3419a5aa5fa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetHealth: {fileID: 2572647015820259776}
-  moneyAddChance: 0
-  moneyAdd: 0
-  donateMoneyAddChance: 0
-  donateMoneyAdd: 0
-  xpAddChance: 1000
-  XpAdd: 15
 --- !u!65 &4455719558706553535
 BoxCollider:
   m_ObjectHideFlags: 0

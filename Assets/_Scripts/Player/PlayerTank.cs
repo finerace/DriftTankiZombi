@@ -48,6 +48,8 @@ public class PlayerTank : HealthBase, IObserveNum
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private bool isFly;
     [SerializeField] private float groundCheckDistance = 0.2f;
+
+    public static PlayerTank instance;
     
     private bool isDriftModOn;
     
@@ -91,6 +93,11 @@ public class PlayerTank : HealthBase, IObserveNum
     public float MaxFuel => maxFuel;
     
     public bool IsFly => isFly;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {

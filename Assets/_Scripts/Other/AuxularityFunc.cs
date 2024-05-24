@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public static class AuxiliaryFunc
 {
@@ -246,6 +247,45 @@ public static class Explosions
 
                         if (distance > explosionRadius)
                             resultDamage = 0;
+                        
+                        if (collider.gameObject.TryGetComponent(out HealthBase health1))
+                        {
+                            var layer = collider.gameObject.layer;
+
+                            health1.OnDie += AddBonus;
+                            void AddBonus()
+                            {
+                                var money = PlayerMoneyXpService.instance;
+                                var score = LevelScoreCounter.instance;
+                                
+                                if (layer == 6)
+                                {
+                                    if (RandomChance(150))
+                                        money.PlayerMoney += Random.Range(1, 11);
+
+                                    if (RandomChance(2))
+                                        money.PlayerDonateMoney += 1;
+
+                                    money.PlayerXp += 25;
+                    
+                                    LevelScoreCounter.instance.AddEnemyKilledDestructionScore(50);
+                                }
+                                else
+                                {
+                                    money.PlayerXp += 10;
+                    
+                                    score.AddEnvironmentDestructionScore(10);
+                                }
+                            }
+
+                            bool RandomChance(int chance)
+                            {
+                                var rand = Random.Range(0, 1000);
+
+                                return rand <= chance;
+                            }
+            
+                        } 
                         
                         health.TakeDamage(resultDamage);
                     }

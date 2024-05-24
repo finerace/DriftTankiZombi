@@ -17,12 +17,6 @@ public class DestructibleEnvironment : HealthBase
     [SerializeField] private float drag;
     [SerializeField] private Vector3 massCenter;
     [SerializeField] private BoxCollider boxCollider;
-    private Rigidbody playerRb;
-    
-    private void Awake()
-    {
-        playerRb = FindObjectOfType<PlayerTank>().TankRb;
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,7 +29,8 @@ public class DestructibleEnvironment : HealthBase
             rb.angularDrag = drag;
             rb.centerOfMass = massCenter;
             
-            rb.velocity = -playerRb.velocity/2;
+            if(other.gameObject.TryGetComponent(out Rigidbody playerRb))
+                rb.velocity = -playerRb.velocity/2;
             
             if(boxCollider != null)
                 boxCollider.enabled = true;

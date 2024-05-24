@@ -24,9 +24,9 @@ namespace YG
         [SerializeField] public float musicVolume;
         [SerializeField] public bool mobileManageAlternativeMenu; 
         
-        [SerializeField] public TankSaveData[] tanksData = new TankSaveData[16];
+        [SerializeField] public TankSaveData[] tanksData = new TankSaveData[10];
 
-        [SerializeField] public LevelSaveData[] levelsData = new LevelSaveData[16];
+        [SerializeField] public LevelSaveData[] levelsData = new LevelSaveData[20];
         
         [System.Serializable]
         public class TankSaveData
@@ -48,8 +48,8 @@ namespace YG
 
         public SavesYG()
         {
-            tanksData = new SavesYG.TankSaveData[16];
-            levelsData = new SavesYG.LevelSaveData[16];
+            tanksData = new SavesYG.TankSaveData[10];
+            levelsData = new SavesYG.LevelSaveData[20];
 
             for (var i = 0; i < tanksData.Length; i++)
             {

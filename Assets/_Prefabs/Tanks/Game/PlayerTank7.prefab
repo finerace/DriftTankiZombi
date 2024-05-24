@@ -50172,7 +50172,7 @@ MonoBehaviour:
   - {fileID: 3935973206228133361}
   groundMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2049
   isFly: 0
   groundCheckDistance: 0.4
 --- !u!114 &8032652443661306937
@@ -50200,7 +50200,7 @@ MonoBehaviour:
     m_Bits: 67
   gunShotPoint: {fileID: 4839119107849338214}
   machineGunDamage: 8
-  machineGunCooldown: 0.25
+  machineGunCooldown: 0.125
   machineGunShotDistance: 15
   machineGunShotLayerMask:
     serializedVersion: 2

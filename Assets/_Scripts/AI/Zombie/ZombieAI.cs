@@ -31,7 +31,8 @@ public class ZombieAI : HealthBase
     [SerializeField] private float lookTargetDotFov;
 
     [SerializeField] private bool isGargantua;
-
+    [SerializeField] private Collider collider;
+    
     public bool IsAnnoyed => isAnnoyed;
     public bool IsDie => isDie;
 
@@ -45,8 +46,7 @@ public class ZombieAI : HealthBase
         SetStartTarget();
         void SetStartTarget()
         {
-            if (targetT == null)
-                targetT = FindObjectOfType<PlayerTank>().transform;
+            targetT = PlayerTank.instance.transform;
         }
         
         attackCooldownTimer = attackCooldown;
@@ -93,6 +93,14 @@ public class ZombieAI : HealthBase
         };
         
         targetT.TryGetComponent(out targetHealth);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        collider.enabled = true;
+        
+        if(other.gameObject.layer == 3)
+            AddRb();
     }
 
     private void Update()
@@ -183,9 +191,6 @@ public class ZombieAI : HealthBase
         else
             zombieRb.useGravity = true;
         
-        if (!isGargantua)
-            zombieRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
-        else
-            zombieRb.constraints = RigidbodyConstraints.FreezeRotation;
+        zombieRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
     }
 }

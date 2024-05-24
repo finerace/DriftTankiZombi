@@ -94,8 +94,6 @@ GameObject:
   - component: {fileID: 1430679107715761639}
   - component: {fileID: 5949671799376579314}
   - component: {fileID: 4152574442110923304}
-  - component: {fileID: -8738057668204852870}
-  - component: {fileID: 987157830938201267}
   - component: {fileID: 3993240277803197254}
   m_Layer: 0
   m_Name: PoleLight
@@ -163,40 +161,6 @@ MonoBehaviour:
   drag: 0.25
   massCenter: {x: 0, y: 2, z: 0}
   boxCollider: {fileID: 5949671799376579314}
---- !u!114 &-8738057668204852870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3544283926025633207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169f661e48cbd3e46a2cc041010e4c96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 4152574442110923304}
-  scoreType: 0
-  scoreValue: 15
---- !u!114 &987157830938201267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3544283926025633207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe1e61822c608cc4e8bc3419a5aa5fa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetHealth: {fileID: 4152574442110923304}
-  moneyAddChance: 0
-  moneyAdd: 0
-  donateMoneyAddChance: 0
-  donateMoneyAdd: 0
-  xpAddChance: 1000
-  XpAdd: 10
 --- !u!65 &3993240277803197254
 BoxCollider:
   m_ObjectHideFlags: 0

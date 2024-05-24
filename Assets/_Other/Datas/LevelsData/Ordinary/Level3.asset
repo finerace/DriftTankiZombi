@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 223eea632e9cae3469842e799ff4e3e5, type: 3}
-  m_Name: Level1
+  m_Name: Level3
   m_EditorClassIdentifier: 
-  id: 0
-  name: 35
-  levelSceneId: 1
-  completeTime: 30
-  completeScore: 1500
-  completeMoney: 150
-  completeDonateMoney: 5
-  completeXp: 1000
-  oneStarScore: 2000
-  twoStarScore: 3000
-  threeStarScore: 5000
+  id: 2
+  name: 58
+  levelPrefab: {fileID: 6318952963501562152, guid: adf8197356c13224dac549ee79b4e188,
+    type: 3}
+  completeTime: 45
+  completeScore: 2500
+  completeMoney: 300
+  completeDonateMoney: 2
+  completeXp: 2000
+  oneStarScore: 5000
+  twoStarScore: 8000
+  threeStarScore: 12000

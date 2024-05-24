@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelsLoadPassService : MonoBehaviour
 {
@@ -26,6 +25,7 @@ public class LevelsLoadPassService : MonoBehaviour
     
     [SerializeField] private MenuSystem mainMenu;
     [SerializeField] private MenuSystem gameMenu;
+    [SerializeField] private GameObject loadMenu;
     
     [Space]
     
@@ -51,55 +51,70 @@ public class LevelsLoadPassService : MonoBehaviour
 
     public void LoadLevel(LevelData levelData)
     {
-        if(currentLevel != null)
-            Destroy(currentLevel);
+        gameMenu.gameObject.SetActive(false);
+        loadMenu.SetActive(true);
 
-        SpawnPlayer();
-        void SpawnPlayer()
+        StartCoroutine(LOAD());
+        IEnumerator LOAD()
         {
-            var currentTankAllData = TanksShopService.instance.GetCurrentTankData();
-
-            playerTankT = 
-                Instantiate(currentTankAllData.tankShopData.Tank, levelSpawnPoint.position, levelSpawnPoint.rotation).transform;
-
-            playerTankT.gameObject.GetComponent<PlayerTank>()
-                .SetTankCharacteristics(currentTankAllData.tankShopData,currentTankAllData.tankSaveData);
+            yield return null;
             
-            if(!playerTankT.gameObject.activeSelf)
-                playerTankT.gameObject.SetActive(true);
-        }
-        
-        currentLevelData = levelData;
-        currentLevel = Instantiate(currentLevelData.LevelPrefab);
-        currentLevel.GetComponent<LevelGenerator>().GenerateLevel();
+            if (currentLevel != null)
+                Destroy(currentLevel);
 
-        menuRoom.gameObject.SetActive(false);
-        virtualCamera.gameObject.SetActive(true);
-        virtualCamera.Follow = playerTankT;
-        virtualCamera.LookAt = playerTankT;
-        
-        levelScoreCounter.ResetCounters();
-        levelScoreCounter.SetNewCurrentLevelData(currentLevelData);
-        
-        ChangeMenusActivity(false);
-        
-        globalGameEvents.SetLevelStartState(true);
-        
-        SetPlayerDieAlgorithm();
-        void SetPlayerDieAlgorithm()
-        {
-            playerTankT.gameObject.GetComponent<PlayerTank>().OnDie += () =>
+            SpawnPlayer();
+
+            void SpawnPlayer()
             {
-                dieCoroutine = StartCoroutine(OnPlayerDie());
-            };
+                var currentTankAllData = TanksShopService.instance.GetCurrentTankData();
 
-            IEnumerator OnPlayerDie()
-            {
-                yield return new WaitForSeconds(3);
+                playerTankT =
+                    Instantiate(currentTankAllData.tankShopData.Tank, levelSpawnPoint.position,
+                        levelSpawnPoint.rotation).transform;
 
-                gameMenu.isBackActionLock = true;
-                StopLevel();
+                playerTankT.gameObject.GetComponent<PlayerTank>()
+                    .SetTankCharacteristics(currentTankAllData.tankShopData, currentTankAllData.tankSaveData);
+
+                if (!playerTankT.gameObject.activeSelf)
+                    playerTankT.gameObject.SetActive(true);
             }
+
+            currentLevelData = levelData;
+            currentLevel = Instantiate(currentLevelData.LevelPrefab);
+
+            currentLevel.GetComponent<LevelGenerator>().GenerateLevel();
+
+            menuRoom.gameObject.SetActive(false);
+            virtualCamera.gameObject.SetActive(true);
+            virtualCamera.Follow = playerTankT;
+            virtualCamera.LookAt = playerTankT;
+
+            levelScoreCounter.ResetCounters();
+            levelScoreCounter.SetNewCurrentLevelData(currentLevelData);
+
+            ChangeMenusActivity(false);
+
+            globalGameEvents.SetLevelStartState(true);
+
+            SetPlayerDieAlgorithm();
+
+            void SetPlayerDieAlgorithm()
+            {
+                playerTankT.gameObject.GetComponent<PlayerTank>().OnDie += () =>
+                {
+                    dieCoroutine = StartCoroutine(OnPlayerDie());
+                };
+
+                IEnumerator OnPlayerDie()
+                {
+                    yield return new WaitForSeconds(3);
+
+                    gameMenu.isBackActionLock = true;
+                    StopLevel();
+                }
+            }
+
+            loadMenu.SetActive(false);
         }
         
         OnLevelLoad?.Invoke();
@@ -140,13 +155,12 @@ public class LevelsLoadPassService : MonoBehaviour
     {
         gameDataSaver.Save();
 
-
         currentLevelData = null;
         if(currentLevel != null)
             Destroy(currentLevel);
 
         isCurrentLevelComplete = false;
-        playerTankT.gameObject.SetActive(false);
+        Destroy(playerTankT.gameObject);
 
         ChangeMenusActivity(true);
         gameMenu.isBackActionLock = false;

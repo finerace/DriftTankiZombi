@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerTankCombat : MonoBehaviour
 {
@@ -119,6 +120,46 @@ public class PlayerTankCombat : MonoBehaviour
 
             if(rayCastInfo.collider.TryGetComponent(out IHealth health))
                 health.TakeDamage(machineGunDamage);
+            
+            if (rayCastInfo.collider.gameObject.TryGetComponent(out HealthBase health1))
+            {
+                var layer = rayCastInfo.collider.gameObject.layer;
+
+                health1.OnDie += AddBonus;
+                void AddBonus()
+                {
+                    var money = PlayerMoneyXpService.instance;
+                    var score = LevelScoreCounter.instance;
+                                
+                    if (layer == 6)
+                    {
+                        if (RandomChance(150))
+                            money.PlayerMoney += Random.Range(1, 11);
+
+                        if (RandomChance(7))
+                            money.PlayerDonateMoney += 1;
+
+                        money.PlayerXp += 15;
+                    
+                        LevelScoreCounter.instance.AddEnemyKilledDestructionScore(25);
+                    }
+                    else
+                    {
+                        money.PlayerXp += 5;
+                    
+                        score.AddEnvironmentDestructionScore(5);
+                    }
+                }
+
+                bool RandomChance(int chance)
+                {
+                    var rand = Random.Range(0, 1000);
+
+                    return rand <= chance;
+                }
+            
+            }
+            
         }
     }
 
