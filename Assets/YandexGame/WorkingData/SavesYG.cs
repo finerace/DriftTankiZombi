@@ -27,6 +27,8 @@ namespace YG
         [SerializeField] public TankSaveData[] tanksData = new TankSaveData[10];
 
         [SerializeField] public LevelSaveData[] levelsData = new LevelSaveData[20];
+
+        [SerializeField] public int gainedLvl;
         
         [System.Serializable]
         public class TankSaveData
@@ -49,7 +51,7 @@ namespace YG
         public SavesYG()
         {
             tanksData = new SavesYG.TankSaveData[10];
-            levelsData = new SavesYG.LevelSaveData[20];
+            levelsData = new SavesYG.LevelSaveData[30];
 
             for (var i = 0; i < tanksData.Length; i++)
             {

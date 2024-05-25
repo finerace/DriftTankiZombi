@@ -40248,7 +40248,7 @@ MonoBehaviour:
   fuel: 350
   maxFuel: 350
   fuelEatSpeed: 15
-  onStopFuelEatMultiplier: 0.3
+  onStopFuelEatMultiplier: 0.5
   tankHead: {fileID: 4230773015871542337}
   tankHeadRotationSpeed: 210
   tankWheelColliders:
@@ -40266,7 +40266,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2049
   isFly: 0
-  groundCheckDistance: 0.5
+  groundCheckDistance: 0.65
 --- !u!114 &5527461675987143388
 MonoBehaviour:
   m_ObjectHideFlags: 0

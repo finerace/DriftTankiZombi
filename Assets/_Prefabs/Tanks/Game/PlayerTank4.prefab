@@ -5091,7 +5091,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2049
   isFly: 0
-  groundCheckDistance: 0.45
+  groundCheckDistance: 0.65
 --- !u!114 &7501433883970643064
 MonoBehaviour:
   m_ObjectHideFlags: 0

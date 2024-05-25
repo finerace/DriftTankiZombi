@@ -52,11 +52,14 @@ public class LevelsLoadPassService : MonoBehaviour
     public void LoadLevel(LevelData levelData)
     {
         gameMenu.gameObject.SetActive(false);
+        mainMenu.gameObject.SetActive(false);
         loadMenu.SetActive(true);
 
         StartCoroutine(LOAD());
         IEnumerator LOAD()
         {
+            yield return null;
+            yield return null;
             yield return null;
             
             if (currentLevel != null)
@@ -81,8 +84,9 @@ public class LevelsLoadPassService : MonoBehaviour
 
             currentLevelData = levelData;
             currentLevel = Instantiate(currentLevelData.LevelPrefab);
-
-            currentLevel.GetComponent<LevelGenerator>().GenerateLevel();
+            
+            if(currentLevel.TryGetComponent<LevelGenerator>(out LevelGenerator gen))
+                gen.GenerateLevel();
 
             menuRoom.gameObject.SetActive(false);
             virtualCamera.gameObject.SetActive(true);

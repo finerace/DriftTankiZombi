@@ -1,12 +1,12 @@
 {
-    "idSave": 68,
+    "idSave": 61,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "playerMoney": 60473,
-    "playerDonateMoney": 9974,
-    "playerXp": 283400,
-    "selectedTankNum": 5,
+    "playerMoney": 69079,
+    "playerDonateMoney": 9975,
+    "playerXp": 5000,
+    "selectedTankNum": 1,
     "trainingStage": 0,
     "masterVolume": 0.0,
     "musicVolume": 0.0,
@@ -14,39 +14,39 @@
     "tanksData": [
         {
             "isTankPurchased": true,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
-        },
-        {
-            "isTankPurchased": false,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
-        },
-        {
-            "isTankPurchased": false,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
-        },
-        {
-            "isTankPurchased": true,
-            "engineImprovement": 5,
+            "engineImprovement": 4,
             "gunsImprovement": 5,
             "fuelImprovement": 4
         },
         {
+            "isTankPurchased": true,
+            "engineImprovement": 7,
+            "gunsImprovement": 8,
+            "fuelImprovement": 6
+        },
+        {
+            "isTankPurchased": true,
+            "engineImprovement": 8,
+            "gunsImprovement": 5,
+            "fuelImprovement": 4
+        },
+        {
+            "isTankPurchased": true,
+            "engineImprovement": 1,
+            "gunsImprovement": 1,
+            "fuelImprovement": 1
+        },
+        {
             "isTankPurchased": false,
             "engineImprovement": 1,
             "gunsImprovement": 1,
             "fuelImprovement": 1
         },
         {
-            "isTankPurchased": true,
-            "engineImprovement": 9,
-            "gunsImprovement": 9,
-            "fuelImprovement": 6
+            "isTankPurchased": false,
+            "engineImprovement": 1,
+            "gunsImprovement": 1,
+            "fuelImprovement": 1
         },
         {
             "isTankPurchased": false,
@@ -75,14 +75,104 @@
     ],
     "levelsData": [
         {
-            "isLevelCompleted": true,
+            "isLevelCompleted": false,
             "isLevelUnlocked": false,
-            "levelHighScore": 26521
+            "levelHighScore": 0
         },
         {
-            "isLevelCompleted": true,
+            "isLevelCompleted": false,
             "isLevelUnlocked": false,
-            "levelHighScore": 21394
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
@@ -92,12 +182,7 @@
         {
             "isLevelCompleted": true,
             "isLevelUnlocked": false,
-            "levelHighScore": 23219
-        },
-        {
-            "isLevelCompleted": true,
-            "isLevelUnlocked": false,
-            "levelHighScore": 11819
+            "levelHighScore": 9416
         },
         {
             "isLevelCompleted": false,
@@ -128,41 +213,6 @@
             "isLevelCompleted": false,
             "isLevelUnlocked": false,
             "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 70205
         },
         {
             "isLevelCompleted": false,

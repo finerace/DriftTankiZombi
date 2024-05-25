@@ -299,7 +299,7 @@ public class PlayerTank : HealthBase, IObserveNum
             }
         }
         
-        //EatFuel();
+        EatFuel();
         void EatFuel()
         {
             if (fuel <= 0)

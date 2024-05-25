@@ -5,7 +5,6 @@ public class InstaKill : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out IHealth health))
-            health.TakeDamage(health.MaxHealth+1);
+        FindObjectOfType<PlayerTank>().TakeDamage(Mathf.Infinity);
     }
 }
