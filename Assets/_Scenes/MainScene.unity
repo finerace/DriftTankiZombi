@@ -8284,6 +8284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 656055306}
+  - component: {fileID: 656055307}
   m_Layer: 0
   m_Name: GameServices
   m_TagString: Untagged
@@ -8315,6 +8316,43 @@ Transform:
   - {fileID: 1480194564}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &656055307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656055305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 879d46f1725d18c4aa9413c9203a6c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelDatas:
+  - {fileID: 11400000, guid: f8f97250ce31d454c870699dcd8fbbef, type: 2}
+  - {fileID: 11400000, guid: 11684a23a8726a745a7cfcf741243eb2, type: 2}
+  - {fileID: 11400000, guid: 9ee1917455577a441966e2ed38a8c271, type: 2}
+  - {fileID: 11400000, guid: 048071c127b880e4891b7e741e1d1508, type: 2}
+  - {fileID: 11400000, guid: a652ebde4078b5847a600dea1e137979, type: 2}
+  - {fileID: 11400000, guid: 3b0e28551d247de4e8b7657f1035c15a, type: 2}
+  - {fileID: 11400000, guid: a00cfc098d251e64c8cfeb203950ba04, type: 2}
+  - {fileID: 11400000, guid: 641dec99fb1b10241a73a14cfaf7aada, type: 2}
+  - {fileID: 11400000, guid: a3df327c536224c4da52d8e7532519d7, type: 2}
+  - {fileID: 11400000, guid: fa72bd7378ee7ac4184d4636596869e0, type: 2}
+  - {fileID: 11400000, guid: 180262b5ed4075f47917e0041a70bc7a, type: 2}
+  - {fileID: 11400000, guid: c09df2832f9c06141a4b3c5213003add, type: 2}
+  - {fileID: 11400000, guid: b00eccc4aea2d00479633402a19d20bb, type: 2}
+  - {fileID: 11400000, guid: 67f1739de27d45141aec47ca07d693c3, type: 2}
+  - {fileID: 11400000, guid: c3621b616698042458757463e376a2e5, type: 2}
+  - {fileID: 11400000, guid: a3195bbaa9da16d47b836e99a9193a4d, type: 2}
+  - {fileID: 11400000, guid: c6d8a3e44ebcd7a4b866e7da8f6fed7b, type: 2}
+  - {fileID: 11400000, guid: 5d49976a6182b6245b1ac816e4b69fba, type: 2}
+  - {fileID: 11400000, guid: 5e0bdf7d48ffe8041902a0fcffcc222d, type: 2}
+  - {fileID: 11400000, guid: 948351895355af94fbe59314eb97b5e8, type: 2}
+  - {fileID: 11400000, guid: 8bf0d8d0cd9e7be46b98143fd59b4c5f, type: 2}
+  - {fileID: 11400000, guid: 148f9d37c533ed741912963518f6fa47, type: 2}
+  - {fileID: 11400000, guid: 543253ef4cf113049900524631296c4f, type: 2}
+  - {fileID: 11400000, guid: 0f39938a1df037d47a02a0e6d75fb213, type: 2}
 --- !u!1 &672244843
 GameObject:
   m_ObjectHideFlags: 0
@@ -13159,7 +13197,7 @@ MonoBehaviour:
   environmentDestructionScore: 0
   killedEnemiesScore: 0
   tankDriftScoreMultiplier: 1
-  driftScoreMultiplierPower: 0.025
+  driftScoreMultiplierPower: 0.05
   levelCompleteTime: 0
 --- !u!1 &1301593408
 GameObject:

@@ -119,9 +119,9 @@ public class LevelsLoadPassService : MonoBehaviour
             }
 
             loadMenu.SetActive(false);
+            
+            OnLevelLoad?.Invoke();
         }
-        
-        OnLevelLoad?.Invoke();
     }
 
     public void StopLevel()
@@ -235,6 +235,14 @@ public class LevelsLoadPassService : MonoBehaviour
         DisableDieCoroutine();
     }
 
+    public void Continue()
+    {
+        var nextLevelData = LevelDataSTATIC.GetLevelData(currentLevelData.Id);
+        
+        UnloadLevel();
+        LoadLevel(nextLevelData);
+    }
+    
     private void DisableDieCoroutine()
     {
         if (dieCoroutine != null)

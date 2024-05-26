@@ -1,11 +1,11 @@
 {
-    "idSave": 61,
+    "idSave": 188,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "playerMoney": 69079,
-    "playerDonateMoney": 9975,
-    "playerXp": 5000,
+    "playerMoney": 24405,
+    "playerDonateMoney": 9786,
+    "playerXp": 41300,
     "selectedTankNum": 1,
     "trainingStage": 0,
     "masterVolume": 0.0,
@@ -32,21 +32,21 @@
         },
         {
             "isTankPurchased": true,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
+            "engineImprovement": 5,
+            "gunsImprovement": 5,
+            "fuelImprovement": 4
         },
         {
-            "isTankPurchased": false,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
+            "isTankPurchased": true,
+            "engineImprovement": 4,
+            "gunsImprovement": 7,
+            "fuelImprovement": 3
         },
         {
-            "isTankPurchased": false,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
+            "isTankPurchased": true,
+            "engineImprovement": 9,
+            "gunsImprovement": 9,
+            "fuelImprovement": 6
         },
         {
             "isTankPurchased": false,
@@ -75,9 +75,14 @@
     ],
     "levelsData": [
         {
-            "isLevelCompleted": false,
+            "isLevelCompleted": true,
             "isLevelUnlocked": false,
-            "levelHighScore": 0
+            "levelHighScore": 6177
+        },
+        {
+            "isLevelCompleted": true,
+            "isLevelUnlocked": false,
+            "levelHighScore": 4795
         },
         {
             "isLevelCompleted": false,
@@ -157,12 +162,7 @@
         {
             "isLevelCompleted": false,
             "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
+            "levelHighScore": 18070
         },
         {
             "isLevelCompleted": false,
@@ -224,5 +224,6 @@
             "isLevelUnlocked": false,
             "levelHighScore": 0
         }
-    ]
+    ],
+    "gainedLvl": 0
 }

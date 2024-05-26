@@ -20,4 +20,9 @@ public class MenuSystemReference : MonoBehaviour
         menuSystem.OpenLocalMenu(menuId);
     }
 
+    public void ContinueLevel()
+    {
+        LevelsLoadPassService.instance.Continue();
+    }
+
 }
