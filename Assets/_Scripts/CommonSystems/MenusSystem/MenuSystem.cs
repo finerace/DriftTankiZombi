@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class MenuSystem : MonoBehaviour
 {
@@ -212,7 +211,37 @@ public class MenuSystem : MonoBehaviour
         
         PlayMenuChangeAnimation();
     }
+    
+    public void ActivateMenu(string id)
+    {
+        var menuData = FindData();
+        MenuData FindData()
+        {
+            var targetMenu = FindLocalChildMenu(startMenuData, id);
 
+            if (targetMenu != null)
+                return targetMenu;
+
+            throw new Exception();
+        }
+        
+        CloseAllMenus();
+        currentMenuData = menuData;
+        menuData.menu.SetActive(true);
+
+        //menusPath += $"/{menuData.menuID}";
+        menusDataPath.Add(menuData);
+
+        if(!simpleMod)
+            menuData.menu.GetComponent<Canvas>().planeDistance = 0.075f;
+        
+        SetMenuSpecialSettings(menuData);
+
+        //UpdateMenuPath();
+        
+        PlayMenuChangeAnimation();
+    }
+    
     private ParentMenuData FindLocalParentMenu(ParentMenuData parentMenu, string toFindMenuID)
     {
         return parentMenu.childsParentsMenusData.FirstOrDefault(item => item.menuID == toFindMenuID);

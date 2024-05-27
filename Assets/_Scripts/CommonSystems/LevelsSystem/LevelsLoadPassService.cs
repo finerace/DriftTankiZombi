@@ -37,8 +37,10 @@ public class LevelsLoadPassService : MonoBehaviour
 
     private GameDataSaver gameDataSaver;
 
+    public event Action OnScoreMultiplie;
     public event Action OnLevelLoad;
 
+    public event Action OnPlayerRevive;
     private void Awake()
     {
         instance = this;
@@ -241,6 +243,37 @@ public class LevelsLoadPassService : MonoBehaviour
         
         UnloadLevel();
         LoadLevel(nextLevelData);
+    }
+
+    public void RevivePlayer()
+    {
+        playerTankT.GetComponent<PlayerTank>().Reset();
+        var menu = FindObjectOfType<MenuSystem>();
+
+        menu.isBackActionLock = false;
+        menu.Back();
+        
+        DisableDieCoroutine();
+
+        StartCoroutine(TimeFix());
+        IEnumerator TimeFix()
+        {
+            yield return null;
+            Time.timeScale = 1;
+        }
+        
+        OnPlayerRevive?.Invoke();
+    }
+
+    public void ScoreMultiplier()
+    {
+        var oldHighScore = gameDataSaver.GetLevelHighScore(currentLevelData.Id);
+        var currentScore = levelScoreCounter.GetCompletedScore() * 1.1f; 
+            
+        if(currentScore > oldHighScore)
+            gameDataSaver.SetNewLeveHighScore(currentLevelData.Id,(int)currentScore);
+        
+        OnScoreMultiplie?.Invoke();
     }
     
     private void DisableDieCoroutine()

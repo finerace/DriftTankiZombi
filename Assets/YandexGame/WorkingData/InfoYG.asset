@@ -18,7 +18,7 @@ MonoBehaviour:
     authorized: 1
     isMobile: 0
     language: ru
-    name: Player this
+    name: FineRace
     uniqueID: 000
     photo: https://justplaygames.ru/public/icon_player.png
   AdWhenLoadingScene: 0
@@ -266,23 +266,17 @@ MonoBehaviour:
     de: 
     hi: 
   purshasesSimulation:
-  - id: gun
-    title: Gun
-    description: Product - Gun
+  - id: coins
+    title: Money
+    description: You collect money
     imageURI: https://justplaygames.ru/public/Paymant1.png
-    priceValue: 5
-    consumed: 1
-  - id: armor
-    title: Armor
-    description: Product - Armor
-    imageURI: https://justplaygames.ru/public/Paymant2.png
     priceValue: 10
     consumed: 1
-  - id: grenade
-    title: Grenade
-    description: Product - Grenade
-    imageURI: https://justplaygames.ru/public/Paymant3.png
-    priceValue: 30
+  - id: crystals
+    title: Donate Money
+    description: You collect donate money
+    imageURI: https://justplaygames.ru/public/Paymant2.png
+    priceValue: 20
     consumed: 1
   metricaEnable: 0
   metricaCounterID: 0

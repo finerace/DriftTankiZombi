@@ -12,8 +12,8 @@ namespace YG
         public string language = "ru";
         public bool promptDone;
 
-        [SerializeField] public int playerMoney = 99999;
-        [SerializeField] public int playerDonateMoney = 9999;
+        [SerializeField] public int playerMoney;
+        [SerializeField] public int playerDonateMoney;
         [SerializeField] public int playerXp;
 
         [SerializeField] public int selectedTankNum = 0;
@@ -28,7 +28,7 @@ namespace YG
 
         [SerializeField] public LevelSaveData[] levelsData = new LevelSaveData[20];
 
-        [SerializeField] public int gainedLvl;
+        [SerializeField] public int gainedLvl = 1;
         
         [System.Serializable]
         public class TankSaveData
