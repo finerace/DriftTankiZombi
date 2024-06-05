@@ -1,28 +1,28 @@
 {
-    "idSave": 5,
+    "idSave": 119,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "playerMoney": 627,
-    "playerDonateMoney": 10,
-    "playerXp": 3560,
-    "selectedTankNum": 0,
-    "trainingStage": 0,
+    "playerMoney": 5849,
+    "playerDonateMoney": 1616,
+    "playerXp": 45715,
+    "selectedTankNum": 1,
+    "trainingStage": 1,
     "masterVolume": 0.0,
     "musicVolume": 0.0,
     "mobileManageAlternativeMenu": false,
     "tanksData": [
         {
             "isTankPurchased": true,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
+            "engineImprovement": 4,
+            "gunsImprovement": 5,
+            "fuelImprovement": 4
         },
         {
-            "isTankPurchased": false,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
+            "isTankPurchased": true,
+            "engineImprovement": 2,
+            "gunsImprovement": 2,
+            "fuelImprovement": 4
         },
         {
             "isTankPurchased": false,
@@ -77,7 +77,12 @@
         {
             "isLevelCompleted": true,
             "isLevelUnlocked": false,
-            "levelHighScore": 9210
+            "levelHighScore": 30772
+        },
+        {
+            "isLevelCompleted": false,
+            "isLevelUnlocked": false,
+            "levelHighScore": 47092
         },
         {
             "isLevelCompleted": false,
@@ -160,14 +165,9 @@
             "levelHighScore": 0
         },
         {
-            "isLevelCompleted": false,
+            "isLevelCompleted": true,
             "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
+            "levelHighScore": 9795
         },
         {
             "isLevelCompleted": false,
@@ -225,5 +225,5 @@
             "levelHighScore": 0
         }
     ],
-    "gainedLvl": 8
+    "gainedLvl": 35
 }

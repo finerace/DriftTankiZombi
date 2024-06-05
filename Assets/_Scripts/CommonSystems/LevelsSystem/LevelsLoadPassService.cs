@@ -37,6 +37,8 @@ public class LevelsLoadPassService : MonoBehaviour
 
     private GameDataSaver gameDataSaver;
 
+    public LevelData CurrentLevelData => currentLevelData;
+
     public event Action OnScoreMultiplie;
     public event Action OnLevelLoad;
 
