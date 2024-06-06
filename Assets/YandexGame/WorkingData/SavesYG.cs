@@ -18,7 +18,7 @@ namespace YG
 
         [SerializeField] public int selectedTankNum = 0;
         
-        [SerializeField] public int trainingStage;
+        [SerializeField] public int trainingStage = -2;
 
         [SerializeField] public float masterVolume;
         [SerializeField] public float musicVolume;
@@ -44,7 +44,7 @@ namespace YG
         public class LevelSaveData
         {
             public bool isLevelCompleted;
-            public bool isLevelUnlocked;
+            //public bool isLevelUnlocked;
             public int levelHighScore;
         }
 

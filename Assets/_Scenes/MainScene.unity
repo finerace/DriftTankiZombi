@@ -14307,6 +14307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac2f9cab9f785b47997a33d25c0a37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startLevel: {fileID: 11400000, guid: f8f97250ce31d454c870699dcd8fbbef, type: 2}
   globalGameEvents: {fileID: 475924505}
   virtualCamera: {fileID: 1166757314}
   levelScoreCounter: {fileID: 1282149253}

@@ -6,7 +6,8 @@ using UnityEngine;
 public class LevelsLoadPassService : MonoBehaviour
 {
     public static LevelsLoadPassService instance;
-    
+
+    [SerializeField] private LevelData startLevel;
     [SerializeField] private GlobalGameEvents globalGameEvents;
     
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
@@ -51,6 +52,9 @@ public class LevelsLoadPassService : MonoBehaviour
     private void Start()
     {
         gameDataSaver = GameDataSaver.instance;
+        
+        if(YG.YandexGame.savesData.trainingStage <= -2)
+            LoadLevel(startLevel);
     }
 
     public void LoadLevel(LevelData levelData)

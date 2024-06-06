@@ -209,7 +209,7 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
     private void SuccessPurchased(string id)
     {
         if (id == "coins")
-            PlayerMoney += 1000;
+            PlayerMoney += 5000;
         else if (id == "crystals")
             PlayerDonateMoney += 100;
 

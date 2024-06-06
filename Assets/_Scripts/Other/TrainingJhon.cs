@@ -24,11 +24,14 @@ public class TrainingJhon : MonoBehaviour
     [SerializeField] private GameObject trainingPanel;
 
     private int currentLevel;
+    private MenuSystem currentMenuSystem;
     
     private void Awake()
     {
         defaultLabelTScale = descLabelT.localScale;
 
+        currentMenuSystem = GameObject.Find("GameMenu").GetComponent<MenuSystem>();
+        
         LevelsLoadPassService.instance.OnLevelLoad += TrainingStart;
         void TrainingStart()
         {
@@ -45,16 +48,8 @@ public class TrainingJhon : MonoBehaviour
             
             if (YG.YandexGame.savesData.trainingStage >= targetTrainingLvl)
                 return;
-         
+
             Continue();
-        }
-
-
-        LevelsLoadPassService.instance.StartCoroutine(Disabler());
-        IEnumerator Disabler()
-        {
-            yield return null;
-            trainingPanel.SetActive(false);
         }
     }
 
@@ -62,22 +57,34 @@ public class TrainingJhon : MonoBehaviour
     {
         if (LevelsLoadPassService.instance.CurrentLevelData.Id != targetLvl)
             return;
-    
+
+        currentMenuSystem.isBackActionLock = true;
+        
         currentStage++;
         if (currentStage >= trainingTextIds.Length)
         {
+            Time.timeScale = 1;
+            currentMenuSystem.isBackActionLock = false;
+            
             trainingPanel.SetActive(false);
             YG.YandexGame.savesData.trainingStage = currentLevel;
             return;
         }
-        
-        print("abba");
+
         trainingPanel.SetActive(true);
         
         descLabel.text = CurrentLanguageData.GetText(trainingTextIds[currentStage]);
 
         descLabelT.localScale = defaultLabelTScale * 0.1f;
         descLabelT.DOScale(defaultLabelTScale, 0.25f);
+        
+        LevelsLoadPassService.instance.StartCoroutine(Still());
+        IEnumerator Still()
+        {
+            yield return null;
+            
+            Time.timeScale = 0;
+        }
     }
 
 }

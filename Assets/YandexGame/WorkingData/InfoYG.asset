@@ -270,7 +270,7 @@ MonoBehaviour:
     title: Money
     description: You collect money
     imageURI: https://justplaygames.ru/public/Paymant1.png
-    priceValue: 10
+    priceValue: 15
     consumed: 1
   - id: crystals
     title: Donate Money

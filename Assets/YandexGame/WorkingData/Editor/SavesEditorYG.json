@@ -1,12 +1,12 @@
 {
-    "idSave": 119,
+    "idSave": 23,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "playerMoney": 5849,
-    "playerDonateMoney": 1616,
-    "playerXp": 45715,
-    "selectedTankNum": 1,
+    "playerMoney": 2050,
+    "playerDonateMoney": 18,
+    "playerXp": 26895,
+    "selectedTankNum": 0,
     "trainingStage": 1,
     "masterVolume": 0.0,
     "musicVolume": 0.0,
@@ -19,10 +19,10 @@
             "fuelImprovement": 4
         },
         {
-            "isTankPurchased": true,
-            "engineImprovement": 2,
-            "gunsImprovement": 2,
-            "fuelImprovement": 4
+            "isTankPurchased": false,
+            "engineImprovement": 1,
+            "gunsImprovement": 1,
+            "fuelImprovement": 1
         },
         {
             "isTankPurchased": false,
@@ -76,154 +76,124 @@
     "levelsData": [
         {
             "isLevelCompleted": true,
-            "isLevelUnlocked": false,
-            "levelHighScore": 30772
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 47092
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "isLevelUnlocked": false,
-            "levelHighScore": 0
+            "levelHighScore": 10387
         },
         {
             "isLevelCompleted": true,
-            "isLevelUnlocked": false,
-            "levelHighScore": 9795
+            "levelHighScore": 42342
+        },
+        {
+            "isLevelCompleted": true,
+            "levelHighScore": 8553
+        },
+        {
+            "isLevelCompleted": true,
+            "levelHighScore": 41166
         },
         {
             "isLevelCompleted": false,
-            "isLevelUnlocked": false,
             "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
-            "isLevelUnlocked": false,
             "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
-            "isLevelUnlocked": false,
             "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
-            "isLevelUnlocked": false,
             "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
-            "isLevelUnlocked": false,
             "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
-            "isLevelUnlocked": false,
             "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
-            "isLevelUnlocked": false,
             "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
-            "isLevelUnlocked": false,
             "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
-            "isLevelUnlocked": false,
             "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
-            "isLevelUnlocked": false,
             "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
-            "isLevelUnlocked": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
             "levelHighScore": 0
         }
     ],
-    "gainedLvl": 35
+    "gainedLvl": 11
 }

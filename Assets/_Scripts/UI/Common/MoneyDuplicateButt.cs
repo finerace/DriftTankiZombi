@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class MoneyDuplicateButt : MonoBehaviour
@@ -17,16 +18,22 @@ public class MoneyDuplicateButt : MonoBehaviour
     private void OnEnable()
     {
         var scores = LevelScoreCounter.instance;
-        
-        if(scores != null && scores.IsMoneyDuplicate)
+
+        StartCoroutine(Still());
+        IEnumerator Still()
         {
-            target.SetActive(false);
-            return;
-        }
+            yield return null;
+
+            if(scores != null && scores.IsMoneyDuplicate)
+            {
+                target.SetActive(false);
+                yield break;
+            }
         
-        target.SetActive(scores != null && 
-                         !scores.IsMoneyDuplicate && 
-                         scores.EarnedMoney > 0 || 
-                         scores.EarnedDonateMoney > 0);    
+            target.SetActive(scores != null && 
+                             !scores.IsMoneyDuplicate && 
+                             scores.EarnedMoney > 0 || 
+                             scores.EarnedDonateMoney > 0);
+        }
     }
 }

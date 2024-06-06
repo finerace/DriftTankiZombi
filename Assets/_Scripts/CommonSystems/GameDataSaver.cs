@@ -40,20 +40,20 @@ public class GameDataSaver : MonoBehaviour
         return savesYg.levelsData[levelId].levelHighScore;
     }
 
-    public void SetLevelLockState(int levelId, bool state)
-    {
-        if (savesYg.levelsData[levelId].isLevelUnlocked == state) 
-            return;
-        
-        savesYg.levelsData[levelId].isLevelUnlocked = state;
+    // public void SetLevelLockState(int levelId, bool state)
+    // {
+    //     if (savesYg.levelsData[levelId].isLevelUnlocked == state) 
+    //         return;
+    //     
+    //     savesYg.levelsData[levelId].isLevelUnlocked = state;
+    //
+    //     Save();
+    // }
 
-        Save();
-    }
-
-    public bool GetLockState(int levelId)
-    {
-        return instance.savesYg.levelsData[levelId].isLevelUnlocked;
-    }
+    // public bool GetLockState(int levelId)
+    // {
+    //     return instance.savesYg.levelsData[levelId].isLevelUnlocked;
+    // }
 
     public void SetLevelCompletedState(int levelId,bool state)
     {
