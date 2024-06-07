@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Cinemachine;
 using UnityEngine;
+using YG;
 
 public class LevelsLoadPassService : MonoBehaviour
 {
@@ -52,8 +53,13 @@ public class LevelsLoadPassService : MonoBehaviour
     private void Start()
     {
         gameDataSaver = GameDataSaver.instance;
-        
-        if(YG.YandexGame.savesData.trainingStage <= -2)
+
+        if (!YandexGame.SDKEnabled)
+        {
+            YandexGame.GetDataEvent += () => {if(YandexGame.savesData.trainingStage <= -2)
+                LoadLevel(startLevel);};
+        }
+        else if(YandexGame.savesData.trainingStage <= -2)
             LoadLevel(startLevel);
     }
 
