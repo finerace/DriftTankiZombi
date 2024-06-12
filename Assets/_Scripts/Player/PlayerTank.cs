@@ -71,6 +71,11 @@ public class PlayerTank : HealthBase, IObserveNum
     public Transform TankT => tankT;
     public Rigidbody TankRb => tankRb;
 
+    public PlayerTankCombat PlayerTankCombat => playerTankCombat;
+    public TankEffects TankEffects => tankEffects;
+
+    public event Action OnTankHit;
+
     public float Fuel
     {
         get => fuel;
@@ -372,6 +377,11 @@ public class PlayerTank : HealthBase, IObserveNum
             default:
                 throw new Exception("This num id is not exist!");
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        OnTankHit?.Invoke();
     }
 
     public (float min, float max) GetBarParam(int id)

@@ -15,6 +15,8 @@ public class TankCrusher : MonoBehaviour
     private PlayerMoneyXpService playerMoneyXpService = PlayerMoneyXpService.instance;
     private LevelScoreCounter levelScores = LevelScoreCounter.instance;
 
+    public event Action OnCrushEvent;
+    
     private void Start()
     {
         playerMoneyXpService = PlayerMoneyXpService.instance;
@@ -24,11 +26,13 @@ public class TankCrusher : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Crush(collision.transform);
+        //OnCrushEvent?.Invoke();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Crush(other.transform);
+        OnCrushEvent?.Invoke();
     }
 
     void Crush(Transform objectT)

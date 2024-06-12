@@ -485,6 +485,22 @@ MonoBehaviour:
   lookTargetDotFov: 0.5
   isGargantua: 0
   collider: {fileID: 6247121064562361540}
+  died:
+    audioMixerGroup: {fileID: 24300002, guid: 5ff6d33d8a74fd34db37a3f8c1e1a589, type: 2}
+    clips:
+    - {fileID: 8300000, guid: cd33a97874179754eab34d3b0bb67fa0, type: 3}
+    castPos: {x: 0, y: 0, z: 0}
+    castParent: {fileID: 604150794339260880}
+    priority: 2
+    volumeMin: 0.968
+    volumeMax: 1
+    isLoop: 0
+    pitchMin: 0.91
+    pitchMax: 1.04
+    stereoPan: 0
+    spatialBlend: 0.118
+    minDistance: 32
+    maxDistance: 64
 --- !u!114 &2651174045124903448
 MonoBehaviour:
   m_ObjectHideFlags: 0

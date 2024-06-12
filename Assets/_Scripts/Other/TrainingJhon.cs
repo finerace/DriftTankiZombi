@@ -46,9 +46,14 @@ public class TrainingJhon : MonoBehaviour
                     break;
             }
             
+            if (LevelsLoadPassService.instance.CurrentLevelData.Id != targetLvl)
+                return;
+            
             if (YG.YandexGame.savesData.trainingStage >= targetTrainingLvl)
                 return;
-
+            
+            GlobalGameEvents.instance.SetTrainingStartState(false);
+            
             Continue();
         }
     }
@@ -68,6 +73,9 @@ public class TrainingJhon : MonoBehaviour
             
             trainingPanel.SetActive(false);
             YG.YandexGame.savesData.trainingStage = currentLevel;
+
+            GlobalGameEvents.instance.SetTrainingStartState(true);
+
             return;
         }
 
@@ -85,6 +93,20 @@ public class TrainingJhon : MonoBehaviour
             
             Time.timeScale = 0;
         }
+    }
+
+    private void Wait(bool isTraining)
+    {
+
+        LevelsLoadPassService.instance.StartCoroutine(wait());
+
+        IEnumerator wait()
+        {
+            yield return null;
+            
+            GlobalGameEvents.instance.SetTrainingStartState(isTraining);
+        }
+
     }
 
 }

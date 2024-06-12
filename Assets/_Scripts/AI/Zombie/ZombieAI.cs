@@ -32,6 +32,8 @@ public class ZombieAI : HealthBase
 
     [SerializeField] private bool isGargantua;
     [SerializeField] private Collider collider;
+
+    [SerializeField] private AudioCastData died;
     
     public bool IsAnnoyed => isAnnoyed;
     public bool IsDie => isDie;
@@ -167,6 +169,8 @@ public class ZombieAI : HealthBase
                 onAnnoyedChange?.Invoke();
             }
         }
+
+        AudioPoolService.audioPoolServiceInstance.CastAudio(died);
         
         gameObject.layer = 8;
         Destroy(gameObject,30f);
