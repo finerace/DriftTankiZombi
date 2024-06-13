@@ -25,7 +25,6 @@ public class GameDataSaver : MonoBehaviour
 
     private void Start()
     {
-        YandexGame.LoadProgress();
         isDataLoaded = true;
         OnDataLoad?.Invoke();
     }

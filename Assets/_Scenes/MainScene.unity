@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d806bbed6d99b488435bd390f12a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxAudioSources: 42
+  startMaxAudioSources: 64
   spreadEffect: 0
 --- !u!1 &47295801
 GameObject:
@@ -1883,8 +1883,8 @@ MonoBehaviour:
   currentLanguageData: {fileID: 11400000, guid: ccc915451d269024db0636c1e2e0da4a,
     type: 2}
   languageDatas:
-  - {fileID: 11400000, guid: ccc915451d269024db0636c1e2e0da4a, type: 2}
   - {fileID: 11400000, guid: 9730e89de4fcf6040b27edd2db3b8b2b, type: 2}
+  - {fileID: 11400000, guid: ccc915451d269024db0636c1e2e0da4a, type: 2}
 --- !u!1 &198983295
 GameObject:
   m_ObjectHideFlags: 0

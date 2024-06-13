@@ -22,9 +22,6 @@ public class GameMusicService : MonoBehaviour
         
         GlobalGameEvents.instance.levelStartChangeState += MainMusicAlgorithm;
         GlobalGameEvents.instance.trainingStartChangeState += MainMusicAlgorithm;
-
-        GlobalGameEvents.instance.trainingStartChangeState += b => { print($"dada {b}"); };
-
     }
 
     private void MainMusicAlgorithm(bool isLevelStarted)

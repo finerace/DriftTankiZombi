@@ -1017,6 +1017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6149294345544106693}
   - component: {fileID: 4691208307073372785}
+  - component: {fileID: 3621959105257092349}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -1098,6 +1099,21 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3621959105257092349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145734152941064721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 943bb8f3251b6a544995a89f09d35760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 24300002, guid: 5ff6d33d8a74fd34db37a3f8c1e1a589, type: 2}
+  targetVolume: VOLUME
+  isMasterVolume: 1
 --- !u!1 &1170329367837663205
 GameObject:
   m_ObjectHideFlags: 0
@@ -5137,7 +5153,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u044B\u0441\u043E\u043A\u043E"
+  m_text: "\u041D\u0438\u0437\u043A\u043E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0c4f86bc2bc21a44a060764084c88dd, type: 2}
   m_sharedMaterial: {fileID: -3924230706615308362, guid: e0c4f86bc2bc21a44a060764084c88dd,
@@ -5294,6 +5310,7 @@ GameObject:
   - component: {fileID: 7642236005512800269}
   - component: {fileID: 6909482679105833330}
   - component: {fileID: 7109437843791858261}
+  - component: {fileID: 7364968214490069960}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -5411,16 +5428,28 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: "\u0412\u044B\u0441\u043E\u043A\u043E"
+    - m_Text: "\u041D\u0438\u0437\u043A\u043E"
       m_Image: {fileID: 0}
     - m_Text: "\u0421\u0440\u0435\u0434\u043D\u0435"
       m_Image: {fileID: 0}
-    - m_Text: "\u041D\u0438\u0437\u043A\u043E"
+    - m_Text: "\u0412\u044B\u0441\u043E\u043A\u043E"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &7364968214490069960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7934859616581851292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56ef47a53e89404e9c159de96f443ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7939117186568325325
 GameObject:
   m_ObjectHideFlags: 0
@@ -5584,6 +5613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3614267777689035247}
   - component: {fileID: 7736190970258611539}
+  - component: {fileID: 4496080275842721457}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -5665,6 +5695,21 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4496080275842721457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8607224913865270853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 943bb8f3251b6a544995a89f09d35760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 8069515132688828691, guid: 5ff6d33d8a74fd34db37a3f8c1e1a589, type: 2}
+  targetVolume: MUSIC_VOLUME
+  isMasterVolume: 0
 --- !u!1 &8731215720676200547
 GameObject:
   m_ObjectHideFlags: 0
