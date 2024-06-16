@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using YG;
 
 public class LanguageSetter : MonoBehaviour
 {
-    private Dropdown dropDown;
+    private TMP_Dropdown dropDown;
     
     private void OnEnable()
     {
@@ -18,8 +16,8 @@ public class LanguageSetter : MonoBehaviour
         void Init()
         {
             if(dropDown == null)
-                dropDown = GetComponent<Dropdown>();
-
+                dropDown = GetComponent<TMP_Dropdown>();
+            
             dropDown.value = YandexGame.savesData.languageId;
         }
     }
@@ -39,7 +37,8 @@ public class LanguageSetter : MonoBehaviour
                 break;
                 
             default:
-                CurrentLanguageData.instance.SetLanguageData(id);
+                YandexGame.savesData.languageId = id;
+                CurrentLanguageData.instance.SetLanguageData(GetTrueLanguageId(id));
                 break;
             
         }
@@ -50,38 +49,61 @@ public class LanguageSetter : MonoBehaviour
             {
                 "en" => 0,
                 "ru" => 1,
-                "ar" => 2,
-                "ca" => 3,
+                "ar" => 0,
+                "ca" => 0,
                 "es" => 4,
-                "hi" => 5,
+                "hi" => 0,
                 "it" => 6,
-                "ko" => 7,
+                "ko" => 0,
                 "ro" => 8,
-                "th" => 9,
+                "th" => 0,
                 "uz" => 10,
-                "az" => 11,
+                "az" => 1,
                 "cs" => 12,
-                "fa" => 13,
+                "fa" => 0,
                 "hu" => 14,
-                "ja" => 15,
+                "ja" => 0,
                 "nl" => 16,
-                "tk" => 17,
-                "vi" => 18,
-                "be" => 19,
+                "tk" => 0,
+                "vi" => 0,
+                "be" => 1,
                 "de" => 20,
                 "fr" => 21,
-                "hy" => 22,
-                "ka" => 23,
+                "hy" => 1,
+                "ka" => 1,
                 "pl" => 24,
-                "sk" => 25,
+                "sk" => 0,
                 "tr" => 26,
-                "zh" => 27,
+                "zh" => 0,
                 "bg" => 28,
-                "he" => 29,
-                "id" => 30,
-                "pt" => 31,
-                "sr" => 32,
-                "uk" => 33,
+                "he" => 0,
+                "id" => 0,
+                "pt" => 0,
+                "sr" => 0,
+                "uk" => 1,
+                "kk" => 1,
+                _ => 0
+            };
+        }
+        
+        int GetTrueLanguageId(int value)
+        {
+            return value switch
+            {
+                0 => 0,
+                1 => 1,
+                2 => 4,
+                3 => 6,
+                4 => 8,
+                5 => 10,
+                6 => 12,
+                7 => 14,
+                8 => 16,
+                9 => 20,
+                10 => 21,
+                11 => 24,
+                12 => 28,
+                13 => 26,
                 _ => 0
             };
         }

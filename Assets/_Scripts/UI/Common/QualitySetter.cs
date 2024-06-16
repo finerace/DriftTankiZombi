@@ -1,11 +1,10 @@
-using System;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using YG;
 
 public class QualitySetter : MonoBehaviour
 {
-    private Dropdown dropDown;
+    private TMP_Dropdown dropDown;
     
     private void OnEnable()
     {
@@ -17,7 +16,7 @@ public class QualitySetter : MonoBehaviour
         void Init()
         {
             if(dropDown == null)
-                dropDown = GetComponent<Dropdown>();
+                dropDown = GetComponent<TMP_Dropdown>();
 
             dropDown.value = YandexGame.savesData.qualityId;
         }

@@ -1,15 +1,17 @@
 {
-    "idSave": 19,
+    "idSave": 31,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "playerMoney": 2545,
-    "playerDonateMoney": 208,
-    "playerXp": 14840,
-    "selectedTankNum": 1,
-    "trainingStage": 0,
+    "playerMoney": 3700,
+    "playerDonateMoney": 221,
+    "playerXp": 32655,
+    "selectedTankNum": 0,
+    "trainingStage": 1,
     "masterVolume": 0.6499999761581421,
     "musicVolume": 0.8589967489242554,
+    "qualityId": 0,
+    "languageId": 1,
     "mobileManageAlternativeMenu": false,
     "tanksData": [
         {
@@ -75,8 +77,12 @@
     ],
     "levelsData": [
         {
-            "isLevelCompleted": false,
-            "levelHighScore": 0
+            "isLevelCompleted": true,
+            "levelHighScore": 44004
+        },
+        {
+            "isLevelCompleted": true,
+            "levelHighScore": 24835
         },
         {
             "isLevelCompleted": false,
@@ -84,11 +90,7 @@
         },
         {
             "isLevelCompleted": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "levelHighScore": 0
+            "levelHighScore": 8994
         },
         {
             "isLevelCompleted": true,
@@ -195,5 +197,5 @@
             "levelHighScore": 0
         }
     ],
-    "gainedLvl": 9
+    "gainedLvl": 18
 }

@@ -1471,7 +1471,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 78.45
+  m_fontSize: 78.3
   m_fontSizeBase: 96.51
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2627,6 +2627,7 @@ GameObject:
   - component: {fileID: 2216997120502026730}
   - component: {fileID: 8401068499015634581}
   - component: {fileID: 4407995774995814275}
+  - component: {fileID: 6486653964627898566}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -2744,16 +2745,50 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
-      m_Image: {fileID: 0}
     - m_Text: English
       m_Image: {fileID: 0}
-    - m_Text: Turkce
+    - m_Text: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+      m_Image: {fileID: 0}
+    - m_Text: "Espa\xF1ol"
+      m_Image: {fileID: 0}
+    - m_Text: Italiano
+      m_Image: {fileID: 0}
+    - m_Text: "Rom\xE2n\u0103"
+      m_Image: {fileID: 0}
+    - m_Text: O'zbek tili
+      m_Image: {fileID: 0}
+    - m_Text: "\u010Cesk\xFD"
+      m_Image: {fileID: 0}
+    - m_Text: Magyar
+      m_Image: {fileID: 0}
+    - m_Text: Nederlands
+      m_Image: {fileID: 0}
+    - m_Text: Deutsch
+      m_Image: {fileID: 0}
+    - m_Text: "Fran\xE7ais"
+      m_Image: {fileID: 0}
+    - m_Text: Polski
+      m_Image: {fileID: 0}
+    - m_Text: "\u0411\u044A\u043B\u0433\u0430\u0440\u0441\u043A\u0438"
+      m_Image: {fileID: 0}
+    - m_Text: "T\xFCrk\xE7e"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &6486653964627898566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294536269124677198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7350f27ea0db74d907e84cd2e13b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4400662973346764212
 GameObject:
   m_ObjectHideFlags: 0
@@ -3363,13 +3398,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+  m_text: English
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0c4f86bc2bc21a44a060764084c88dd, type: 2}
   m_sharedMaterial: {fileID: -3924230706615308362, guid: e0c4f86bc2bc21a44a060764084c88dd,
@@ -4109,7 +4144,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.05
+  m_fontSize: 37
   m_fontSizeBase: 96.51
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5153,7 +5188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041D\u0438\u0437\u043A\u043E"
+  m_text: Low
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0c4f86bc2bc21a44a060764084c88dd, type: 2}
   m_sharedMaterial: {fileID: -3924230706615308362, guid: e0c4f86bc2bc21a44a060764084c88dd,
@@ -5428,11 +5463,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: "\u041D\u0438\u0437\u043A\u043E"
+    - m_Text: Low
       m_Image: {fileID: 0}
-    - m_Text: "\u0421\u0440\u0435\u0434\u043D\u0435"
+    - m_Text: Medium
       m_Image: {fileID: 0}
-    - m_Text: "\u0412\u044B\u0441\u043E\u043A\u043E"
+    - m_Text: High
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
