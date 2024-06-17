@@ -19,6 +19,8 @@ public class QualitySetter : MonoBehaviour
                 dropDown = GetComponent<TMP_Dropdown>();
 
             dropDown.value = YandexGame.savesData.qualityId;
+            
+            Work(YandexGame.savesData.qualityId);
         }
     }
 
@@ -31,6 +33,7 @@ public class QualitySetter : MonoBehaviour
     private void Work(int id)
     {
         QualitySettings.SetQualityLevel(id);
+        YandexGame.savesData.qualityId = id;
     }
 
 }

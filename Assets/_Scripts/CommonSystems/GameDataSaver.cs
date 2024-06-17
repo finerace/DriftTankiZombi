@@ -16,17 +16,23 @@ public class GameDataSaver : MonoBehaviour
     {
         instance = this;
         
-        YandexGame.GetDataEvent += InitSaveData;
+        if(!YandexGame.SDKEnabled)
+            YandexGame.GetDataEvent += InitSaveData;
+        else
+            InitSaveData();
+        
         void InitSaveData()
         {
             savesYg = YandexGame.savesData;
+            isDataLoaded = true;
+            OnDataLoad?.Invoke();
         }
     }
 
     private void Start()
     {
-        isDataLoaded = true;
-        OnDataLoad?.Invoke();
+        //isDataLoaded = true;
+        //OnDataLoad?.Invoke();
     }
 
     public void SetNewLeveHighScore(int levelId, int newHighScore)

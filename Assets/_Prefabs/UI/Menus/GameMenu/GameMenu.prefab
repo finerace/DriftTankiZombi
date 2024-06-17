@@ -2301,6 +2301,9 @@ MonoBehaviour:
   - targetTexts:
     - {fileID: 8265077641772836070}
     languageDataTextId: 119
+  - targetTexts:
+    - {fileID: 7912506191617811890}
+    languageDataTextId: 29
 --- !u!114 &3064579163756035233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2848,7 +2851,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.7
+  m_fontSize: 22.65
   m_fontSizeBase: 96.51
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4426,6 +4429,36 @@ MonoBehaviour:
   upElementsMultiplier: 1.1
   downElementsMultiplier: 1
   animationTime: 5
+  buttonDown:
+    audioMixerGroup: {fileID: 0}
+    clips: []
+    castPos: {x: 0, y: 0, z: 0}
+    castParent: {fileID: 0}
+    priority: 0
+    volumeMin: 0
+    volumeMax: 0
+    isLoop: 0
+    pitchMin: 0
+    pitchMax: 0
+    stereoPan: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  buttonUp:
+    audioMixerGroup: {fileID: 0}
+    clips: []
+    castPos: {x: 0, y: 0, z: 0}
+    castParent: {fileID: 0}
+    priority: 0
+    volumeMin: 0
+    volumeMax: 0
+    isLoop: 0
+    pitchMin: 0
+    pitchMax: 0
+    stereoPan: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
 --- !u!1 &3896383014410629918
 GameObject:
   m_ObjectHideFlags: 0
@@ -5729,6 +5762,36 @@ MonoBehaviour:
   upElementsMultiplier: 1.05
   downElementsMultiplier: 1
   animationTime: 5
+  buttonDown:
+    audioMixerGroup: {fileID: 0}
+    clips: []
+    castPos: {x: 0, y: 0, z: 0}
+    castParent: {fileID: 0}
+    priority: 0
+    volumeMin: 0
+    volumeMax: 0
+    isLoop: 0
+    pitchMin: 0
+    pitchMax: 0
+    stereoPan: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  buttonUp:
+    audioMixerGroup: {fileID: 0}
+    clips: []
+    castPos: {x: 0, y: 0, z: 0}
+    castParent: {fileID: 0}
+    priority: 0
+    volumeMin: 0
+    volumeMax: 0
+    isLoop: 0
+    pitchMin: 0
+    pitchMax: 0
+    stereoPan: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
 --- !u!1 &5053094404976272542
 GameObject:
   m_ObjectHideFlags: 0
@@ -5944,6 +6007,36 @@ MonoBehaviour:
   upElementsMultiplier: 1.1
   downElementsMultiplier: 1
   animationTime: 5
+  buttonDown:
+    audioMixerGroup: {fileID: 0}
+    clips: []
+    castPos: {x: 0, y: 0, z: 0}
+    castParent: {fileID: 0}
+    priority: 0
+    volumeMin: 0
+    volumeMax: 0
+    isLoop: 0
+    pitchMin: 0
+    pitchMax: 0
+    stereoPan: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+  buttonUp:
+    audioMixerGroup: {fileID: 0}
+    clips: []
+    castPos: {x: 0, y: 0, z: 0}
+    castParent: {fileID: 0}
+    priority: 0
+    volumeMin: 0
+    volumeMax: 0
+    isLoop: 0
+    pitchMin: 0
+    pitchMax: 0
+    stereoPan: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
 --- !u!1 &5276675459478372196
 GameObject:
   m_ObjectHideFlags: 0
@@ -7017,7 +7110,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.95
+  m_fontSize: 44.9
   m_fontSizeBase: 96.51
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7756,7 +7849,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.05
+  m_fontSize: 39
   m_fontSizeBase: 96.51
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8393,7 +8486,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.2
+  m_fontSize: 24.15
   m_fontSizeBase: 96.51
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8678,7 +8771,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.55
+  m_fontSize: 23.5
   m_fontSizeBase: 96.51
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11646,7 +11739,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.1
+  m_fontSize: 17.05
   m_fontSizeBase: 96.51
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12643,6 +12736,18 @@ PrefabInstance:
       addedObject: {fileID: 5843108910119954345}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d2bd4fc86947814fb90dce1214495a2, type: 3}
+--- !u!114 &7912506191617811890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5209271298250080120, guid: 2d2bd4fc86947814fb90dce1214495a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2703798945668143818}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8601155210819540157 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5969701382016863863, guid: 2d2bd4fc86947814fb90dce1214495a2,
