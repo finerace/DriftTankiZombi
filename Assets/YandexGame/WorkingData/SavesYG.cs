@@ -20,7 +20,7 @@ namespace YG
         
         [SerializeField] public int trainingStage = -2;
 
-        [SerializeField] public float masterVolume = 0.65f;
+        [SerializeField] public float masterVolume = 0.55f;
         [SerializeField] public float musicVolume = 0.85f;
 
         [SerializeField] public int qualityId = 0;

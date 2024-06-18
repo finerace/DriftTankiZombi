@@ -19,7 +19,11 @@ public class LanguageSetter : MonoBehaviour
                 dropDown = GetComponent<TMP_Dropdown>();
 
             if (YandexGame.savesData.languageId <= -1)
-                dropDown.value = GetLanguageId(YandexGame.savesData.language);
+            {
+                var languageId = GetLanguageId(YandexGame.savesData.language); 
+                dropDown.value = languageId;
+                YandexGame.savesData.languageId = languageId;
+            }
             else
                 dropDown.value = YandexGame.savesData.languageId;
             

@@ -54,6 +54,7 @@ public class TrainingJhon : MonoBehaviour
             
             GlobalGameEvents.instance.SetTrainingStartState(false);
             
+            Time.timeScale = 0;
             Continue();
         }
     }
@@ -89,24 +90,14 @@ public class TrainingJhon : MonoBehaviour
         LevelsLoadPassService.instance.StartCoroutine(Still());
         IEnumerator Still()
         {
-            yield return null;
-            
             Time.timeScale = 0;
+
+            while (trainingPanel.activeSelf)
+            {
+                Time.timeScale = 0;
+                yield return null;
+            }
         }
-    }
-
-    private void Wait(bool isTraining)
-    {
-
-        LevelsLoadPassService.instance.StartCoroutine(wait());
-
-        IEnumerator wait()
-        {
-            yield return null;
-            
-            GlobalGameEvents.instance.SetTrainingStartState(isTraining);
-        }
-
     }
 
 }

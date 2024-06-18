@@ -45,6 +45,9 @@ public class LevelsLoadPassService : MonoBehaviour
     public event Action OnLevelLoad;
 
     public event Action OnPlayerRevive;
+
+    private int adCount;
+    
     private void Awake()
     {
         instance = this;
@@ -136,6 +139,17 @@ public class LevelsLoadPassService : MonoBehaviour
             
             OnLevelLoad?.Invoke();
         }
+
+        adCount++;
+
+        if (adCount >= 2)
+        {
+            adCount = 0;
+            
+            if(YandexGame.SDKEnabled)
+                YandexGame.FullscreenShow();
+        }
+
     }
 
     public void StopLevel()
