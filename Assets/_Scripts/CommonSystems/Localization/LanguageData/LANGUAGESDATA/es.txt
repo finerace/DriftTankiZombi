@@ -119,3 +119,4 @@ El Loco John:;
 Hrr...;
 ¡No está autorizado!;
 autorizarla;
+Control alternativo del tanque;

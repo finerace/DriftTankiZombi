@@ -167,9 +167,9 @@ MonoBehaviour:
   startPointsGenerateChance: 85
   additionLevelSize: 3
   cityDepth: 0
-  bordersDepth: 3
+  bordersDepth: 2
   maxZombiesPerRoad: 6
-  zombieSpawnChance: 75
+  zombieSpawnChance: 50
   maxZombiesGPerRoad: 1
   zombieGSpawnChance: 5
   generateNewSeed: 0

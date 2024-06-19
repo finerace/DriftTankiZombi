@@ -119,3 +119,4 @@ Bu Ana menüde, eğer varsa. Gerisini kendin çözeceksin. Tekrar görüşürüz
 Hrr...;
 Siz yetkiniz yok!;
 giriş yap;
+Alternatif tank kontrolü;

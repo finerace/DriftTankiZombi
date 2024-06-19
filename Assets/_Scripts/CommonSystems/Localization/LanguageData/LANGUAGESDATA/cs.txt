@@ -119,3 +119,4 @@ Posedlý John:;
 Hrr...;
 Jste neautorizovaní!;
 autorizovat;
+Alternativní řízení tanku;

@@ -119,3 +119,4 @@ Szalony John:;
 HRR...;
 Jesteś nieautoryzowany!;
 autoryzować;
+Alternatywne sterowanie czołgiem;

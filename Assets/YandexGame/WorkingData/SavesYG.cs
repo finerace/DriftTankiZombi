@@ -33,7 +33,7 @@ namespace YG
         [SerializeField] public LevelSaveData[] levelsData = new LevelSaveData[20];
 
         [SerializeField] public int gainedLvl = 1;
-        
+
         [System.Serializable]
         public class TankSaveData
         {

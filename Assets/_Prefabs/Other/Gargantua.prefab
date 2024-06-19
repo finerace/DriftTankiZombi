@@ -421,8 +421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6adfeedf27761f64f9fe4a7040fcd0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 120
-  maxHealth: 120
+  health: 165
+  maxHealth: 165
   zombieT: {fileID: 7844297399249159596}
   zombieRb: {fileID: 0}
   damage: 10

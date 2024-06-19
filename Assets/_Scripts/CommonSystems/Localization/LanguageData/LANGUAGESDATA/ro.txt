@@ -119,3 +119,4 @@ Crazy John:;
 Hrr...;
 Ești neautorizat!;
 autentificare;
+Controlul alternativ al rezervorului;

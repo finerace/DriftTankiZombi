@@ -386,7 +386,7 @@ MonoBehaviour:
   startPoint: {fileID: 5850183712462094082}
   objectsDistance: {x: 450, y: 0, z: 0}
   scrollSpeed: 15
-  dragSpeed: 1
+  dragSpeed: 2
   invertNearestObjects: 1
   unlinkObjectsPosParamToParent: 0
 --- !u!114 &6883662871251556864
@@ -1354,7 +1354,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.55
+  m_fontSize: 56.5
   m_fontSizeBase: 96.51
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -119,3 +119,4 @@ John Pazzo:;
 HRR...;
 Non sei autorizzato!;
 autorizzare;
+Controllo alternativo del serbatoio;

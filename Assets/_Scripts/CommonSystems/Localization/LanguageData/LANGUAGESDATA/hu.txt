@@ -119,3 +119,4 @@ A főmenüben van, ha van valami. A többit majd maga kitalálja. Még találkoz
 Hrr...;
 Engedély nélküli vagy!;
 bejelentkezés;
+Alternatív tartályvezérlés;

@@ -119,3 +119,4 @@ Crazy John:;
 Hrr...;
 You are unauthorized!;
 log in;
+Alternative tank control;
