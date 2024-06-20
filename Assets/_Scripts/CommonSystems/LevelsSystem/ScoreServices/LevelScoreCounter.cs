@@ -120,6 +120,9 @@ public class LevelScoreCounter : MonoBehaviour
         if (multiplier < 1)
             multiplier = 1;
 
+        if (multiplier > 50)
+            multiplier = 50;
+
         return multiplier;
     }
 

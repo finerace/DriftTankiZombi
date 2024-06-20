@@ -186,9 +186,16 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
 
         for (int i = 0; i < toRewardedLvl; i++)
         {
-            PlayerMoney += 25;
+            var result = 0;
+            
+            result = 25 * ((GetCurrentLevel() - i) / 8);
+            
+            if (result <= 0)
+                result = 25;
+
+            PlayerMoney += result;
         }
-        
+
         YandexGame.SaveProgress();
         OnLevelGained?.Invoke();
     }

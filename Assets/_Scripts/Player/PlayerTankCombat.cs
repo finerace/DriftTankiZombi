@@ -62,7 +62,7 @@ public class PlayerTankCombat : MonoBehaviour
             
         void ManagePC()
         {
-            if (Input.GetKeyUp(KeyCode.LeftControl))
+            if (Input.GetKeyUp(KeyCode.LeftShift))
                 UseGun();
 
             if (Input.GetKey(KeyCode.Space))

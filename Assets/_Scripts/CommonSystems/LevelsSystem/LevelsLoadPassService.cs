@@ -256,6 +256,20 @@ public class LevelsLoadPassService : MonoBehaviour
             
             if (!isLevelCompleted)
                 gameDataSaver.SetLevelCompletedState(currentLevelData.Id, true);
+
+            if (YandexGame.initializedLB && YandexGame.auth)
+            {
+                var currentGameScore = gameDataSaver.GetGameScore();
+
+                if (YandexGame.savesData.highestGameScore < currentGameScore)
+                {
+                    YandexGame.savesData.highestGameScore = currentGameScore;
+                    
+                    YandexGame.NewLeaderboardScores("HighestScore",currentGameScore);
+                }
+                
+            }
+                
         }
         
         gameDataSaver.Save();

@@ -64,7 +64,7 @@ public class MenuSystem : MonoBehaviour
         if(isBackActionLock)
             return;
         
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.F))
         {
             Back();
         }

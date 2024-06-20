@@ -22,6 +22,15 @@ public class AudioPoolService : MonoBehaviour
         SetNewMaxAudioSourcesCount(startMaxAudioSources);
     }
 
+    private void Start()
+    {
+        GlobalGameEvents.instance.levelStartChangeState += b =>
+        {
+            SetNewMaxAudioSourcesCount(0);
+            SetNewMaxAudioSourcesCount(48);
+        };
+    }
+
     private void Update()
     {
         FreeUsedAudioSources();

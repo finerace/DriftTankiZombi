@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d806bbed6d99b488435bd390f12a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMaxAudioSources: 64
+  startMaxAudioSources: 48
   spreadEffect: 0
 --- !u!1 &47295801
 GameObject:

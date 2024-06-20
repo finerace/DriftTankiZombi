@@ -34,6 +34,8 @@ namespace YG
 
         [SerializeField] public int gainedLvl = 1;
 
+        [SerializeField] public int highestGameScore;
+
         [System.Serializable]
         public class TankSaveData
         {

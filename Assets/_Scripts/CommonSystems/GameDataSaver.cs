@@ -73,6 +73,21 @@ public class GameDataSaver : MonoBehaviour
         return instance.savesYg.levelsData[levelId].isLevelCompleted;
     }
 
+    public int GetGameScore()
+    {
+        if (!YandexGame.SDKEnabled)
+            return 0;
+
+        var resultScore = 0;
+        
+        foreach (var item in YandexGame.savesData.levelsData)
+        {
+            resultScore += item.levelHighScore;
+        }
+
+        return resultScore;
+    }
+
     public void Save()
     {
         YandexGame.SaveProgress();
