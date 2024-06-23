@@ -6346,6 +6346,7 @@ GameObject:
   - component: {fileID: 1133279263602090240}
   - component: {fileID: 6990388667015591766}
   - component: {fileID: 2081469585311678890}
+  - component: {fileID: 6872067610606032776}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -6440,6 +6441,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449bcd2ee5f8c0d4889fe0ad844f39ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6872067610606032776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760854661346352926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8dca888208c8649b9e8b375f6c5c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetDropdown: {fileID: 7109437843791858261}
+  mainLabel: {fileID: 3869982502613330082}
+  textsLanguageId: 7d0000007e0000007f000000
 --- !u!1001 &2054489345491325035
 PrefabInstance:
   m_ObjectHideFlags: 0

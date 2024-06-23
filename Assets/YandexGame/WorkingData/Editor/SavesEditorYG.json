@@ -1,36 +1,24 @@
 {
-    "idSave": 198,
+    "idSave": 6,
     "isFirstSession": false,
-    "language": "ru",
+    "language": "en",
     "promptDone": false,
-    "playerMoney": 1970,
-    "playerDonateMoney": 382,
-    "playerXp": 109480,
-    "selectedTankNum": 2,
+    "playerMoney": 15000,
+    "playerDonateMoney": 200,
+    "playerXp": 0,
+    "selectedTankNum": 0,
     "trainingStage": 0,
-    "masterVolume": 0.6552990674972534,
-    "musicVolume": 0.8064737319946289,
+    "masterVolume": 0.550000011920929,
+    "musicVolume": 0.8500000238418579,
     "qualityId": 2,
     "languageId": 1,
-    "mobileManageAlternativeMenu": true,
+    "mobileManageAlternativeMenu": false,
     "tanksData": [
         {
             "isTankPurchased": true,
-            "engineImprovement": 4,
-            "gunsImprovement": 5,
-            "fuelImprovement": 4
-        },
-        {
-            "isTankPurchased": true,
-            "engineImprovement": 7,
-            "gunsImprovement": 8,
-            "fuelImprovement": 6
-        },
-        {
-            "isTankPurchased": true,
-            "engineImprovement": 8,
+            "engineImprovement": 1,
             "gunsImprovement": 1,
-            "fuelImprovement": 4
+            "fuelImprovement": 1
         },
         {
             "isTankPurchased": false,
@@ -39,10 +27,10 @@
             "fuelImprovement": 1
         },
         {
-            "isTankPurchased": true,
-            "engineImprovement": 4,
-            "gunsImprovement": 7,
-            "fuelImprovement": 3
+            "isTankPurchased": false,
+            "engineImprovement": 1,
+            "gunsImprovement": 1,
+            "fuelImprovement": 1
         },
         {
             "isTankPurchased": false,
@@ -51,10 +39,22 @@
             "fuelImprovement": 1
         },
         {
-            "isTankPurchased": true,
-            "engineImprovement": 7,
-            "gunsImprovement": 5,
-            "fuelImprovement": 7
+            "isTankPurchased": false,
+            "engineImprovement": 1,
+            "gunsImprovement": 1,
+            "fuelImprovement": 1
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 1,
+            "gunsImprovement": 1,
+            "fuelImprovement": 1
+        },
+        {
+            "isTankPurchased": false,
+            "engineImprovement": 1,
+            "gunsImprovement": 1,
+            "fuelImprovement": 1
         },
         {
             "isTankPurchased": false,
@@ -77,20 +77,8 @@
     ],
     "levelsData": [
         {
-            "isLevelCompleted": true,
-            "levelHighScore": 5824
-        },
-        {
             "isLevelCompleted": false,
             "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "levelHighScore": 0
-        },
-        {
-            "isLevelCompleted": false,
-            "levelHighScore": 29707
         },
         {
             "isLevelCompleted": false,
@@ -146,7 +134,19 @@
         },
         {
             "isLevelCompleted": false,
-            "levelHighScore": 68558
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
+        },
+        {
+            "isLevelCompleted": false,
+            "levelHighScore": 0
         },
         {
             "isLevelCompleted": false,
@@ -197,6 +197,6 @@
             "levelHighScore": 0
         }
     ],
-    "gainedLvl": 55,
+    "gainedLvl": 1,
     "highestGameScore": 0
 }

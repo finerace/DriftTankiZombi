@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using UnityEngine;
 using UnityEngine.UI;
 using YG.Utils.Pay;
@@ -28,8 +28,9 @@ namespace YG
 #endif
 
         public ImageLoadYG imageLoad;
+        public ImageLoadYG priceCurrencyImage;
 
-        [Tooltip("Добавить Ян/Yan к строке цены")]
+        [Tooltip("Р”РѕР±Р°РІРёС‚СЊ РЇРЅ/Yan Рє СЃС‚СЂРѕРєРµ С†РµРЅС‹")]
         public bool addYAN_toPrice = true;
 
         public Purchase data = new Purchase();
@@ -55,6 +56,7 @@ namespace YG
             }
 #endif
             if (imageLoad) imageLoad.Load(data.imageURI);
+            if (priceCurrencyImage) priceCurrencyImage.Load(data.priceCurrencyImage);
         }
 
         public void BuyPurchase()
@@ -64,10 +66,11 @@ namespace YG
 
         private string Yan()
         {
-            if (YandexGame.savesData.language == "ru")
-                return " Ян";
-            else
-                return " Yan";
+            return $" {data.priceCurrencyCode}";
+            // if (YandexGame.langPayments == "ru")
+            //     return " РЇРЅ";
+            // else
+            //     return " Yan";
         }
     }
 }

@@ -83,6 +83,12 @@ MonoBehaviour:
   - targetTexts:
     - {fileID: 6364962529676392605}
     languageDataTextId: 37
+  - targetTexts:
+    - {fileID: 6365068937033323038}
+    languageDataTextId: 123
+  - targetTexts:
+    - {fileID: 4970176789421899090}
+    languageDataTextId: 124
 --- !u!1 &23000987076213974
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,21 +1,26 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ReviveButton : MonoBehaviour
+public class OnLevelObjectEnabler : MonoBehaviour
 {
-    [SerializeField] private GameObject target;
     private LevelsLoadPassService levelsLoadPassService;
+    [SerializeField] private GameObject target;
 
     [Space] 
     
     [SerializeField] private int[] blockedLevels = new int[1];
+    
+    private void Start()
+    {
+        levelsLoadPassService = LevelsLoadPassService.instance;
+        
+        UpdateStates();
+    }
 
     private void OnEnable()
     {
-        var scores = LevelScoreCounter.instance;
-        
-        target.SetActive(scores.reviveCount <= LevelScoreCounter.maxReviveCount);
-        
         UpdateStates();
     }
 
@@ -23,11 +28,14 @@ public class ReviveButton : MonoBehaviour
     {
         foreach (var item in blockedLevels)
         {
-            if (LevelsLoadPassService.instance.CurrentLevelData.Id == item)
+            if (levelsLoadPassService.CurrentLevelData.Id == item)
             {
                 target.SetActive(false);
                 break;
             }
         }
+        
+        target.SetActive(true);
     }
+    
 }

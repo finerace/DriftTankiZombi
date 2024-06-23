@@ -17,12 +17,15 @@ public class LanguageSetter : MonoBehaviour
         {
             if(dropDown == null)
                 dropDown = GetComponent<TMP_Dropdown>();
-
+            
             if (YandexGame.savesData.languageId <= -1)
             {
-                var languageId = GetLanguageId(YandexGame.savesData.language); 
-                dropDown.value = languageId;
-                YandexGame.savesData.languageId = languageId;
+                var languageId = GetLanguageId(YandexGame.EnvironmentData.language); 
+
+                dropDown.value = GetTrueLanguageIdD(languageId);
+                YandexGame.savesData.languageId = dropDown.value;
+                
+                CurrentLanguageData.instance.SetLanguageData(languageId);
             }
             else
                 dropDown.value = YandexGame.savesData.languageId;
@@ -39,14 +42,8 @@ public class LanguageSetter : MonoBehaviour
 
     private void Work(int id)
     {
-        switch (id)
-        {
-            default:
-                YandexGame.savesData.languageId = id;
-                CurrentLanguageData.instance.SetLanguageData(GetTrueLanguageId(id));
-                break;
-        }
-
+        YandexGame.savesData.languageId = id;
+        CurrentLanguageData.instance.SetLanguageData(GetTrueLanguageId(id));
     }
     
     private int GetLanguageId(string textId)
@@ -110,6 +107,28 @@ public class LanguageSetter : MonoBehaviour
             11 => 24,
             12 => 28,
             13 => 26,
+            _ => 0
+        };
+    }
+    
+    private int GetTrueLanguageIdD(int value)
+    {
+        return value switch
+        {
+            0 => 0,
+            1 => 1,
+            5 => 2,
+            6 => 3,
+            8 => 4,
+            10 => 5,
+            12 => 6,
+            14 => 7,
+            16 => 8,
+            20 => 9,
+            21 => 10,
+            24 => 11,
+            28 => 12,
+            26 => 13,
             _ => 0
         };
     }

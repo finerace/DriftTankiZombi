@@ -68,6 +68,11 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
     private void Awake()
     {
         instance = this;
+        
+        YandexGame.PurchaseSuccessEvent += SuccessPurchased;
+        
+        YandexGame.RewardVideoEvent += SuccessRewardAd;
+        
         InitObserveNumChangesEvents();
         void InitObserveNumChangesEvents()
         {
@@ -205,13 +210,6 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
         return (GetCurrentLevel() - YandexGame.savesData.gainedLvl) > 0;
     }
     
-    private void OnEnable()
-    {
-        YandexGame.PurchaseSuccessEvent += SuccessPurchased;
-        YandexGame.ConsumePurchases();
-        
-        YandexGame.RewardVideoEvent += SuccessRewardAd;
-    }
     private void SuccessPurchased(string id)
     {
         if (id == "coins")
@@ -261,4 +259,9 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
             
         }
     }
+
+    private void FF()
+    {
+    }
+    
 }

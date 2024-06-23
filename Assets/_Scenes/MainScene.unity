@@ -9609,6 +9609,7 @@ GameObject:
   - component: {fileID: 656055306}
   - component: {fileID: 656055307}
   - component: {fileID: 656055308}
+  - component: {fileID: 656055309}
   m_Layer: 0
   m_Name: GameServices
   m_TagString: Untagged
@@ -9694,6 +9695,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pcObject: {fileID: 240510837}
   mobileObject: {fileID: 832575517}
+--- !u!114 &656055309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656055305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c66d3ab56cc71745982569cb28c3dc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &669516006
 GameObject:
   m_ObjectHideFlags: 0
