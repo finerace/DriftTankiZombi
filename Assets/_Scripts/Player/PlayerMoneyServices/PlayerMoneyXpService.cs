@@ -262,6 +262,7 @@ public class PlayerMoneyXpService : MonoBehaviour,IObserveNum
 
     private void FF()
     {
+        
     }
     
 }

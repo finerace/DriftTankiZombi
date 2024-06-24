@@ -28,7 +28,6 @@ namespace YG
 #endif
 
         public ImageLoadYG imageLoad;
-        public ImageLoadYG priceCurrencyImage;
 
         [Tooltip("Добавить Ян/Yan к строке цены")]
         public bool addYAN_toPrice = true;
@@ -56,7 +55,6 @@ namespace YG
             }
 #endif
             if (imageLoad) imageLoad.Load(data.imageURI);
-            if (priceCurrencyImage) priceCurrencyImage.Load(data.priceCurrencyImage);
         }
 
         public void BuyPurchase()
@@ -66,11 +64,10 @@ namespace YG
 
         private string Yan()
         {
-            return $" {data.priceCurrencyCode}";
-            // if (YandexGame.langPayments == "ru")
-            //     return " Ян";
-            // else
-            //     return " Yan";
+            if (YandexGame.langPayments == "ru")
+                return " Ян";
+            else
+                return " Yan";
         }
     }
 }
