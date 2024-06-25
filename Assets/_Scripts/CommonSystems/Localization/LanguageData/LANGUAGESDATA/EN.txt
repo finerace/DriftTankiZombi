@@ -125,3 +125,5 @@ l Shift;
 Low;
 Average;
 High;
+Coins;
+Crystals;

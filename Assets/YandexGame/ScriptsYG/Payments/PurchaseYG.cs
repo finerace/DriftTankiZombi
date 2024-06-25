@@ -18,16 +18,17 @@ namespace YG
         }
         public TextLegasy textLegasy;
 
-#if YG_TEXT_MESH_PRO
+
         [Serializable]
         public struct TextMP
         {
             public TextMeshProUGUI title, description, priceValue;
         }
         public TextMP textMP;
-#endif
+
 
         public ImageLoadYG imageLoad;
+        public ImageLoadYG priceCurrencyImage;
 
         [Tooltip("Добавить Ян/Yan к строке цены")]
         public bool addYAN_toPrice = true;
@@ -45,7 +46,7 @@ namespace YG
                 if (addYAN_toPrice) textLegasy.priceValue.text += Yan();
             }
 
-#if YG_TEXT_MESH_PRO
+
             if (textMP.title) textMP.title.text = data.title;
             if (textMP.description) textMP.description.text = data.description;
             if (textMP.priceValue)
@@ -53,8 +54,9 @@ namespace YG
                 textMP.priceValue.text = data.priceValue;
                 if (addYAN_toPrice) textMP.priceValue.text += Yan();
             }
-#endif
+
             if (imageLoad) imageLoad.Load(data.imageURI);
+            if (priceCurrencyImage) priceCurrencyImage.Load(data.priceCurrencyImage);
         }
 
         public void BuyPurchase()
@@ -64,10 +66,11 @@ namespace YG
 
         private string Yan()
         {
-            if (YandexGame.langPayments == "ru")
-                return " Ян";
-            else
-                return " Yan";
+            return $" {data.priceCurrencyCode}";
+            // if (YandexGame.langPayments == "ru")
+            //     return " Ян";
+            // else
+            //     return " Yan";
         }
     }
 }

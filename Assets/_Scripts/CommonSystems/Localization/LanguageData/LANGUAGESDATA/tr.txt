@@ -125,3 +125,5 @@ l Vardiya;
 Düşük;
 Ortalama;
 Yüksek;
+Madeni paralar;
+Kristaller;

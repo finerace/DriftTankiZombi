@@ -1,19 +1,25 @@
 {
-    "idSave": 18,
+    "idSave": 32,
     "isFirstSession": false,
     "language": "en",
     "promptDone": false,
-    "playerMoney": 50328,
-    "playerDonateMoney": 105,
-    "playerXp": 2235,
-    "selectedTankNum": 0,
+    "playerMoney": 58353,
+    "playerDonateMoney": 380,
+    "playerXp": 2245,
+    "selectedTankNum": 3,
     "trainingStage": 0,
     "masterVolume": 0.550000011920929,
     "musicVolume": 0.8500000238418579,
-    "qualityId": 2,
+    "qualityId": 1,
     "languageId": 1,
     "mobileManageAlternativeMenu": false,
     "tanksData": [
+        {
+            "isTankPurchased": true,
+            "engineImprovement": 1,
+            "gunsImprovement": 1,
+            "fuelImprovement": 1
+        },
         {
             "isTankPurchased": true,
             "engineImprovement": 1,
@@ -27,13 +33,7 @@
             "fuelImprovement": 1
         },
         {
-            "isTankPurchased": false,
-            "engineImprovement": 1,
-            "gunsImprovement": 1,
-            "fuelImprovement": 1
-        },
-        {
-            "isTankPurchased": false,
+            "isTankPurchased": true,
             "engineImprovement": 1,
             "gunsImprovement": 1,
             "fuelImprovement": 1
@@ -197,6 +197,6 @@
             "levelHighScore": 0
         }
     ],
-    "gainedLvl": 5,
+    "gainedLvl": 6,
     "highestGameScore": 4084
 }

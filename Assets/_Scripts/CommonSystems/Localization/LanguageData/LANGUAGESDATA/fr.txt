@@ -125,3 +125,5 @@ l Décalage ;
 Faible;
 Moyenne;
 Haut;
+monnaie;
+Cristaux ;

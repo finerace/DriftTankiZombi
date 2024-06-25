@@ -125,3 +125,5 @@ l Shift;
 Scăzut;
 In medie;
 Înalt;
+Monede;
+Cristale;

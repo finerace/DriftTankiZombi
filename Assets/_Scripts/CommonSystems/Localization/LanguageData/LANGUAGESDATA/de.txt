@@ -125,3 +125,5 @@ l Verschiebung;
 Niedrig;
 Durchschnitt;
 Hoch;
+Münzen;
+Kristalle;

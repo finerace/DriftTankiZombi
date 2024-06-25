@@ -125,3 +125,5 @@ l Cambio;
 Bajo;
 Promedio;
 Alto;
+Monedas;
+Cristales;

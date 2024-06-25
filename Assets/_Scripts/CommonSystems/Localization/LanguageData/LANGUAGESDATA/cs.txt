@@ -125,3 +125,5 @@ l Shift;
 Nízký;
 Průměrný;
 Vysoký;
+Mince;
+krystaly;

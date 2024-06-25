@@ -125,3 +125,5 @@ l Verschuiving;
 Laag;
 Gemiddeld;
 Hoog;
+Munten;
+Kristallen;

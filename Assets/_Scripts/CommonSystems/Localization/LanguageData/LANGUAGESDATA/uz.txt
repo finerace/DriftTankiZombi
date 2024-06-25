@@ -125,3 +125,5 @@ l Shift;
 Kam;
 O'rtacha;
 Yuqori;
+tangalar;
+kristallar;

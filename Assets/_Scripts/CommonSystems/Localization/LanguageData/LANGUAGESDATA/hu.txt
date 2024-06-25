@@ -125,3 +125,5 @@ l Shift;
 Alacsony;
 Átlagos;
 Magas;
+Érmék;
+Kristályok;

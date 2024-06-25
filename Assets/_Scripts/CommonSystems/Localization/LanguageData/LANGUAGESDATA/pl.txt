@@ -125,3 +125,5 @@ l Przesunięcie;
 Niski;
 Przeciętny;
 Wysoki;
+Monety;
+Kryształy;

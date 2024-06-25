@@ -125,3 +125,5 @@ l spostamento;
 Basso;
 Media;
 Alto;
+Monete;
+Cristalli;
