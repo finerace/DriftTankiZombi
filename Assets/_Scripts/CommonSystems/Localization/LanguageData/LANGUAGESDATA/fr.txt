@@ -127,3 +127,5 @@ Moyenne;
 Haut;
 monnaie;
 Cristaux ;
+Sans autorisation, le classement et les sauvegardes cloud ne fonctionnent pas ! ;
+Drift Tanks VS Zombies;

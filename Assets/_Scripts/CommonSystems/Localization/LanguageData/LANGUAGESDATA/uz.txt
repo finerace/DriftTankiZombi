@@ -127,3 +127,5 @@ O'rtacha;
 Yuqori;
 tangalar;
 kristallar;
+Ruxsatsiz peshqadamlar jadvali va bulutli saqlash ishlamaydi!;
+Drift Tanks VS Zombies;

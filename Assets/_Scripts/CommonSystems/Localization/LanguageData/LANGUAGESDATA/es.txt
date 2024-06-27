@@ -127,3 +127,5 @@ Promedio;
 Alto;
 Monedas;
 Cristales;
+¡Sin autorización, la tabla de clasificación y los guardados en la nube no funcionan!;
+Drift Tanks VS Zombies;

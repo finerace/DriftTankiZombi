@@ -127,3 +127,5 @@ Gemiddeld;
 Hoog;
 Munten;
 Kristallen;
+Zonder autorisatie werken het klassement en de cloudopslag niet!;
+Drift Tanks VS Zombies;

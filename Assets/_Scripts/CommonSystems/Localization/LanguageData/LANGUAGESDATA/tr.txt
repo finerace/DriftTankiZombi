@@ -127,3 +127,5 @@ Ortalama;
 Yüksek;
 Madeni paralar;
 Kristaller;
+Yetki olmadan skor tablosu ve bulut kayıtları çalışmaz!;
+Drift Tanks VS Zombies;

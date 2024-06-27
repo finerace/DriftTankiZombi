@@ -127,3 +127,5 @@ Przeciętny;
 Wysoki;
 Monety;
 Kryształy;
+Bez autoryzacji tabela wyników i zapisy w chmurze nie będą działać!;
+Drift Tanks VS Zombies;

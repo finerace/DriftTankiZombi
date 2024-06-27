@@ -127,3 +127,5 @@ Průměrný;
 Vysoký;
 Mince;
 krystaly;
+Bez autorizace nefunguje žebříček a ukládání do cloudu!;
+Drift Tanks VS Zombies;

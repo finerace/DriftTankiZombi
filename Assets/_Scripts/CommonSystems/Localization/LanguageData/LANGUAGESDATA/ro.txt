@@ -127,3 +127,5 @@ In medie;
 Înalt;
 Monede;
 Cristale;
+Fără autorizare, clasamentul și salvările în cloud nu funcționează!;
+Drift Tanks VS Zombies;

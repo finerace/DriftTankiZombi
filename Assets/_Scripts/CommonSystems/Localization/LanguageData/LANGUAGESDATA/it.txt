@@ -127,3 +127,5 @@ Media;
 Alto;
 Monete;
 Cristalli;
+Senza autorizzazione, la classifica e i salvataggi nel cloud non funzionano!;
+Drift Tanks VS Zombies;

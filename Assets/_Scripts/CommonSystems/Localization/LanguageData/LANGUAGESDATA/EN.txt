@@ -127,3 +127,5 @@ Average;
 High;
 Coins;
 Crystals;
+Without authorization, the leaderboard and cloud saves do not work!;
+Drift Tanks VS Zombies;

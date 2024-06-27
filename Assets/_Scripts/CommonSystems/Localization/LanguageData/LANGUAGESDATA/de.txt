@@ -127,3 +127,5 @@ Durchschnitt;
 Hoch;
 Münzen;
 Kristalle;
+Ohne Autorisierung funktionieren die Bestenliste und die Cloud-Speicherung nicht!;
+Drift Tanks VS Zombies;

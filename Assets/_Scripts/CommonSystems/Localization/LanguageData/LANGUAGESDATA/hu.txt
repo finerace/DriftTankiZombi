@@ -127,3 +127,5 @@ Alacsony;
 Magas;
 Érmék;
 Kristályok;
+Engedély nélkül a ranglista és a felhőalapú mentés nem működik!;
+Drift Tanks VS Zombies;
